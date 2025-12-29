@@ -14,7 +14,13 @@ echo "📡 Verifying Firebase Authentication..."
 firebase login
 
 # Deployment
-echo "🛰️ Deploying to auto-notion.web.app..."
-firebase deploy --only hosting:auto-notion
+PROJECT_ID=$(grep '"default":' .firebaserc | cut -d'"' -f4)
+echo "🛰️ Deploying to ${PROJECT_ID}.web.app..."
+firebase deploy --only hosting --project $PROJECT_ID
 
-echo "✅ Deployment Complete. Visit https://auto-notion.web.app"
+if [ $? -eq 0 ]; then
+    echo "✅ Deployment Complete. Visit https://${PROJECT_ID}.web.app"
+else
+    echo "❌ Deployment Failed. Check your project permissions."
+    exit 1
+fi
