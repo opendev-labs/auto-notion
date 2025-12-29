@@ -306,6 +306,25 @@
             </div>
         </div>
     </div>
+    <!-- Firebase SDK Integration -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBMsqr--MMnif5HrvtcTvoPyIkqHznuqkg",
+            authDomain: "meta-auto-notion.firebaseapp.com",
+            projectId: "meta-auto-notion",
+            storageBucket: "meta-auto-notion.firebasestorage.app",
+            messagingSenderId: "357502904034",
+            appId: "1:357502904034:web:817d672e8947ef6afaa0bb",
+            measurementId: "G-XNBEM9HKV0"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        console.log("Firebase initialized for Missions Control");
+    </script>
 </body>
 
 </html>
