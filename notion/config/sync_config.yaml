@@ -1,0 +1,53 @@
+# Auto-Notion Sync Configuration
+# Instagram <> Notion Synchronization
+
+sync_schedule:
+  content_calendar:
+    interval: "15 minutes"
+    enabled: true
+    pages: ["MythicWisdom", "DharmaDotes", "KarmaKronicles", "ConsciousQuotes", "CrystalEnergy", "SacredGeometry", "WeAreOneGlobal"]
+    
+  performance_analytics:
+    interval: "daily"
+    time: "09:00"
+    enabled: true
+    metrics: ["impressions", "reach", "engagement", "follower_count"]
+    
+  team_tasks:
+    interval: "30 minutes"
+    enabled: true
+    auto_create_tasks: true
+    
+notion_databases:
+  content_calendar: "content_calendar_db_id"
+  performance_analytics: "performance_analytics_db_id"
+  team_collaboration: "team_collaboration_db_id"
+  
+sync_rules:
+  content_creation:
+    trigger: "new_content_generated"
+    action: "create_notion_page"
+    template: "content_calendar"
+    
+  post_published:
+    trigger: "post_published"
+    action: "update_notion_status"
+    status: "Published"
+    
+  insights_updated:
+    trigger: "daily_insights"
+    action: "update_analytics_page"
+    
+conflict_resolution:
+  strategy: "notion_wins"
+  auto_merge: false
+  notify_on_conflict: true
+  
+webhook_integration:
+  notion_to_instagram:
+    enabled: true
+    events: ["page_created", "page_updated", "property_edited"]
+    
+  instagram_to_notion:
+    enabled: true
+    events: ["post_created", "post_updated", "insights_updated"]

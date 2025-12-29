@@ -1,0 +1,20 @@
+{
+  "page_name": "DharmaDotes",
+  "meta_config": {
+    "app_id": "689310950781431",
+    "business_id": "780866337893831",
+    "api_version": "v24.0",
+    "category": "education",
+    "content_type": "dharma_teachings",
+    "username": "dharmadotes",
+    "age_restriction": "13+",
+    "gdpr_compliant": true,
+    "ip_whitelist_enabled": true,
+    "app_secret_required": true
+  },
+  "compliance": {
+    "data_deletion_callback": "https://opendev-labs.github.io/auto-notion/webhooks/data-deletion",
+    "privacy_policy_url": "https://opendev-labs.github.io/auto-notion/privacy",
+    "terms_of_service_url": "https://opendev-labs.github.io/auto-notion/terms"
+  }
+}

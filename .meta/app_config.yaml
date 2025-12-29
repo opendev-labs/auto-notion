@@ -1,0 +1,69 @@
+# Auto-Notion Meta App Configuration
+# App ID: 689310950781431 | Business ID: 780866337893831
+# API Version: v24.0 | Client Token: c1668ae918a78c66946cda97a2220ed7
+
+meta_app:
+  app_id: "689310950781431"
+  business_id: "780866337893831"
+  client_token: "c1668ae918a78c66946cda97a2220ed7"
+  api_version: "v24.0"
+  base_url: "https://graph.facebook.com"
+  
+authentication:
+  app_secret_required: true
+  token_encryption: "AES-256-GCM"
+  token_refresh_days: 60
+  data_deletion_callback: true
+  webhook_verification: true
+  
+security:
+  ip_whitelist_enabled: true
+  whitelisted_ips:
+    - "127.0.0.1"
+    - "::1"
+  require_2fa_reauth: true
+  session_timeout_minutes: 30
+  max_login_attempts: 5
+  
+compliance:
+  age_restriction: "13+"
+  gdpr_restricted: true
+  data_retention_days: 90
+  privacy_policy_url: "https://opendev-labs.github.io/auto-notion/privacy"
+  terms_of_service_url: "https://opendev-labs.github.io/auto-notion/terms"
+  data_deletion_url: "https://opendev-labs.github.io/auto-notion/webhooks/data-deletion"
+  
+rate_limits:
+  app_level: 200
+  page_level: 50
+  user_level: 100
+  retry_strategy: "exponential_backoff"
+  
+webhooks:
+  enabled: true
+  subscriptions:
+    - feed
+    - mentions
+    - messages
+  verification_token: "auto-notion-verification-2024"
+  
+instagram_features:
+  business_accounts_only: true
+  allowed_content_types:
+    - "IMAGE"
+    - "VIDEO"
+    - "CAROUSEL"
+    - "REELS"
+    - "STORIES"
+  prohibited_content:
+    - "alcohol_references"
+    - "tobacco_products"
+    - "adult_content"
+    
+notion_integration:
+  enabled: true
+  sync_interval: "15 minutes"
+  databases:
+    content_calendar: true
+    performance_analytics: true
+    team_collaboration: true

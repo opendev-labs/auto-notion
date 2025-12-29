@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missions Control | Auto-Notion Stack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #818cf8;
+            --danger: #ef4444;
+            --success: #10b981;
+            --bg: #020617;
+            --glass: rgba(15, 23, 42, 0.6);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: #f8fafc;
+            margin: 0;
+            overflow-x: hidden;
+            background: radial-gradient(circle at top right, #1e1b4b, #020617 70%);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 3rem;
+        }
+
+        .status-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        /* Grid Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .span-8 {
+            grid-column: span 8;
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+
+        .span-3 {
+            grid-column: span 3;
+        }
+
+        .span-6 {
+            grid-column: span 6;
+        }
+
+        /* Stats */
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Z-Score Health Chart Mockup */
+        .health-chart {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .bar {
+            flex: 1;
+            background: var(--primary);
+            border-radius: 4px 4px 0 0;
+            transition: height 1s ease;
+        }
+
+        /* Logs Table */
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        .log-table th {
+            text-align: left;
+            padding: 1rem;
+            color: #94a3b8;
+            font-size: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .log-table td {
+            padding: 1rem;
+            font-size: 0.875rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tag {
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .tag-verified {
+            background: rgba(129, 140, 248, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .tag-auspicious {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid #f59e0b;
+        }
+
+        /* Cosmic Alignment Widget */
+        .cosmic-widget {
+            text-align: center;
+        }
+
+        .moon-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <p style="color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">INSTITUTIONAL STACK</p>
+                <h1>Missions Control</h1>
+            </div>
+            <div class="status-badge">
+                <div class="pulse"></div>
+                SYSTEM LIVE: MISSION COMPLIANT
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Main Metrics -->
+            <div class="card span-3">
+                <div class="stat-label">Automation Fleet</div>
+                <div class="stat-value">4/4</div>
+                <div style="color: var(--success); font-size: 0.875rem;">↑ Online</div>
+            </div>
+            <div class="card span-3">
+                <div class="stat-label">Institutional Z-Score</div>
+                <div class="stat-value">1.42</div>
+                <div style="color: var(--success); font-size: 0.875rem;">Stable</div>
+            </div>
+            <div class="card span-3">
+                <div class="stat-label">Daily 365 Pipeline</div>
+                <div class="stat-value">21/21</div>
+                <div style="color: var(--primary); font-size: 0.875rem;">Processed</div>
+            </div>
+            <div class="card span-3">
+                <div class="stat-label">Risk Guard Status</div>
+                <div class="stat-value" style="color: var(--success);">READY</div>
+                <div style="color: #94a3b8; font-size: 0.875rem;">No Drift Detected</div>
+            </div>
+
+            <!-- Health Distribution -->
+            <div class="card span-8">
+                <h3>Content Health Distribution (Z-Score Alignment)</h3>
+                <div class="health-chart">
+                    <div class="bar" style="height: 60%;"></div>
+                    <div class="bar" style="height: 85%;"></div>
+                    <div class="bar" style="height: 45%;"></div>
+                    <div class="bar" style="height: 90%;"></div>
+                    <div class="bar" style="height: 70%;"></div>
+                    <div class="bar" style="height: 95%;"></div>
+                    <div class="bar" style="height: 65%;"></div>
+                    <div class="bar" style="height: 80%;"></div>
+                </div>
+            </div>
+
+            <!-- Cosmic Timing -->
+            <div class="card span-4 cosmic-widget">
+                <h3>Cosmic Alignment</h3>
+                <div class="moon-icon">🌕</div>
+                <div class="stat-value" style="font-size: 1.5rem;">Waxing Gibbous</div>
+                <p style="color: #94a3b8; margin-top: 1rem;">Next Auspicious Window:<br><strong>Today, 18:00 -
+                        21:00</strong></p>
+                <div class="tag tag-auspicious" style="margin-top: 1rem; display: inline-block;">Optimal for Growth
+                </div>
+            </div>
+
+            <!-- Verifiable Event Logs -->
+            <div class="card span-12">
+                <h3>Cryptographically Verifiable Event Logs (Audit Trail)</h3>
+                <table class="log-table">
+                    <thead>
+                        <tr>
+                            <th>TIMESTAMP</th>
+                            <th>MISSION ID</th>
+                            <th>ACTION</th>
+                            <th>PSYCH VECTOR</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-12-29 19:42:01</td>
+                            <td>MISSION-A4F2</td>
+                            <td>CONTENT_GEN</td>
+                            <td>Cognitive Interruption</td>
+                            <td><span class="tag tag-verified">SIGNATURE_OK</span></td>
+                        </tr>
+                        <tr>
+                            <td>2024-12-29 19:45:12</td>
+                            <td>MISSION-B8C1</td>
+                            <td>COSMIC_SYNC</td>
+                            <td>Self-Correction</td>
+                            <td><span class="tag tag-verified">ALIGNED</span></td>
+                        </tr>
+                        <tr>
+                            <td>2024-12-29 19:48:44</td>
+                            <td>MISSION-D2E4</td>
+                            <td>WEBHOOK_VAL</td>
+                            <td>Sublime Awareness</td>
+                            <td><span class="tag tag-verified">HMAC_VERIFIED</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

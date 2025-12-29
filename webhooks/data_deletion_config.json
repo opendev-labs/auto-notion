@@ -1,0 +1,21 @@
+{
+    "webhook_type": "data_deletion",
+    "status": "active",
+    "endpoint": "https://opendev-labs.github.io/auto-notion/webhooks/data-deletion",
+    "verification_token": "auto-notion-data-deletion-2024",
+    "compliance": {
+        "gdpr_article_17": true,
+        "ccpa_required": true,
+        "data_retention_days": 90
+    },
+    "implementation": {
+        "user_id_lookup": "app_scoped",
+        "data_scope": [
+            "posts",
+            "comments",
+            "likes",
+            "messages"
+        ],
+        "confirmation_method": "callback_url"
+    }
+}

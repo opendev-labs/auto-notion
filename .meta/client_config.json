@@ -1,0 +1,18 @@
+{
+  "client_token": "c1668ae918a78c66946cda97a2220ed7",
+  "usage": "Server-side API calls with app secret proof",
+  "security_requirements": {
+    "ip_whitelist": true,
+    "app_secret_required": true,
+    "encryption_required": true
+  },
+  "rate_limits": {
+    "calls_per_hour": 200,
+    "calls_per_day": 4800
+  },
+  "compliance": {
+    "data_deletion_implemented": true,
+    "age_gating": "13+",
+    "gdpr_compliant": true
+  }
+}

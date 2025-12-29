@@ -1,0 +1,161 @@
+{
+    "hashtag_categories": {
+        "primary": {
+            "description": "High-traffic, relevant hashtags",
+            "examples": [
+                "#spiritual",
+                "#consciousness",
+                "#mindfulness",
+                "#awakening",
+                "#enlightenment"
+            ],
+            "count": "3-5 per post",
+            "placement": "beginning"
+        },
+        "secondary": {
+            "description": "Niche-specific hashtags",
+            "examples": [
+                "#ancientwisdom",
+                "#dharmateachings",
+                "#karmalessons",
+                "#crystalhealing",
+                "#sacredgeometry"
+            ],
+            "count": "5-7 per post",
+            "placement": "middle"
+        },
+        "branded": {
+            "description": "Page-specific and campaign hashtags",
+            "examples": [
+                "#MythicWisdom",
+                "#DharmaDotes",
+                "#KarmaKronicles",
+                "#WeAreOneGlobal",
+                "#AutoNotion"
+            ],
+            "count": "1-2 per post",
+            "placement": "end"
+        },
+        "community": {
+            "description": "Engagement-focused hashtags",
+            "examples": [
+                "#shareyourthoughts",
+                "#communitylove",
+                "#spiritualfamily",
+                "#consciouscommunity"
+            ],
+            "count": "2-3 per post",
+            "placement": "end"
+        }
+    },
+    "page_specific_strategies": {
+        "MythicWisdom": {
+            "primary": [
+                "#wisdom",
+                "#philosophy",
+                "#spiritualgrowth",
+                "#truth",
+                "#consciousness"
+            ],
+            "secondary": [
+                "#ancientwisdom",
+                "#universaltruths",
+                "#lifelessons",
+                "#spiritualquotes",
+                "#wisdomquotes"
+            ],
+            "branded": [
+                "#MythicWisdom",
+                "#MythicWisdomQuotes"
+            ],
+            "community": [
+                "#shareyourwisdom",
+                "#wisdomwednesday",
+                "#reflectiontime"
+            ]
+        },
+        "DharmaDotes": {
+            "primary": [
+                "#dharma",
+                "#buddhism",
+                "#mindfulness",
+                "#meditation",
+                "#spiritual"
+            ],
+            "secondary": [
+                "#dharmateachings",
+                "#buddhistwisdom",
+                "#mindfulliving",
+                "#presentmoment",
+                "#innerpeace"
+            ],
+            "branded": [
+                "#DharmaDotes",
+                "#DharmaDaily"
+            ],
+            "community": [
+                "#mindfulmoments",
+                "#meditationpractice",
+                "#dharmacommunity"
+            ]
+        },
+        "CrystalEnergy": {
+            "primary": [
+                "#crystals",
+                "#crystalhealing",
+                "#energyhealing",
+                "#spiritual",
+                "#healing"
+            ],
+            "secondary": [
+                "#crystalenergy",
+                "#healingstones",
+                "#gemstones",
+                "#crystalcommunity",
+                "#crystallove"
+            ],
+            "branded": [
+                "#CrystalEnergy",
+                "#CrystalOfTheDay"
+            ],
+            "community": [
+                "#crystalshare",
+                "#crystalcollection",
+                "#crystalhealers"
+            ]
+        },
+        "WeAreOneGlobal": {
+            "primary": [
+                "#unity",
+                "#oneness",
+                "#globalcommunity",
+                "#consciousness",
+                "#humanity"
+            ],
+            "secondary": [
+                "#weareone",
+                "#globalunity",
+                "#onehumanity",
+                "#collectiveconsciousness",
+                "#unityindiversity"
+            ],
+            "branded": [
+                "#WeAreOneGlobal",
+                "#OneWorldOnePeople"
+            ],
+            "community": [
+                "#shareyourstory",
+                "#globalfamily",
+                "#unityinaction"
+            ]
+        }
+    },
+    "optimization_rules": {
+        "max_hashtags": 30,
+        "min_hashtags": 10,
+        "mix_required": true,
+        "avoid_banned": true,
+        "relevance_check": true,
+        "performance_tracking": true
+    }
+}

@@ -1,0 +1,352 @@
+{
+    "content_calendar": {
+        "parent": {
+            "type": "workspace"
+        },
+        "title": [
+            {
+                "type": "text",
+                "text": {
+                    "content": "Instagram Content Calendar"
+                }
+            }
+        ],
+        "properties": {
+            "Title": {
+                "title": {}
+            },
+            "Instagram Page": {
+                "select": {
+                    "options": [
+                        {
+                            "name": "MythicWisdom",
+                            "color": "purple"
+                        },
+                        {
+                            "name": "DharmaDotes",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "KarmaKronicles",
+                            "color": "green"
+                        },
+                        {
+                            "name": "ConsciousQuotes",
+                            "color": "yellow"
+                        },
+                        {
+                            "name": "CrystalEnergy",
+                            "color": "pink"
+                        },
+                        {
+                            "name": "SacredGeometry",
+                            "color": "orange"
+                        },
+                        {
+                            "name": "WeAreOneGlobal",
+                            "color": "red"
+                        }
+                    ]
+                }
+            },
+            "Content Type": {
+                "select": {
+                    "options": [
+                        {
+                            "name": "Quote Post",
+                            "color": "default"
+                        },
+                        {
+                            "name": "Educational",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "Story",
+                            "color": "green"
+                        },
+                        {
+                            "name": "Carousel",
+                            "color": "purple"
+                        },
+                        {
+                            "name": "Reels",
+                            "color": "pink"
+                        },
+                        {
+                            "name": "Community Post",
+                            "color": "orange"
+                        }
+                    ]
+                }
+            },
+            "Scheduled Date": {
+                "date": {}
+            },
+            "Posted Date": {
+                "date": {}
+            },
+            "Status": {
+                "status": {
+                    "options": [
+                        {
+                            "name": "Planned",
+                            "color": "gray"
+                        },
+                        {
+                            "name": "Created",
+                            "color": "yellow"
+                        },
+                        {
+                            "name": "Approved",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "Scheduled",
+                            "color": "purple"
+                        },
+                        {
+                            "name": "Published",
+                            "color": "green"
+                        },
+                        {
+                            "name": "Archived",
+                            "color": "brown"
+                        }
+                    ]
+                }
+            },
+            "Priority": {
+                "select": {
+                    "options": [
+                        {
+                            "name": "High",
+                            "color": "red"
+                        },
+                        {
+                            "name": "Medium",
+                            "color": "yellow"
+                        },
+                        {
+                            "name": "Low",
+                            "color": "green"
+                        }
+                    ]
+                }
+            },
+            "Engagement Score": {
+                "number": {
+                    "format": "number"
+                }
+            },
+            "Tags": {
+                "multi_select": {}
+            }
+        }
+    },
+    "performance_analytics": {
+        "parent": {
+            "type": "workspace"
+        },
+        "title": [
+            {
+                "type": "text",
+                "text": {
+                    "content": "Instagram Performance Analytics"
+                }
+            }
+        ],
+        "properties": {
+            "Title": {
+                "title": {}
+            },
+            "Report Date": {
+                "date": {}
+            },
+            "Report Period": {
+                "select": {
+                    "options": [
+                        {
+                            "name": "Daily",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "Weekly",
+                            "color": "green"
+                        },
+                        {
+                            "name": "Monthly",
+                            "color": "purple"
+                        }
+                    ]
+                }
+            },
+            "Page": {
+                "select": {
+                    "options": [
+                        {
+                            "name": "MythicWisdom",
+                            "color": "purple"
+                        },
+                        {
+                            "name": "DharmaDotes",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "KarmaKronicles",
+                            "color": "green"
+                        },
+                        {
+                            "name": "ConsciousQuotes",
+                            "color": "yellow"
+                        },
+                        {
+                            "name": "CrystalEnergy",
+                            "color": "pink"
+                        },
+                        {
+                            "name": "SacredGeometry",
+                            "color": "orange"
+                        },
+                        {
+                            "name": "WeAreOneGlobal",
+                            "color": "red"
+                        }
+                    ]
+                }
+            },
+            "Impressions": {
+                "number": {
+                    "format": "number"
+                }
+            },
+            "Reach": {
+                "number": {
+                    "format": "number"
+                }
+            },
+            "Engagement Rate": {
+                "number": {
+                    "format": "percent"
+                }
+            },
+            "New Followers": {
+                "number": {
+                    "format": "number"
+                }
+            },
+            "Top Performing Post": {
+                "url": {}
+            }
+        }
+    },
+    "team_collaboration": {
+        "parent": {
+            "type": "workspace"
+        },
+        "title": [
+            {
+                "type": "text",
+                "text": {
+                    "content": "Auto-Notion Team Collaboration"
+                }
+            }
+        ],
+        "properties": {
+            "Title": {
+                "title": {}
+            },
+            "Task Type": {
+                "select": {
+                    "options": [
+                        {
+                            "name": "Content Creation",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "Content Review",
+                            "color": "green"
+                        },
+                        {
+                            "name": "Scheduling",
+                            "color": "purple"
+                        },
+                        {
+                            "name": "Analytics",
+                            "color": "yellow"
+                        },
+                        {
+                            "name": "Strategy",
+                            "color": "orange"
+                        },
+                        {
+                            "name": "Technical",
+                            "color": "red"
+                        }
+                    ]
+                }
+            },
+            "Assigned To": {
+                "people": {}
+            },
+            "Due Date": {
+                "date": {}
+            },
+            "Status": {
+                "status": {
+                    "options": [
+                        {
+                            "name": "Backlog",
+                            "color": "gray"
+                        },
+                        {
+                            "name": "In Progress",
+                            "color": "yellow"
+                        },
+                        {
+                            "name": "In Review",
+                            "color": "blue"
+                        },
+                        {
+                            "name": "Completed",
+                            "color": "green"
+                        },
+                        {
+                            "name": "Blocked",
+                            "color": "red"
+                        }
+                    ]
+                }
+            },
+            "Priority": {
+                "select": {
+                    "options": [
+                        {
+                            "name": "Critical",
+                            "color": "red"
+                        },
+                        {
+                            "name": "High",
+                            "color": "orange"
+                        },
+                        {
+                            "name": "Medium",
+                            "color": "yellow"
+                        },
+                        {
+                            "name": "Low",
+                            "color": "green"
+                        }
+                    ]
+                }
+            },
+            "Related Post": {
+                "url": {}
+            },
+            "Estimated Hours": {
+                "number": {
+                    "format": "number"
+                }
+            }
+        }
+    }
+}

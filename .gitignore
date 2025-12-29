@@ -1,0 +1,28 @@
+# Institutional Secrets (CRITICAL)
+.secrets/
+.vault/
+*.env
+*.key
+*.password
+
+# Platform Logs & Local State
+logs/
+analytics/
+output/
+backup/
+.meta/page_config.json
+
+# Python Environment
+__pycache__/
+*.py[cod]
+*$py.class
+env/
+venv/
+.env
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Mission Control local builds
+web/dist/

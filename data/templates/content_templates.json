@@ -1,0 +1,163 @@
+{
+    "quote_image_templates": [
+        {
+            "id": "QIT_001",
+            "name": "Ancient Manuscript",
+            "description": "Quote on aged parchment with wax seal",
+            "color_scheme": [
+                "#4A6572",
+                "#344955",
+                "#F9AA33"
+            ],
+            "font_family": "serif",
+            "layout": "centered",
+            "elements": [
+                "quote_text",
+                "author",
+                "decorative_border",
+                "wisdom_symbol"
+            ],
+            "compliance": {
+                "age_appropriate": true,
+                "business_use": true,
+                "religious_neutral": true
+            }
+        },
+        {
+            "id": "QIT_002",
+            "name": "Modern Minimalist",
+            "description": "Clean design with spiritual symbol accent",
+            "color_scheme": [
+                "#FFFFFF",
+                "#000000",
+                "#FF6B6B"
+            ],
+            "font_family": "sans-serif",
+            "layout": "asymmetric",
+            "elements": [
+                "quote_text",
+                "minimal_symbol",
+                "gradient_background"
+            ],
+            "compliance": {
+                "age_appropriate": true,
+                "business_use": true,
+                "religious_neutral": true
+            }
+        }
+    ],
+    "carousel_templates": [
+        {
+            "id": "CT_001",
+            "name": "Educational Journey",
+            "description": "Step-by-step educational carousel",
+            "slide_count": 5,
+            "slide_structure": [
+                "title",
+                "content",
+                "visual",
+                "key_takeaway",
+                "call_to_action"
+            ],
+            "progression": "linear",
+            "interactive_elements": [
+                "swipe_prompt",
+                "save_prompt",
+                "comment_prompt"
+            ],
+            "compliance": {
+                "educational_focus": true,
+                "clear_structure": true,
+                "engagement_friendly": true
+            }
+        },
+        {
+            "id": "CT_002",
+            "name": "Product Showcase",
+            "description": "Product feature carousel for crystals",
+            "slide_count": 4,
+            "slide_structure": [
+                "product_image",
+                "feature_title",
+                "benefits",
+                "usage_tips",
+                "disclaimer"
+            ],
+            "progression": "feature_based",
+            "interactive_elements": [
+                "save_for_later",
+                "ask_questions",
+                "share_tips"
+            ],
+            "compliance": {
+                "product_disclaimer": true,
+                "educational_focus": true,
+                "no_medical_claims": true
+            }
+        }
+    ],
+    "reels_templates": [
+        {
+            "id": "RT_001",
+            "name": "Wisdom in Motion",
+            "description": "Animated quote with soothing background",
+            "duration": "15-30 seconds",
+            "style": "kinetic_typography",
+            "music_type": "ambient_instrumental",
+            "text_animation": "fade_in_out",
+            "compliance": {
+                "copyright_free_music": true,
+                "text_readable": true,
+                "appropriate_pacing": true
+            }
+        },
+        {
+            "id": "RT_002",
+            "name": "Crystal Showcase",
+            "description": "Crystal close-ups with healing properties",
+            "duration": "20-45 seconds",
+            "style": "product_showcase",
+            "music_type": "healing_frequencies",
+            "text_overlay": "property_labels",
+            "compliance": {
+                "educational_disclaimer": true,
+                "product_showcase": true,
+                "no_misleading_claims": true
+            }
+        }
+    ],
+    "story_templates": [
+        {
+            "id": "ST_001",
+            "name": "Daily Reflection",
+            "description": "Interactive story with reflection prompt",
+            "frame_count": 3,
+            "interactive_elements": [
+                "poll",
+                "question_sticker",
+                "quiz"
+            ],
+            "duration": "24 hours",
+            "goal": "community_engagement",
+            "compliance": {
+                "interactive_features": true,
+                "temporary_content": true,
+                "engagement_focused": true
+            }
+        },
+        {
+            "id": "ST_002",
+            "name": "Behind the Scenes",
+            "description": "Authentic behind-the-scenes content",
+            "frame_count": 5,
+            "style": "authentic_casual",
+            "call_to_action": "ask_me_anything",
+            "goal": "brand_transparency",
+            "compliance": {
+                "authentic_content": true,
+                "casual_tone": true,
+                "community_building": true
+            }
+        }
+    ]
+}

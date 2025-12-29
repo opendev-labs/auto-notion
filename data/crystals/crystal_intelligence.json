@@ -1,0 +1,24 @@
+{
+    "crystals": [
+        {
+            "name": "Amethyst",
+            "description": "A powerful and protective stone with a high spiritual vibration.",
+            "properties": [
+                "protection",
+                "purification",
+                "divine connection"
+            ],
+            "chakra": "Crown"
+        },
+        {
+            "name": "Rose Quartz",
+            "description": "The stone of universal love. It restores trust and harmony in relationships.",
+            "properties": [
+                "unconditional love",
+                "self-love",
+                "friendship"
+            ],
+            "chakra": "Heart"
+        }
+    ]
+}
