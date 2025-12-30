@@ -2,14 +2,18 @@
 
 To connect your **Auto-Notion** platform to the Meta Developer Dashboard (App ID: 689310950781431), follow these specific instructions for the **Advanced Settings** page.
 
+![Integration Philosophy](integration_philosophy.jpg)
+
+> "Insight opens the door. **Integration** makes you walk through it."
+
 ## 🛠 Advanced Settings Configuration
 
 | Field | Action / Value | Rationale |
 | :--- | :--- | :--- |
-| **Authorize callback URL** | `https://your-domain.com/auth/callback` | Required for the OAuth 2.0 token rotation flow. |
-| **Data Deletion Callback** | `https://your-domain.com/webhooks/deletion` | **Critical for GDPR**. Automates the deletion requests to avoid manual audits. |
-| **Server IP allowlist** | `Your.Server.Static.IP` | **Institutional Security**. Restricts API calls to only originate from your server. |
-| **Update settings IP allowlist** | `Your.Admin.IP` | Prevents unauthorized changes to app settings from external IPs. |
+| **Authorize callback URL** | `https://auto-notion.web.app/auth/callback` | Required for the OAuth 2.0 token rotation flow. |
+| **Data Deletion Callback** | `https://auto-notion.web.app/webhooks/deletion` | **Critical for GDPR**. Automates the deletion requests. |
+| **Server IP allowlist** | `Your.Server.Static.IP` | **Institutional Security**. Restricts API calls. |
+| **Update settings IP allowlist** | `Your.Admin.IP` | Prevents unauthorized changes. |
 | **Require app secret** | **Set to YES** | Enforces `appsecret_proof` signature for every call (already built into our code). |
 | **Require 2-factor** | **Set to YES** | Adds an institutional layer of protection for setting changes. |
 | **Age restriction** | **Anyone (13+)** | Aligns with standard Instagram Business policies for consciousness content. |
@@ -26,7 +30,7 @@ To connect your **Auto-Notion** platform to the Meta Developer Dashboard (App ID
 ## 📡 Webhook Setup (Webhooks Tab)
 1. Select **Instagram** from the dropdown.
 2. Click **Subscribe to this object**.
-3. **Callback URL**: `https://your-domain.com/webhooks/instagram`
+3. **Callback URL**: `https://auto-notion.web.app/webhooks/instagram`
 4. **Verify Token**: (Set a random strong string, e.g., `LAKHAN_BHAI_VERIFY_2024`)
 5. **Subscriptions**: Check `comments`, `mention`, `story_insights`.
 

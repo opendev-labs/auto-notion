@@ -19,4 +19,4 @@ jobs:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_META_AUTO_NOTION }}"
           channelId: live
-          projectId: meta-auto-notion
+          projectId: co-writter-studio
