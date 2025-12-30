@@ -1,7 +1,7 @@
 {
     "hosting": {
         "site": "auto-notion",
-        "public": "web",
+        "public": "web_app/dist",
         "ignore": [
             "firebase.json",
             "**/.*",
