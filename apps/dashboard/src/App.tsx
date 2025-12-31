@@ -73,6 +73,7 @@ function App() {
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
         <Route path="/auth" element={!user ? <Login onLoginSuccess={() => { }} /> : <Navigate to="/dashboard" />} />
+        <Route path="/signin" element={!user ? <Login onLoginSuccess={() => { }} /> : <Navigate to="/dashboard" />} />
 
         {/* Compliance Pages (Public) */}
         <Route path="/privacy" element={<div className="min-h-screen bg-black p-8"><PrivacyPolicy /></div>} />
