@@ -9,15 +9,18 @@ import {
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-// TODO: Replace with your actual config from Firebase Console
+// Firebase configuration from user request
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APP_ID
+    apiKey: "AIzaSyBMsqr--MMnif5HrvtcTvoPyIkqHznuqkg",
+    authDomain: "meta-auto-notion.firebaseapp.com",
+    projectId: "meta-auto-notion",
+    storageBucket: "meta-auto-notion.firebasestorage.app",
+    messagingSenderId: "357502904034",
+    appId: "1:357502904034:web:817d672e8947ef6afaa0bb",
+    measurementId: "G-XNBEM9HKV0"
 };
+
+console.log("Firebase Initializing with Project:", firebaseConfig.projectId);
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Sidebar from './components/Sidebar';
 import MobileBottomNav from './components/MobileBottomNav';
@@ -31,8 +31,13 @@ function App() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  const location = useLocation();
+  console.log("App current path:", location.pathname);
+
   useEffect(() => {
+    console.log("App mounted, listening for auth changes...");
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("Auth state change:", currentUser ? "User logged in" : "No user");
       setUser(currentUser);
       setLoading(false);
     });
@@ -52,8 +57,6 @@ function App() {
       />
       <main className="flex-1 overflow-y-auto p-3 md:p-8 pb-24 lg:pb-8 relative">
         <div className="max-w-7xl mx-auto relative z-10 mt-4">
-          {/* Header is here in original code, skipping for brevity in routes unless Dashboard needs it */}
-          {/* Actually reusing original render logic within Dashboard route concept */}
           <DashboardContent
             activeTab={activeTab}
             setActiveTab={setActiveTab}
@@ -105,7 +108,6 @@ const DashboardContent = ({ activeTab, setActiveTab, integrationMode }: any) => 
       case 'ig-connections': return <IGPortal />;
       case 'agents': return <AgentManager />;
       case 'cosmic': return <CosmicPlanner />;
-      // Compliance tabs inside dashboard removed in favor of public pages, or can keep as legacy
       default: return <Dashboard />;
     }
   };

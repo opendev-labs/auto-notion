@@ -1,6 +1,10 @@
 # Auto-Notion
 
 <p align="center">
+  <img src="apps/dashboard/public/icons/icon-512.png" width="128" alt="Auto-Notion Agent Logo"/>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Status-Live-4F46E5?style=for-the-badge" alt="Status"/>
   <img src="https://img.shields.io/badge/Firebase-Hosting-FFCA28?style=for-the-badge&logo=firebase&logoColor=white" alt="Firebase"/>
   <img src="https://img.shields.io/badge/Meta-Compliant-0668E1?style=for-the-badge&logo=meta&logoColor=white" alt="Meta Compliant"/>
@@ -8,11 +12,11 @@
 </p>
 
 <p align="center">
-  <strong>Institutional-Grade Instagram Automation Platform</strong>
+  <strong>Professional AI Agent Orchestration Platform</strong>
 </p>
 
 <p align="center">
-  Deploy high-fidelity AI agents to autonomously manage your Instagram sales funnel with cosmic timing algorithms and zero-drift content generation.
+  Deploy hyperintelligent AI agents to autonomously manage your Instagram sales funnel with cosmic timing and institutional precision.
 </p>
 
 <p align="center">

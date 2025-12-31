@@ -146,7 +146,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, integrationM
                             </div>
                         </div>
                         <p className="text-[10px] text-white/40 leading-relaxed font-bold italic">
-                            "Integration is the final step of insight."
+                            "Autonomy is the final step of insight."
                         </p>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   Instagram,
-  Bot,
+  Cpu,
   Zap,
   ShieldCheck,
   Rocket,
@@ -154,7 +154,7 @@ const Hero = () => {
           className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center w-full px-4 sm:px-0"
         >
           <button
-            onClick={() => window.location.href = '/dashboard'}
+            onClick={() => window.location.href = '/auth'}
             className="w-full sm:w-auto group relative px-8 md:px-10 py-4 md:py-5 bg-white text-black rounded-full font-black uppercase tracking-widest text-xs md:text-sm transition-all hover:scale-105 active:scale-95 shadow-[0_20px_40px_-15px_rgba(255,255,255,0.2)]"
           >
             Start Free Trial
@@ -164,7 +164,7 @@ const Hero = () => {
             onClick={() => window.location.href = '/dashboard'}
             className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 bg-white/5 border border-white/10 text-white rounded-full font-black uppercase tracking-widest text-xs md:text-sm backdrop-blur-sm transition-all hover:bg-white/10 active:scale-95"
           >
-            Book Demo
+            Mission Control
           </button>
         </motion.div>
 
@@ -448,11 +448,17 @@ const CTA = () => {
             Join the 1,000+ high-growth institutions scaling their Instagram presence with Auto-Notion.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="px-14 py-6 bg-white text-black rounded-full font-black uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-white/10">
-              DEPLOY NOW
+            <button
+              onClick={() => window.location.href = '/auth'}
+              className="px-14 py-6 bg-white text-black rounded-full font-black uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-white/10"
+            >
+              SIGN IN NOW
             </button>
-            <button className="px-14 py-6 border border-white/10 text-white rounded-full font-black uppercase tracking-widest text-sm hover:bg-white/5 transition-all">
-              SYSTEM SPECS
+            <button
+              onClick={() => window.location.href = '/dashboard'}
+              className="px-14 py-6 border border-white/10 text-white rounded-full font-black uppercase tracking-widest text-sm hover:bg-white/5 transition-all"
+            >
+              DASHBOARD
             </button>
           </div>
         </motion.div>
@@ -469,7 +475,7 @@ const Footer = () => {
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-                <Rocket className="text-white w-5 h-5" />
+                <Cpu className="text-white w-5 h-5" />
               </div>
               <span className="text-xl font-black text-white uppercase tracking-tighter">AUTO-NOTION</span>
             </div>

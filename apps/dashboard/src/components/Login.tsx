@@ -5,6 +5,7 @@ import { googleProvider, facebookProvider, githubProvider, signInWithProvider } 
 import { Github, Facebook, Quote, CheckCircle2, Shield, Lock, ArrowRight, Loader2 } from 'lucide-react';
 
 export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }) {
+    console.log("Login component rendering...");
     const [isLoading, setIsLoading] = useState(false);
     const [loadingProvider, setLoadingProvider] = useState<string | null>(null);
     const [error, setError] = useState('');
@@ -127,7 +128,7 @@ export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }
                             Access Control
                         </h1>
                         <p className="text-white/40 text-lg">
-                            Authenticate to begin terminal session
+                            Authenticate to begin agentic session
                         </p>
                     </div>
 
@@ -207,11 +208,11 @@ export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }
 
                 {/* Fixed Footer Element for Premium Feel */}
                 <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-6 text-[10px] font-bold tracking-[0.2em] text-white/10 uppercase">
-                    <span>Protocol v1.0.4</span>
+                    <span>Protocol v4.0.1</span>
                     <span className="w-1 h-1 bg-white/10 rounded-full" />
-                    <span>Encrypted Session</span>
+                    <span>Secure Agent Layer</span>
                     <span className="w-1 h-1 bg-white/10 rounded-full" />
-                    <span>OpenDev-Labs</span>
+                    <span>OpenDev-Labs Agentic</span>
                 </div>
             </div>
         </div>
