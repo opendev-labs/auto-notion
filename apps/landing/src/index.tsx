@@ -18,7 +18,6 @@ import {
   Sparkles,
   BarChart3,
   Shield,
-  Cpu,
   MessageSquare
 } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
@@ -38,9 +37,14 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-xl border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <div className="flex items-center gap-2 group cursor-pointer">
-          <div className="w-10 h-10 bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 rounded-xl flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform duration-300">
-            <Rocket className="text-white w-6 h-6" />
+        <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.location.href = '/'}>
+          <div className="relative w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+            <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+            <img
+              src="/icons/icon-512.png"
+              alt="Auto-Notion Agent"
+              className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]"
+            />
           </div>
           <span className="text-2xl font-black tracking-tighter text-white">
             AUTO-NOTION
@@ -324,35 +328,44 @@ const Comparison = () => {
           <p className="text-gray-500 font-medium">Why the world's highest volume creators are switching to Auto-Notion.</p>
         </div>
 
-        <div className="rounded-[2.5rem] border border-white/10 overflow-hidden bg-black shadow-2xl">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-white/5 border-b border-white/10">
-                <th className="p-8 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">Capability</th>
-                <th className="p-8 text-center bg-indigo-600/10">
-                  <span className="text-indigo-400 font-black tracking-tighter">AUTO-NOTION</span>
-                </th>
-                <th className="p-8 text-center text-gray-600 font-black tracking-tighter">INTERAKT</th>
-                <th className="p-8 text-center text-gray-600 font-black tracking-tighter">MANYCHAT</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row, i) => (
-                <tr key={i} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
-                  <td className="p-8 text-sm font-bold text-gray-400 uppercase tracking-wider">{row.feature}</td>
-                  <td className="p-8 text-center bg-indigo-600/5">
-                    {row.notion === true ? <div className="w-6 h-6 bg-indigo-500 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-indigo-500/30"><Check className="w-3 h-3 text-white" strokeWidth={4} /></div> : row.notion}
-                  </td>
-                  <td className="p-8 text-center text-gray-700 text-sm font-bold">
-                    {row.interakt === true ? "✓" : row.interakt === false ? "✗" : row.interakt}
-                  </td>
-                  <td className="p-8 text-center text-gray-700 text-sm font-bold">
-                    {row.manychat === true ? "✓" : row.manychat === false ? "✗" : row.manychat}
-                  </td>
+        <div className="relative">
+          {/* Mobile Scroll Hint */}
+          <div className="md:hidden flex items-center justify-center gap-2 mb-6 text-indigo-400/60 animate-pulse">
+            <ArrowRight size={14} className="animate-bounce-x" />
+            <span className="text-[10px] font-black uppercase tracking-widest">Swipe to explore protocol</span>
+            <ArrowRight size={14} className="animate-bounce-x rotate-180" />
+          </div>
+
+          <div className="rounded-[2.5rem] border border-white/10 overflow-x-auto bg-black shadow-2xl no-scrollbar">
+            <table className="w-full text-left border-collapse min-w-[700px] md:min-w-0">
+              <thead>
+                <tr className="bg-white/5 border-b border-white/10">
+                  <th className="p-8 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">Capability</th>
+                  <th className="p-8 text-center bg-indigo-600/10">
+                    <span className="text-indigo-400 font-black tracking-tighter">AUTO-NOTION</span>
+                  </th>
+                  <th className="p-8 text-center text-gray-600 font-black tracking-tighter">INTERAKT</th>
+                  <th className="p-8 text-center text-gray-600 font-black tracking-tighter">MANYCHAT</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {rows.map((row, i) => (
+                  <tr key={i} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                    <td className="p-8 text-sm font-bold text-gray-400 uppercase tracking-wider">{row.feature}</td>
+                    <td className="p-8 text-center bg-indigo-600/5">
+                      {row.notion === true ? <div className="w-6 h-6 bg-indigo-500 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-indigo-500/30"><Check className="w-3 h-3 text-white" strokeWidth={4} /></div> : row.notion}
+                    </td>
+                    <td className="p-8 text-center text-gray-700 text-sm font-bold">
+                      {row.interakt === true ? "✓" : row.interakt === false ? "✗" : row.interakt}
+                    </td>
+                    <td className="p-8 text-center text-gray-700 text-sm font-bold">
+                      {row.manychat === true ? "✓" : row.manychat === false ? "✗" : row.manychat}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
@@ -440,23 +453,28 @@ const CTA = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="p-16 md:p-32 rounded-[4rem] bg-zinc-950 border border-white/5 relative overflow-hidden group"
+          className="p-8 sm:p-16 md:p-32 rounded-[3rem] md:rounded-[4rem] bg-zinc-950 border border-white/5 relative overflow-hidden group"
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500 to-transparent"></div>
-          <h2 className="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter uppercase italic leading-none">THE FUTURE IS <br /> <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-600">AUTONOMOUS.</span></h2>
-          <p className="text-xl text-gray-500 mb-14 max-w-2xl mx-auto font-medium">
+          <h2 className="text-4xl sm:text-5xl md:text-8xl font-black text-white mb-8 md:mb-10 tracking-tighter uppercase italic leading-[1.1] md:leading-none">
+            THE FUTURE IS <br className="hidden sm:block" />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-600">
+              AUTONOMOUS.
+            </span>
+          </h2>
+          <p className="text-base sm:text-xl text-gray-500 mb-10 md:mb-14 max-w-2xl mx-auto font-medium px-4">
             Join the 1,000+ high-growth institutions scaling their Instagram presence with Auto-Notion.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
             <button
               onClick={() => window.location.href = '/auth'}
-              className="px-14 py-6 bg-white text-black rounded-full font-black uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-white/10"
+              className="w-full sm:w-auto px-8 md:px-14 py-5 md:py-6 bg-white text-black rounded-full font-black uppercase tracking-widest text-xs md:text-sm hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-white/10"
             >
               SIGN IN NOW
             </button>
             <button
               onClick={() => window.location.href = '/dashboard'}
-              className="px-14 py-6 border border-white/10 text-white rounded-full font-black uppercase tracking-widest text-sm hover:bg-white/5 transition-all"
+              className="w-full sm:w-auto px-8 md:px-14 py-5 md:py-6 border border-white/10 text-white rounded-full font-black uppercase tracking-widest text-xs md:text-sm hover:bg-white/5 transition-all"
             >
               DASHBOARD
             </button>
@@ -473,9 +491,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-16 mb-32">
           <div className="col-span-2">
-            <div className="flex items-center gap-2 mb-8">
-              <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-                <Cpu className="text-white w-5 h-5" />
+            <div className="flex items-center gap-3 mb-8" onClick={() => window.location.href = '/'} style={{ cursor: 'pointer' }}>
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img src="/icons/icon-512.png" alt="Logo" className="w-full h-full object-contain" />
               </div>
               <span className="text-xl font-black text-white uppercase tracking-tighter">AUTO-NOTION</span>
             </div>
