@@ -26,3 +26,7 @@ Thumbs.db
 
 # Mission Control local builds
 web/dist/
+dist/
+apps/dashboard/dist/
+node_modules/
+.firebase/

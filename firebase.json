@@ -9,6 +9,30 @@
         ],
         "rewrites": [
             {
+                "source": "/auth",
+                "destination": "/dashboard/index.html"
+            },
+            {
+                "source": "/signin",
+                "destination": "/dashboard/index.html"
+            },
+            {
+                "source": "/privacy",
+                "destination": "/dashboard/index.html"
+            },
+            {
+                "source": "/terms",
+                "destination": "/dashboard/index.html"
+            },
+            {
+                "source": "/refund-policy",
+                "destination": "/dashboard/index.html"
+            },
+            {
+                "source": "/data-deletion",
+                "destination": "/dashboard/index.html"
+            },
+            {
                 "source": "/dashboard/**",
                 "destination": "/dashboard/index.html"
             },
