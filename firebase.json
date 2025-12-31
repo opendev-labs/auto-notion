@@ -1,13 +1,17 @@
 {
     "hosting": {
         "site": "auto-notion",
-        "public": "web_app/dist",
+        "public": "dist",
         "ignore": [
             "firebase.json",
             "**/.*",
             "**/node_modules/**"
         ],
         "rewrites": [
+            {
+                "source": "/dashboard/**",
+                "destination": "/dashboard/index.html"
+            },
             {
                 "source": "**",
                 "destination": "/index.html"

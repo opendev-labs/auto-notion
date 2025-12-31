@@ -1,0 +1,160 @@
+/* Integration Mode Styles */
+
+/* Glassmorphism utilities */
+.glass-integration {
+    background: rgba(139, 115, 85, 0.05);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(156, 175, 136, 0.1);
+}
+
+.glass-integration-strong {
+    background: rgba(139, 115, 85, 0.1);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid rgba(156, 175, 136, 0.15);
+}
+
+.glass-cosmic {
+    background: rgba(74, 85, 104, 0.08);
+    backdrop-filter: blur(20px) saturate(190%);
+    -webkit-backdrop-filter: blur(20px) saturate(190%);
+    border: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+/* Integration mode transitions */
+.integration-transition {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sacred geometry animations */
+@keyframes sacred-pulse {
+
+    0%,
+    100% {
+        opacity: 0.06;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.12;
+        transform: scale(1.02);
+    }
+}
+
+.sacred-animate {
+    animation: sacred-pulse 8s ease-in-out infinite;
+}
+
+/* Cosmic glow effects */
+.cosmic-glow {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.15),
+        0 0 80px rgba(156, 175, 136, 0.08);
+}
+
+.cosmic-glow-strong {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.25),
+        0 0 80px rgba(156, 175, 136, 0.15),
+        inset 0 0 60px rgba(212, 175, 55, 0.05);
+}
+
+/* Integration mode text styles */
+.text-cosmic-gradient {
+    background: linear-gradient(135deg, #D4AF37 0%, #9CAF88 50%, #8B7355 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Frequency indicator colors */
+.frequency-high {
+    color: #D4AF37;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.frequency-medium {
+    color: #9CAF88;
+    text-shadow: 0 0 15px rgba(156, 175, 136, 0.3);
+}
+
+.frequency-low {
+    color: #8B7355;
+    opacity: 0.7;
+}
+
+/* Integration mode card hover */
+.integration-card {
+    @apply glass-integration rounded-2xl p-6 transition-all duration-500;
+}
+
+.integration-card:hover {
+    @apply glass-integration-strong cosmic-glow;
+    transform: translateY(-2px);
+}
+
+/* Mission deck stats */
+.mission-stat {
+    @apply glass-cosmic rounded-xl p-4 text-center;
+    transition: all 0.4s ease;
+}
+
+.mission-stat:hover {
+    @apply cosmic-glow-strong;
+    transform: scale(1.05);
+}
+
+/* Cosmic window indicator */
+.cosmic-window-active {
+    position: relative;
+    overflow: hidden;
+}
+
+.cosmic-window-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(212, 175, 55, 0.2),
+            transparent);
+    animation: cosmic-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes cosmic-shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* Modal backdrop for Integration Portal */
+.integration-modal-backdrop {
+    background: radial-gradient(circle at 50% 50%,
+            rgba(139, 115, 85, 0.15) 0%,
+            rgba(0, 0, 0, 0.9) 100%);
+    backdrop-filter: blur(8px);
+}
+
+/* Scroll styling for integration mode */
+.integration-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.integration-scroll::-webkit-scrollbar-track {
+    background: rgba(139, 115, 85, 0.1);
+}
+
+.integration-scroll::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.3);
+    border-radius: 3px;
+}
+
+.integration-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.5);
+}
