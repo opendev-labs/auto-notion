@@ -4,6 +4,17 @@ To "Break the Matrix" and scale to millions, your infrastructure must be rock-so
 
 ---
 
+> [!CAUTION]
+> ### 🚨 CRITICAL AUTH FIX (UNAUTHORIZED DOMAIN)
+> If you see a "black screen" or "unauthorized domain" error when signing in, you **MUST** do this in the Firebase Console:
+> 1. Go to **Firebase Console** > **Authentication** > **Settings** > **Authorized Domains**.
+> 2. Click **Add Domain**.
+> 3. Type: `auto-notion.web.app` and click **Add**.
+> 4. (Optional) Also add `localhost` if testing locally.
+> *Without this step, the Sign-In buttons will NOT work.*
+
+---
+
 ## 1. Meta Developer App (The Gateway)
 Your AI Agents live on the Meta Graph API.
 1.  **Create App**: Go to [Meta for Developers](https://developers.facebook.com/) and create a "Business" app.

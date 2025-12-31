@@ -44,7 +44,7 @@ export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }
                         className="flex items-center gap-3 text-2xl font-bold tracking-tight"
                     >
                         <div className="w-12 h-12 rounded-xl bg-black border border-white/10 flex items-center justify-center backdrop-blur-xl overflow-hidden shadow-[0_0_20px_rgba(99,102,241,0.3)]">
-                            <img src="/logo.png" alt="Auto-Notion" className="w-full h-full object-contain scale-150" />
+                            <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain scale-150" />
                         </div>
                         <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
                             Auto-Notion
