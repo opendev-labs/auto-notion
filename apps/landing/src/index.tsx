@@ -43,7 +43,7 @@ const Navbar = () => {
             <img
               src="/logo.svg"
               alt="Auto-Notion Logo"
-              className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_20px_rgba(99,102,241,0.8)] scale-150"
+              className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_20px_rgba(99,102,241,0.8)] scale-110"
             />
           </div>
           <span className="text-2xl font-black tracking-tighter text-white">

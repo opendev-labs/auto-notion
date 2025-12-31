@@ -7,7 +7,7 @@ import {
     GithubAuthProvider,
     signInWithPopup
 } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore";
 
 // Firebase configuration from user request
 const firebaseConfig = {
@@ -34,7 +34,23 @@ export const githubProvider = new GithubAuthProvider();
 export const signInWithProvider = async (provider: any) => {
     try {
         const result = await signInWithPopup(auth, provider);
-        return result.user;
+        const user = result.user;
+
+        // Persist user data to Firestore for monitoring and history
+        if (user) {
+            const userRef = doc(db, "users", user.uid);
+            await setDoc(userRef, {
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+                lastLogin: serverTimestamp(),
+                role: 'user', // Default role
+                provider: provider.providerId
+            }, { merge: true });
+        }
+
+        return user;
     } catch (error) {
         console.error("Auth Error:", error);
         throw error;

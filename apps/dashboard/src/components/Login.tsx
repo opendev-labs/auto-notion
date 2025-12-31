@@ -123,13 +123,18 @@ export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }
                     animate={{ opacity: 1, scale: 1 }}
                     className="w-full max-w-md space-y-10"
                 >
-                    <div className="space-y-3">
-                        <h1 className="text-4xl font-bold tracking-tight text-white">
-                            Access Control
-                        </h1>
-                        <p className="text-white/40 text-lg">
-                            Authenticate to begin agentic session
-                        </p>
+                    <div className="space-y-6">
+                        <div className="w-16 h-16 rounded-2xl bg-black border border-white/10 flex items-center justify-center backdrop-blur-xl overflow-hidden shadow-[0_0_20px_rgba(99,102,241,0.3)]">
+                            <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain scale-125" />
+                        </div>
+                        <div className="space-y-3">
+                            <h1 className="text-4xl font-bold tracking-tight text-white">
+                                Access Control
+                            </h1>
+                            <p className="text-white/40 text-lg">
+                                Authenticate to begin agentic session
+                            </p>
+                        </div>
                     </div>
 
                     <div className="space-y-4">
