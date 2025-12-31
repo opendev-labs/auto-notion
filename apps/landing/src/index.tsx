@@ -51,9 +51,14 @@ const Navbar = () => {
           <a href="#features" className="hover:text-white transition-colors">Platform</a>
           <a href="#comparison" className="hover:text-white transition-colors">Compare</a>
           <a href="#pricing" className="hover:text-white transition-colors">Institutional</a>
-          <button onClick={() => window.location.href = '/dashboard'} className="px-6 py-2.5 bg-white text-black rounded-full hover:bg-indigo-500 hover:text-white transition-all duration-300 font-bold">
-            ENTER MISSION CONTROL
-          </button>
+          <div className="flex items-center gap-4 border-l border-white/10 pl-10">
+            <button onClick={() => window.location.href = '/auth'} className="hover:text-white transition-colors">
+              Sign In
+            </button>
+            <button onClick={() => window.location.href = '/dashboard'} className="px-6 py-2.5 bg-white text-black rounded-full hover:bg-white/90 transition-all duration-300 font-bold border border-white/10">
+              Dashboard
+            </button>
+          </div>
         </div>
 
         <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
@@ -69,11 +74,17 @@ const Navbar = () => {
             exit={{ opacity: 0, y: -20 }}
             className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-2xl border-b border-white/10 px-6 py-10"
           >
-            <div className="flex flex-col gap-6 items-center">
-              <a href="#features" className="text-gray-400 text-xl font-bold uppercase tracking-widest" onClick={() => setIsOpen(false)}>Features</a>
-              <a href="#comparison" className="text-gray-400 text-xl font-bold uppercase tracking-widest" onClick={() => setIsOpen(false)}>Comparison</a>
-              <a href="#pricing" className="text-gray-400 text-xl font-bold uppercase tracking-widest" onClick={() => setIsOpen(false)}>Pricing</a>
-              <button onClick={() => window.location.href = '/dashboard'} className="w-full max-w-xs py-4 bg-white text-black rounded-full font-black uppercase tracking-widest">Launch Dashboard</button>
+            <div className="flex flex-col gap-8 items-center">
+              <div className="flex flex-col gap-6 items-center">
+                <a href="#features" className="text-gray-400 text-lg font-bold uppercase tracking-widest" onClick={() => setIsOpen(false)}>Features</a>
+                <a href="#comparison" className="text-gray-400 text-lg font-bold uppercase tracking-widest" onClick={() => setIsOpen(false)}>Comparison</a>
+                <a href="#pricing" className="text-gray-400 text-lg font-bold uppercase tracking-widest" onClick={() => setIsOpen(false)}>Pricing</a>
+              </div>
+              <div className="w-full h-[1px] bg-white/5" />
+              <div className="w-full flex flex-col gap-4">
+                <button onClick={() => window.location.href = '/auth'} className="w-full py-4 border border-white/10 text-white rounded-full font-black uppercase tracking-widest text-xs">Sign In</button>
+                <button onClick={() => window.location.href = '/dashboard'} className="w-full py-4 bg-white text-black rounded-full font-black uppercase tracking-widest text-xs">Launch Dashboard</button>
+              </div>
             </div>
           </motion.div>
         )}

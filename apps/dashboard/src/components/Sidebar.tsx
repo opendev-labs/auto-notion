@@ -7,10 +7,14 @@ import {
     Moon,
     Settings,
     CircleCheckBig,
-    Sparkles
+    Sparkles,
+    Home,
+    LogOut
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { auth } from '../services/firebase';
+import { signOut } from 'firebase/auth';
 
 function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -106,6 +110,23 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, integrationM
                 </div>
 
                 <div className="mt-auto space-y-4">
+                    <div className="flex flex-col gap-2 px-2 mb-4">
+                        <button
+                            onClick={() => window.location.href = '/'}
+                            className="nav-item w-full nav-item-inactive group py-4 bg-white/5 border-white/10"
+                        >
+                            <Home size={18} className="group-hover:scale-110 transition-transform" />
+                            <span className="font-bold text-sm tracking-wide">Back to Site</span>
+                        </button>
+                        <button
+                            onClick={() => signOut(auth).then(() => window.location.href = '/auth')}
+                            className="nav-item w-full text-red-400/60 hover:text-red-400 hover:bg-red-400/10 group py-4 transition-all"
+                        >
+                            <LogOut size={18} className="group-hover:translate-x-1 transition-transform" />
+                            <span className="font-bold text-sm tracking-wide">Sign Out</span>
+                        </button>
+                    </div>
+
                     <div className="flex gap-4 mb-6 text-[9px] text-white/30 uppercase tracking-[0.15em] font-extrabold px-4">
                         <button onClick={() => { setActiveTab('privacy'); setIsOpen(false); }} className="hover:text-white transition-colors">Privacy</button>
                         <span>•</span>

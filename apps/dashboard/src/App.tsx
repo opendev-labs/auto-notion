@@ -17,8 +17,9 @@ const TermsOfService = lazy(() => import('./modules/Compliance').then(m => ({ de
 const DataDeletion = lazy(() => import('./modules/Compliance').then(m => ({ default: m.DataDeletion })));
 const RefundPolicy = lazy(() => import('./modules/Compliance').then(m => ({ default: m.RefundPolicy })));
 import Login from './components/Login';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from './services/firebase';
+import { LogOut } from 'lucide-react';
 
 const RequireAuth = ({ children, user }: { children: any, user: any }) => {
   return user ? children : <Navigate to="/auth" replace />;
@@ -120,11 +121,18 @@ const DashboardContent = ({ activeTab, setActiveTab, integrationMode }: any) => 
             Institutional Oversight & Mission Control
           </p>
         </div>
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-xl bg-white/5 border-0.5 border-white/10 text-[10px] font-bold tracking-widest text-white/60">
+        <div className="flex items-center gap-4 md:gap-6">
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-xl bg-white/5 border-0.5 border-white/10 text-[10px] font-bold tracking-widest text-white/60">
             <span className="w-1.5 h-1.5 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
             SYSTEM LIVE
           </div>
+          <button
+            onClick={() => signOut(auth).then(() => window.location.href = '/auth')}
+            className="p-2 md:p-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-all group"
+            title="Sign Out"
+          >
+            <LogOut size={18} className="group-hover:translate-x-0.5 transition-transform" />
+          </button>
         </div>
       </header>
 
