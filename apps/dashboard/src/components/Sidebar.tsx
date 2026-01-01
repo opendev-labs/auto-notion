@@ -46,8 +46,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, integrationM
                 isOpen ? "!flex translate-x-0 shadow-[0_0_100px_rgba(0,0,0,0.9)]" : "lg:flex -translate-x-full"
             )}>
                 <div className="flex items-center gap-4 mb-16 px-2">
-                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden bg-black border border-white/10">
-                        <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain scale-150" />
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden">
+                        <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain" />
                     </div>
                     <div>
                         <h2 className="font-bold text-xl leading-tight tracking-tight">Auto-Notion</h2>

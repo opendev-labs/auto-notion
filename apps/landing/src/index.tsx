@@ -38,12 +38,12 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-xl border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.location.href = '/'}>
-          <div className="relative w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+          <div className="relative w-9 h-9 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
             <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             <img
               src="/logo.svg"
               alt="Auto-Notion Logo"
-              className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_20px_rgba(99,102,241,0.8)] scale-110"
+              className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_20px_rgba(99,102,241,0.8)]"
             />
           </div>
           <span className="text-2xl font-black tracking-tighter text-white">
@@ -492,8 +492,8 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-16 mb-32">
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-8" onClick={() => window.location.href = '/'} style={{ cursor: 'pointer' }}>
-              <div className="w-10 h-10 flex items-center justify-center">
-                <img src="/logo.svg" alt="Logo" className="w-full h-full object-contain scale-125" />
+              <div className="w-8 h-8 flex items-center justify-center">
+                <img src="/logo.svg" alt="Logo" className="w-full h-full object-contain" />
               </div>
               <span className="text-xl font-black text-white uppercase tracking-tighter">AUTO-NOTION</span>
             </div>

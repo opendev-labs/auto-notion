@@ -43,8 +43,8 @@ export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }
                         animate={{ opacity: 1, x: 0 }}
                         className="flex items-center gap-3 text-2xl font-bold tracking-tight"
                     >
-                        <div className="w-12 h-12 rounded-xl bg-black border border-white/10 flex items-center justify-center backdrop-blur-xl overflow-hidden shadow-[0_0_20px_rgba(99,102,241,0.3)]">
-                            <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain scale-150" />
+                        <div className="w-9 h-9 rounded-xl flex items-center justify-center backdrop-blur-xl overflow-hidden">
+                            <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain" />
                         </div>
                         <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
                             Auto-Notion
@@ -124,8 +124,8 @@ export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }
                     className="w-full max-w-md space-y-10"
                 >
                     <div className="space-y-6">
-                        <div className="w-16 h-16 rounded-2xl bg-black border border-white/10 flex items-center justify-center backdrop-blur-xl overflow-hidden shadow-[0_0_20px_rgba(99,102,241,0.3)]">
-                            <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain scale-125" />
+                        <div className="w-10 h-10 rounded-2xl flex items-center justify-center backdrop-blur-xl overflow-hidden">
+                            <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain" />
                         </div>
                         <div className="space-y-3">
                             <h1 className="text-4xl font-bold tracking-tight text-white">
