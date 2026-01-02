@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Activity, Zap, ExternalLink, RefreshCw, CheckCircle, XCircle, Terminal, Database } from 'lucide-react';
+import { Activity, Zap, ExternalLink, RefreshCw, Terminal, Database } from 'lucide-react';
 
 const AutomationPortal: React.FC = () => {
     const [n8nStatus, setN8nStatus] = useState<'checking' | 'online' | 'offline'>('checking');
@@ -104,10 +104,10 @@ const AutomationPortal: React.FC = () => {
                             onClick={() => triggerSync(card.id)}
                             disabled={syncing !== null || n8nStatus !== 'online'}
                             className={`w-full py-4 rounded-2xl font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-all ${syncing === card.id
-                                    ? 'bg-white/20 text-white'
-                                    : n8nStatus === 'online'
-                                        ? `bg-white/5 border border-white/10 text-white hover:bg-white/10`
-                                        : 'bg-white/5 text-white/20 cursor-not-allowed'
+                                ? 'bg-white/20 text-white'
+                                : n8nStatus === 'online'
+                                    ? `bg-white/5 border border-white/10 text-white hover:bg-white/10`
+                                    : 'bg-white/5 text-white/20 cursor-not-allowed'
                                 }`}
                         >
                             {syncing === card.id ? (

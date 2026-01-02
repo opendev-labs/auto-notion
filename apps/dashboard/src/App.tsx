@@ -21,7 +21,7 @@ import { SubscriptionPage } from './modules/SubscriptionPage';
 import Login from './components/Login';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from './services/firebase';
-import { LogOut, Activity, Power, CheckCircle, XCircle } from 'lucide-react';
+import { LogOut, Activity } from 'lucide-react';
 
 const RequireAuth = ({ children, user }: { children: any, user: any }) => {
   return user ? children : <Navigate to="/auth" replace />;
