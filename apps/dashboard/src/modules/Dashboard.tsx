@@ -19,7 +19,7 @@ const Dashboard = () => {
             id: 'automation',
             label: 'Automations',
             icon: Zap,
-            path: '/dashboard/automation',
+            path: '/automation',
             description: 'n8n Logic Core',
             settings: [
                 { label: 'Auto-Sync', type: 'toggle', value: true },
@@ -30,7 +30,7 @@ const Dashboard = () => {
             id: 'ig-connections',
             label: 'Instagram',
             icon: Share2,
-            path: '/dashboard/ig-connections',
+            path: '/ig-connections',
             description: 'Meta Graph Nodes',
             settings: [
                 { label: 'Live Fetching', type: 'toggle', value: true },
@@ -41,7 +41,7 @@ const Dashboard = () => {
             id: 'agents',
             label: 'AI Agents',
             icon: UserPlus,
-            path: '/dashboard/agents',
+            path: '/agents',
             description: 'Cognitive Engine',
             settings: [
                 { label: 'Sentiment AI', type: 'toggle', value: true },
@@ -52,7 +52,7 @@ const Dashboard = () => {
             id: 'cosmic',
             label: 'Scheduler',
             icon: Moon,
-            path: '/dashboard/cosmic',
+            path: '/cosmic',
             description: 'Chronos Planning',
             settings: [
                 { label: 'Smart Scheduling', type: 'toggle', value: true },
