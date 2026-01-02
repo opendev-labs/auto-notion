@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { Activity, ShieldCheck, TrendingUp, Cpu, Globe, Lock } from 'lucide-react';
+import { Activity, ShieldCheck, TrendingUp, Zap, Globe, Clock } from 'lucide-react';
 
 const Dashboard = ({ onNavigate }: { onNavigate?: (tab: string) => void }) => {
     const stats = [
-        { label: 'Active Agents', value: '7', icon: Cpu, color: 'text-white' },
-        { label: 'Agentic Precision', value: '99.8%', icon: ShieldCheck, color: 'text-white' },
-        { label: 'Cosmic Uptime', value: '100%', icon: Globe, color: 'text-white' },
-        { label: 'Total Resolutions', value: '42.8k', icon: Activity, color: 'text-white' },
+        { label: 'Running Automations', value: '7', icon: Zap, color: 'text-white' },
+        { label: 'Automation Success Rate', value: '99.8%', icon: ShieldCheck, color: 'text-white' },
+        { label: 'System Uptime', value: '100%', icon: Globe, color: 'text-white' },
+        { label: 'Total Actions Executed', value: '42.8k', icon: Activity, color: 'text-white' },
     ];
 
     const containerVariants: Variants = {
@@ -58,12 +58,12 @@ const Dashboard = ({ onNavigate }: { onNavigate?: (tab: string) => void }) => {
                     <div className="flex justify-between items-center mb-10">
                         <div className="space-y-1">
                             <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-3">
-                                Agentic Growth Velocity
+                                Automation Executions Over Time
                                 <TrendingUp size={20} className="text-white/40" />
                             </h3>
                             <div className="flex items-center gap-2">
                                 <div className="status-pulse"><div className="status-pulse-inner" /></div>
-                                <span className="text-[9px] font-bold text-white/20 uppercase tracking-widest">Autonomous Systems Active</span>
+                                <span className="text-[9px] font-bold text-white/20 uppercase tracking-widest">Instagram & Notion Automations Active</span>
                             </div>
                         </div>
                         <div className="flex gap-2">
@@ -82,7 +82,7 @@ const Dashboard = ({ onNavigate }: { onNavigate?: (tab: string) => void }) => {
                                 className="flex-1 bg-white/5 border-t-0.5 border-x-0.5 border-white/10 rounded-t-2xl hover:bg-white group/bar transition-all duration-700 relative"
                             >
                                 <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-white text-black px-3 py-1.5 rounded-xl text-[10px] font-bold opacity-0 group-hover/bar:opacity-100 transition-all duration-500 whitespace-nowrap shadow-2xl">
-                                    Precision {h}%
+                                    {h}% Success
                                 </div>
                             </motion.div>
                         ))}
@@ -95,26 +95,23 @@ const Dashboard = ({ onNavigate }: { onNavigate?: (tab: string) => void }) => {
                 >
                     <div>
                         <div className="flex justify-between items-start mb-8">
-                            <h3 className="text-xl font-bold text-white tracking-tight">Cosmic Window</h3>
+                            <h3 className="text-xl font-bold text-white tracking-tight">Scheduler Status</h3>
                             <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 flex items-center gap-2">
-                                <Lock size={10} className="text-white/40" />
-                                <span className="text-[9px] font-bold text-white/40 tracking-widest uppercase">Secured</span>
+                                <Clock size={10} className="text-white/40" />
+                                <span className="text-[9px] font-bold text-white/40 tracking-widest uppercase">System Active</span>
                             </div>
                         </div>
                         <div className="text-center py-8 md:py-10 rounded-3xl bg-white/[0.02] border-0.5 border-white/5 group-hover:bg-white/[0.04] transition-all duration-700">
-                            <motion.div
-                                animate={{ scale: [1, 1.1, 1], opacity: [0.8, 1, 0.8] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="text-5xl md:text-7xl mb-4 md:mb-6 filter drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] animate-float"
-                            >
-                                🌕
-                            </motion.div>
-                            <p className="text-2xl font-bold text-white tracking-tight">Full Moon Phase</p>
-                            <p className="text-white/30 text-xs mt-3 font-bold tracking-widest uppercase">Maximum Energetic Alignment</p>
+                            <div className="flex flex-col items-center mb-6">
+                                <div className="text-4xl mb-2">Optimal posting window</div>
+                                <div className="text-green-400 font-bold text-sm tracking-widest">ACTIVE NOW</div>
+                            </div>
+                            <p className="text-2xl font-bold text-white tracking-tight">High Engagement Period</p>
+                            <p className="text-white/30 text-xs mt-3 font-bold tracking-widest uppercase">Based on Meta Analytics Performance</p>
                         </div>
                     </div>
                     <button onClick={() => onNavigate?.('cosmic')} className="w-full btn-secondary mt-10">
-                        Generate Optimized Plan
+                        Create Scheduled Automation
                     </button>
                 </motion.div>
             </div>

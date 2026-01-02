@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import {
     LayoutDashboard,
     Share2,
-    Database,
     UserPlus,
     Moon,
     Settings,
     Sparkles,
     Home,
     LogOut,
-    Zap
+    Zap,
+    History,
+    Link2,
+    BookOpen
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -32,11 +34,13 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, integrationM
 
     const navItems = [
         { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-        { id: 'ig-connections', label: 'IG Connections', icon: Share2 },
-        { id: 'content', label: 'Content Bank', icon: Database },
+        { id: 'automation', label: 'Automations', icon: Zap },
+        { id: 'ig-connections', label: 'Instagram', icon: Share2 },
+        { id: 'content', label: 'Content Library', icon: BookOpen },
         { id: 'agents', label: 'AI Agents', icon: UserPlus },
-        { id: 'cosmic', label: 'Cosmic Scheduler', icon: Moon },
-        { id: 'automation', label: 'Automation', icon: Zap },
+        { id: 'cosmic', label: 'Scheduler', icon: Moon },
+        { id: 'integrations', label: 'Integrations', icon: Link2 },
+        { id: 'logs', label: 'Logs & History', icon: History },
     ];
 
     return (

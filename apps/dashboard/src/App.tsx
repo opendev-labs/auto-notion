@@ -9,10 +9,10 @@ import './styles/integration-mode.css';
 // Lazy load heavy components for code splitting
 const Dashboard = lazy(() => import('./modules/Dashboard'));
 const IGPortal = lazy(() => import('./modules/IGPortal'));
-const AgentManager = lazy(() => import('./modules/AgentManager'));
-const CosmicPlanner = lazy(() => import('./modules/CosmicPlanner'));
 const IntegrationPortal = lazy(() => import('./modules/IntegrationPortal'));
 const AutomationPortal = lazy(() => import('./modules/AutomationPortal'));
+const AICommandCenter = lazy(() => import('./modules/AICommandCenter'));
+const CosmicPlanner = lazy(() => import('./modules/CosmicPlanner'));
 const PrivacyPolicy = lazy(() => import('./modules/Compliance').then(m => ({ default: m.PrivacyPolicy })));
 const TermsOfService = lazy(() => import('./modules/Compliance').then(m => ({ default: m.TermsOfService })));
 const DataDeletion = lazy(() => import('./modules/Compliance').then(m => ({ default: m.DataDeletion })));
@@ -127,10 +127,12 @@ const DashboardContent = ({ activeTab, setActiveTab, integrationMode, n8nConnect
   const renderContent = () => {
     switch (activeTab) {
       case 'dashboard': return <Dashboard onNavigate={setActiveTab} />;
-      case 'ig-connections': return <IGPortal />;
-      case 'agents': return <AgentManager />;
-      case 'cosmic': return <CosmicPlanner />;
       case 'automation': return <AutomationPortal />;
+      case 'ig-connections': return <IGPortal />;
+      case 'content': return <div className="p-20 text-center"><h2 className="text-white text-2xl font-bold uppercase tracking-widest">Content Library</h2><p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] mt-4">Synchronizing with Notion Institutional Database...</p></div>;
+      case 'agents': return <AICommandCenter />;
+      case 'cosmic': return <CosmicPlanner />;
+      case 'integrations': return <IntegrationPortal isActive={true} />;
       case 'subscription': return <SubscriptionPage />;
       default: return <Dashboard />;
     }

@@ -15,13 +15,13 @@ const CosmicPlanner = () => {
             {/* Header / Tabs */}
             <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-8">
                 <div>
-                    <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-2">Cosmic Planner</h2>
-                    <p className="text-gray-400 font-medium">Align your content with celestial rhythms.</p>
+                    <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-2">Scheduler</h2>
+                    <p className="text-gray-400 font-medium">Manage and optimize your automated content delivery.</p>
                 </div>
                 <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10">
-                    <TabButton active={activeTab === 'forecast'} onClick={() => setActiveTab('forecast')} icon={Sparkles} label="Forecast" />
-                    <TabButton active={activeTab === 'generator'} onClick={() => setActiveTab('generator')} icon={Database} label="Generator" />
-                    <TabButton active={activeTab === 'scheduled'} onClick={() => setActiveTab('scheduled')} icon={Calendar} label="Missions" />
+                    <TabButton active={activeTab === 'forecast'} onClick={() => setActiveTab('forecast')} icon={Sparkles} label="Market Forecast" />
+                    <TabButton active={activeTab === 'generator'} onClick={() => setActiveTab('generator')} icon={Database} label="Content Generator" />
+                    <TabButton active={activeTab === 'scheduled'} onClick={() => setActiveTab('scheduled')} icon={Calendar} label="Scheduled" />
                 </div>
             </div>
 

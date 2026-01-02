@@ -61,7 +61,17 @@ const IGPortal = () => {
                                 {acc.name}
                                 <CheckCircle2 size={18} className="text-white" fill="white" />
                             </h4>
-                            <p className="text-white/40 text-sm font-bold tracking-widest uppercase">{acc.category} Node</p>
+                            <p className="text-white/40 text-sm font-bold tracking-widest uppercase">Instagram Automation Node</p>
+                        </div>
+
+                        <div className="space-y-4 mb-8">
+                            <div className="flex justify-between items-center px-4 py-3 rounded-2xl bg-white/5 border border-white/10">
+                                <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest">Active Automations</span>
+                                <span className="text-sm font-bold text-white">3</span>
+                            </div>
+                            <button className="w-full py-4 rounded-2xl bg-white text-black font-bold text-xs tracking-widest uppercase hover:bg-zen-sage transition-all">
+                                View Automations
+                            </button>
                         </div>
 
                         <div className="flex justify-between items-end pt-8 border-t-0.5 border-white/10">
