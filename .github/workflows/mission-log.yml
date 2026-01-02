@@ -19,11 +19,7 @@ jobs:
 
       - name: Generate mission log
         run: |
-          # Use a heredoc to create a safe JSON-like output from git log
-          # We need to be careful with escaping quotes in titles and bodies
-          git log \
-            --pretty=format:'{"hash":"%h","title":"%s","body":"%b","date":"%ai"}' \
-            -n 60 | jq -s '.' > docs/mission-log.json
+          python3 scripts/generate_mission_log.py
 
       - name: Commit mission log
         run: |
