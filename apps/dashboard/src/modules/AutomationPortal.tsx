@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Activity, Zap, ExternalLink, RefreshCw, Terminal, Database } from 'lucide-react';
 
-const AutomationPortal: React.FC = () => {
+interface AutomationPortalProps {
+    n8nConnected?: boolean | null;
+}
+
+const AutomationPortal: React.FC<AutomationPortalProps> = ({ n8nConnected }) => {
     const [n8nStatus, setN8nStatus] = useState<'checking' | 'online' | 'offline'>('checking');
     const [syncing, setSyncing] = useState<string | null>(null);
 

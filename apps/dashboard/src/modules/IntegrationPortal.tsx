@@ -15,9 +15,10 @@ declare global {
 
 interface IntegrationPortalProps {
     isActive: boolean;
+    n8nConnected?: boolean | null;
 }
 
-export default function IntegrationPortal({ isActive }: IntegrationPortalProps) {
+export default function IntegrationPortal({ isActive, n8nConnected }: IntegrationPortalProps) {
     const [status, setStatus] = useState<'idle' | 'connecting' | 'connected'>('idle');
     const [logs, setLogs] = useState<string[]>([]);
 

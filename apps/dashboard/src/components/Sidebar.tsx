@@ -5,19 +5,16 @@ import {
     UserPlus,
     Moon,
     Settings,
-    Sparkles,
-    Home,
-    LogOut,
     Zap,
     History,
     Link2,
-    BookOpen
+    BookOpen,
+    Activity
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { NavLink } from 'react-router-dom';
-import { auth } from '../services/firebase';
-import { signOut } from 'firebase/auth';
 
 function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -26,13 +23,20 @@ function cn(...inputs: ClassValue[]) {
 interface SidebarProps {
     integrationMode: boolean;
     setIntegrationMode: (mode: boolean) => void;
+    collapsed: boolean;
+    setCollapsed: (collapsed: boolean) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ integrationMode, setIntegrationMode }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+    integrationMode,
+    setIntegrationMode,
+    collapsed,
+    setCollapsed
+}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const navItems = [
-        { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/' },
+        { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
         { id: 'automation', label: 'Automations', icon: Zap, path: '/automation' },
         { id: 'ig-connections', label: 'Instagram', icon: Share2, path: '/ig-connections' },
         { id: 'content', label: 'Content Library', icon: BookOpen, path: '/content' },
@@ -44,20 +48,35 @@ const Sidebar: React.FC<SidebarProps> = ({ integrationMode, setIntegrationMode }
 
     return (
         <>
-            {/* Sidebar Toggle removed for mobile-first bottom nav approach */}
+            <motion.aside
+                initial={false}
+                animate={{
+                    width: collapsed ? 100 : 320,
+                    x: 0
+                }}
+                className={cn(
+                    "hidden lg:flex fixed inset-y-0 left-0 z-40 glass-dark h-full flex-col p-8 text-white border-r-0.5 border-white/5 relative shrink-0 overflow-hidden",
+                    isOpen ? "!flex translate-x-0 shadow-[0_0_100px_rgba(0,0,0,0.9)]" : "lg:flex"
+                )}
+            >
+                {/* Collapse Toggle */}
+                <button
+                    onClick={() => setCollapsed(!collapsed)}
+                    className="absolute right-4 top-8 p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/40 hover:text-white transition-all z-50"
+                >
+                    <Activity size={16} className={cn("transition-transform duration-500", collapsed ? "rotate-180" : "rotate-0")} />
+                </button>
 
-            <aside className={cn(
-                "hidden lg:flex fixed inset-y-0 left-0 z-40 w-80 glass-dark transform transition-transform duration-500 ease-in-out lg:relative lg:translate-x-0 h-full flex-col p-8 text-white border-r-0.5 border-white/5",
-                isOpen ? "!flex translate-x-0 shadow-[0_0_100px_rgba(0,0,0,0.9)]" : "lg:flex -translate-x-full"
-            )}>
-                <div className="flex items-center gap-4 mb-16 px-2">
-                    <div className="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden">
+                <div className={cn("flex items-center gap-4 mb-16 px-2 overflow-hidden whitespace-nowrap", collapsed && "justify-center px-0")}>
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 overflow-hidden">
                         <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain" />
                     </div>
-                    <div>
-                        <h2 className="font-bold text-xl leading-tight tracking-tight">Auto-Notion</h2>
-                        <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold font-sans">Institutional Zen</p>
-                    </div>
+                    {!collapsed && (
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                            <h2 className="font-bold text-xl leading-tight tracking-tight">Auto-Notion</h2>
+                            <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold font-sans">Institutional Zen</p>
+                        </motion.div>
+                    )}
                 </div>
 
                 <nav className="flex-1 space-y-3">
@@ -67,95 +86,45 @@ const Sidebar: React.FC<SidebarProps> = ({ integrationMode, setIntegrationMode }
                             <NavLink
                                 key={item.id}
                                 to={item.path}
-                                end={item.path === '/'}
+                                end={item.path === '/dashboard'}
                                 onClick={() => setIsOpen(false)}
+                                title={collapsed ? item.label : ""}
                                 className={({ isActive }) => cn(
                                     "nav-item w-full group py-4 transition-all duration-500 flex items-center gap-3 px-4 rounded-xl",
-                                    isActive ? "nav-item-active bg-white/10 text-white" : "nav-item-inactive text-white/40 hover:bg-white/5"
+                                    collapsed ? "justify-center" : "justify-start",
+                                    isActive ? "nav-item-active bg-white/10 text-white shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]" : "nav-item-inactive text-white/40 hover:bg-white/5"
                                 )}
                             >
-                                <Icon size={18} className="transition-all duration-500 group-hover:scale-110" />
-                                <span className="font-bold text-sm tracking-wide">{item.label}</span>
+                                <Icon size={18} className="transition-all duration-500 group-hover:scale-110 shrink-0" />
+                                {!collapsed && <span className="font-bold text-sm tracking-wide">{item.label}</span>}
                             </NavLink>
                         )
                     })}
                 </nav>
 
-                {/* Integration Portal Toggle */}
-                <div className="border-t border-b border-white/5 py-6">
-                    <button
-                        onClick={() => setIntegrationMode(!integrationMode)}
-                        className={`w-full px-6 py-4 rounded-2xl transition-all duration-500 group ${integrationMode
-                            ? 'glass-integration cosmic-glow border border-integration-gold/30'
-                            : 'bg-white/5 hover:bg-white/10 border border-white/10'
-                            }`}
-                    >
-                        <div className="flex items-center gap-3">
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${integrationMode ? 'bg-integration-gold text-black' : 'bg-white/10 text-white group-hover:bg-white/20'
-                                }`}>
-                                <Sparkles size={16} className="transition-transform duration-500 group-hover:rotate-12" />
-                            </div>
-                            <div className="text-left flex-1">
-                                <div className={`text-sm font-bold transition-colors ${integrationMode ? 'text-integration-gold' : 'text-white'
-                                    }`}>
-                                    {integrationMode ? 'Integration Active' : 'Integration Portal'}
-                                </div>
-                                <div className="text-[10px] text-white/40 uppercase tracking-wider font-bold">
-                                    {integrationMode ? 'Consciousness Mode' : 'Enter Portal'}
-                                </div>
-                            </div>
+                <div className={cn("mt-auto pb-6", collapsed && "flex flex-col items-center")}>
+                    {!collapsed && (
+                        <div className="flex gap-4 mb-6 text-[9px] text-white/30 uppercase tracking-[0.15em] font-extrabold px-4">
+                            <NavLink to="/privacy" className="hover:text-white transition-colors">Privacy</NavLink>
+                            <span>•</span>
+                            <NavLink to="/terms" className="hover:text-white transition-colors">Terms</NavLink>
                         </div>
-                    </button>
-                </div>
-
-                <div className="mt-auto space-y-4">
-                    <div className="flex flex-col gap-2 px-2 mb-4">
-                        <button
-                            onClick={() => window.location.href = '/'}
-                            className="nav-item w-full nav-item-inactive group py-4 bg-white/5 border-white/10"
-                        >
-                            <Home size={18} className="group-hover:scale-110 transition-transform" />
-                            <span className="font-bold text-sm tracking-wide">Back to Site</span>
-                        </button>
-                        <button
-                            onClick={() => signOut(auth).then(() => window.location.href = '/auth')}
-                            className="nav-item w-full text-red-400/60 hover:text-red-400 hover:bg-red-400/10 group py-4 transition-all"
-                        >
-                            <LogOut size={18} className="group-hover:translate-x-1 transition-transform" />
-                            <span className="font-bold text-sm tracking-wide">Sign Out</span>
-                        </button>
-                    </div>
-
-                    <div className="flex gap-4 mb-6 text-[9px] text-white/30 uppercase tracking-[0.15em] font-extrabold px-4">
-                        <NavLink to="/privacy" className="hover:text-white transition-colors">Privacy</NavLink>
-                        <span>•</span>
-                        <NavLink to="/terms" className="hover:text-white transition-colors">Terms</NavLink>
-                    </div>
+                    )}
 
                     <NavLink
                         to="/settings"
+                        title={collapsed ? "Settings" : ""}
                         className={({ isActive }) => cn(
                             "nav-item w-full group py-4 border-t-0.5 border-white/5 rounded-none mt-4 flex items-center gap-3 px-4",
+                            collapsed ? "justify-center" : "justify-start",
                             isActive ? "text-white" : "text-white/40"
                         )}
                     >
-                        <Settings size={18} className="group-hover:rotate-90 transition-transform duration-700" />
-                        <span className="font-bold text-sm tracking-wide">Settings</span>
+                        <Settings size={18} className="group-hover:rotate-90 transition-transform duration-700 shrink-0" />
+                        {!collapsed && <span className="font-bold text-sm tracking-wide">Settings</span>}
                     </NavLink>
-
-                    <div className="mt-8 p-6 rounded-3xl bg-white/[0.02] border-0.5 border-white/5">
-                        <div className="flex items-center gap-3 mb-3">
-                            <span className="text-[10px] font-bold text-white uppercase tracking-widest">Efficiency</span>
-                            <div className="h-1 flex-1 bg-white/5 rounded-full overflow-hidden">
-                                <div className="h-full bg-white w-[88%] shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
-                            </div>
-                        </div>
-                        <p className="text-[10px] text-white/40 leading-relaxed font-bold italic">
-                            "Autonomy is the final step of insight."
-                        </p>
-                    </div>
                 </div>
-            </aside>
+            </motion.aside>
 
             {/* Mobile Overlay */}
             {isOpen && (

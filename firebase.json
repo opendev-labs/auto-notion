@@ -37,6 +37,58 @@
         "destination": "/dashboard/index.html"
       },
       {
+        "source": "/automation",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/ig-connections",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/content",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/agents",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/cosmic",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/integrations",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/logs",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/settings",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/subscription",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/privacy",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/terms",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/refund-policy",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/data-deletion",
+        "destination": "/dashboard/index.html"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
