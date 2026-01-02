@@ -21,6 +21,7 @@
 
 <p align="center">
   <a href="https://auto-notion.web.app"><strong>🚀 Live Demo</strong></a> •
+  <a href="https://opendev-labs.github.io/auto-notion/"><strong>📡 Live Mission Log</strong></a> •
   <a href="https://auto-notion.web.app/dashboard"><strong>📊 Dashboard</strong></a> •
   <a href="#features"><strong>✨ Features</strong></a> •
   <a href="#quick-start"><strong>⚡ Quick Start</strong></a>
