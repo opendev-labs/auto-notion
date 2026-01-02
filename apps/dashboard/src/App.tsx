@@ -16,6 +16,7 @@ const PrivacyPolicy = lazy(() => import('./modules/Compliance').then(m => ({ def
 const TermsOfService = lazy(() => import('./modules/Compliance').then(m => ({ default: m.TermsOfService })));
 const DataDeletion = lazy(() => import('./modules/Compliance').then(m => ({ default: m.DataDeletion })));
 const RefundPolicy = lazy(() => import('./modules/Compliance').then(m => ({ default: m.RefundPolicy })));
+import { SubscriptionPage } from './modules/SubscriptionPage';
 import Login from './components/Login';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from './services/firebase';
@@ -108,6 +109,7 @@ const DashboardContent = ({ activeTab, setActiveTab, integrationMode }: any) => 
       case 'ig-connections': return <IGPortal />;
       case 'agents': return <AgentManager />;
       case 'cosmic': return <CosmicPlanner />;
+      case 'subscription': return <SubscriptionPage />;
       default: return <Dashboard />;
     }
   };

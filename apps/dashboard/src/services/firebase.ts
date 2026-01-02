@@ -12,7 +12,7 @@ import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore";
 // Firebase configuration from user request
 const firebaseConfig = {
     apiKey: "AIzaSyBMsqr--MMnif5HrvtcTvoPyIkqHznuqkg",
-    authDomain: "meta-auto-notion.firebaseapp.com",
+    authDomain: "auto-notion.web.app",
     projectId: "meta-auto-notion",
     storageBucket: "meta-auto-notion.firebasestorage.app",
     messagingSenderId: "357502904034",
@@ -29,6 +29,10 @@ export const db = getFirestore(app);
 // Auth Providers
 export const googleProvider = new GoogleAuthProvider();
 export const facebookProvider = new FacebookAuthProvider();
+facebookProvider.addScope('instagram_basic');
+facebookProvider.addScope('instagram_content_publish');
+facebookProvider.addScope('pages_show_list');
+facebookProvider.addScope('pages_read_engagement');
 export const githubProvider = new GithubAuthProvider();
 
 export const signInWithProvider = async (provider: any) => {

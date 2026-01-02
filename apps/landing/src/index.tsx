@@ -27,6 +27,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -34,55 +35,78 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Professional scale and opacity transformations
+  const navHeight = useTransform(scrollY, [0, 50], ["4rem", "3.25rem"]);
+  const logoScale = useTransform(scrollY, [0, 50], [1, 0.95]);
+  const navBg = useTransform(
+    scrollY,
+    [0, 50],
+    ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.9)"]
+  );
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-xl border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.location.href = '/'}>
-          <div className="relative w-9 h-9 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+    <motion.nav
+      style={{ height: navHeight, backgroundColor: navBg }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${scrolled ? 'backdrop-blur-2xl border-white/5' : 'border-transparent'
+        }`}
+    >
+      <div className="h-full max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <motion.div
+          style={{ scale: logoScale }}
+          className="flex items-center gap-2 group cursor-pointer"
+          onClick={() => window.location.href = '/'}
+        >
+          <div className="relative w-6 h-6 flex items-center justify-center transition-transform duration-500">
             <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             <img
               src="/logo.svg"
               alt="Auto-Notion Logo"
-              className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_20px_rgba(99,102,241,0.8)]"
+              className="w-full h-full object-contain relative z-10 filter brightness-110 drop-shadow-[0_0_8px_rgba(99,102,241,0.4)]"
             />
           </div>
-          <span className="text-2xl font-black tracking-tighter text-white">
+          <span className="text-base font-black tracking-tighter text-white">
             AUTO-NOTION
           </span>
-        </div>
+        </motion.div>
 
-        <div className="hidden md:flex items-center gap-10 text-[13px] font-bold uppercase tracking-widest text-gray-400">
-          <a href="#features" className="hover:text-white transition-colors">Platform</a>
-          <a href="#comparison" className="hover:text-white transition-colors">Compare</a>
-          <a href="#pricing" className="hover:text-white transition-colors">Institutional</a>
-          <div className="flex items-center gap-4 border-l border-white/10 pl-10">
-            <button onClick={() => window.location.href = '/auth'} className="hover:text-white transition-colors">
+        <div className="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-[0.2em] text-gray-400">
+          <a href="#features" className="hover:text-white transition-all hover:tracking-[0.25em]">Platform</a>
+          <a href="#comparison" className="hover:text-white transition-all hover:tracking-[0.25em]">Compare</a>
+          <a href="#pricing" className="hover:text-white transition-all hover:tracking-[0.25em]">Institutional</a>
+          <div className="flex items-center gap-6 border-l border-white/10 ml-4 pl-10">
+            <button
+              onClick={() => window.location.href = '/auth'}
+              className="hover:text-white transition-colors"
+            >
               Sign In
             </button>
-            <button onClick={() => window.location.href = '/dashboard'} className="px-6 py-2.5 bg-white text-black rounded-full hover:bg-white/90 transition-all duration-300 font-bold border border-white/10">
+            <button
+              onClick={() => window.location.href = '/dashboard'}
+              className="px-6 py-2 bg-white text-black rounded-full hover:bg-neutral-200 transition-all duration-300 font-black border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.1)] active:scale-95"
+            >
               Dashboard
             </button>
           </div>
         </div>
 
-        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X /> : <Menu />}
+        <button className="md:hidden text-white p-2" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-2xl border-b border-white/10 px-6 py-10"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden"
           >
-            <div className="flex flex-col gap-8 items-center">
-              <div className="flex flex-col gap-6 items-center">
-                <a href="#features" className="text-gray-400 text-lg font-bold uppercase tracking-widest" onClick={() => setIsOpen(false)}>Features</a>
-                <a href="#comparison" className="text-gray-400 text-lg font-bold uppercase tracking-widest" onClick={() => setIsOpen(false)}>Comparison</a>
-                <a href="#pricing" className="text-gray-400 text-lg font-bold uppercase tracking-widest" onClick={() => setIsOpen(false)}>Pricing</a>
+            <div className="flex flex-col gap-8 items-center px-6 py-12">
+              <div className="flex flex-col gap-8 items-center">
+                <a href="#features" className="text-gray-400 text-sm font-black uppercase tracking-[0.3em]" onClick={() => setIsOpen(false)}>Platform</a>
+                <a href="#comparison" className="text-gray-400 text-sm font-black uppercase tracking-[0.3em]" onClick={() => setIsOpen(false)}>Comparison</a>
+                <a href="#pricing" className="text-gray-400 text-sm font-black uppercase tracking-[0.3em]" onClick={() => setIsOpen(false)}>Institutional</a>
               </div>
               <div className="w-full h-[1px] bg-white/5" />
               <div className="w-full flex flex-col gap-4">
@@ -93,7 +117,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 
