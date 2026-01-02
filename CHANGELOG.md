@@ -49,5 +49,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-> **OpenDev Labs**  
+> **opendev-labs**  
 > *Democratizing Intelligence, One Node at a Time.*

@@ -196,15 +196,15 @@ Use our [Issue Templates](.github/ISSUE_TEMPLATE/) for:
 
 ## 📄 License
 
-**Proprietary** — © 2025 OpenDev-Labs. All Rights Reserved.
+**Proprietary** — © 2025 opendev-labs. All Rights Reserved.
 
 > *"Insight opens the door. Integration makes you walk through it."*
 
 ---
 
-## 🏢 About OpenDev-Labs
+## 🏢 About opendev-labs
 
-OpenDev-Labs is a specialized software consultancy focused on:
+opendev-labs is a specialized software consultancy focused on:
 - High-fidelity automation systems
 - Cryptographically verifiable operations
 - Mission-critical digital infrastructure
@@ -227,5 +227,5 @@ Built with:
 ---
 
 <p align="center">
-  Made with 🌙 and cosmic timing by the OpenDev-Labs team
+  Made with 🌙 and cosmic timing by the opendev-labs team
 </p>

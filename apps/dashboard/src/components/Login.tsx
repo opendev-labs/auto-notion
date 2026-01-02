@@ -253,7 +253,7 @@ export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }
                         <span className="w-1 h-1 bg-white/10 rounded-full" />
                         <span>Secure Agent Layer</span>
                         <span className="w-1 h-1 bg-white/10 rounded-full" />
-                        <span>OpenDev-Labs Agentic</span>
+                        <span>opendev-labs Agentic</span>
                     </div>
                 </div>
             </div>
