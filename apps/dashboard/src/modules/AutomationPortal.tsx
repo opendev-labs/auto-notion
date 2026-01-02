@@ -6,7 +6,7 @@ interface AutomationPortalProps {
     n8nConnected?: boolean | null;
 }
 
-const AutomationPortal: React.FC<AutomationPortalProps> = ({ n8nConnected }) => {
+const AutomationPortal: React.FC<AutomationPortalProps> = ({ _n8nConnected }) => {
     const [n8nStatus, setN8nStatus] = useState<'checking' | 'online' | 'offline'>('checking');
     const [syncing, setSyncing] = useState<string | null>(null);
 

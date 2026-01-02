@@ -28,8 +28,8 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
-    integrationMode,
-    setIntegrationMode,
+    _integrationMode,
+    _setIntegrationMode,
     collapsed,
     setCollapsed
 }) => {

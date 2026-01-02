@@ -18,7 +18,7 @@ interface IntegrationPortalProps {
     n8nConnected?: boolean | null;
 }
 
-export default function IntegrationPortal({ isActive, n8nConnected }: IntegrationPortalProps) {
+export default function IntegrationPortal({ isActive, _n8nConnected }: IntegrationPortalProps) {
     const [status, setStatus] = useState<'idle' | 'connecting' | 'connected'>('idle');
     const [logs, setLogs] = useState<string[]>([]);
 
