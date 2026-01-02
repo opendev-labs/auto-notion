@@ -13,6 +13,9 @@ const IntegrationPortal = lazy(() => import('./modules/IntegrationPortal'));
 const AutomationPortal = lazy(() => import('./modules/AutomationPortal'));
 const AICommandCenter = lazy(() => import('./modules/AICommandCenter'));
 const CosmicPlanner = lazy(() => import('./modules/CosmicPlanner'));
+const ContentLibrary = lazy(() => import('./modules/ContentLibrary'));
+const Logs = lazy(() => import('./modules/Logs'));
+const SettingsModule = lazy(() => import('./modules/Settings'));
 const PrivacyPolicy = lazy(() => import('./modules/Compliance').then(m => ({ default: m.PrivacyPolicy })));
 const TermsOfService = lazy(() => import('./modules/Compliance').then(m => ({ default: m.TermsOfService })));
 const DataDeletion = lazy(() => import('./modules/Compliance').then(m => ({ default: m.DataDeletion })));
@@ -28,7 +31,6 @@ const RequireAuth = ({ children, user }: { children: any, user: any }) => {
 };
 
 function App() {
-  const [activeTab, setActiveTab] = useState('dashboard');
   const [integrationMode, setIntegrationMode] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -67,33 +69,7 @@ function App() {
 
   if (loading) return <LoadingFallback text="Authenticating..." />;
 
-  // Layout Wrapper to keep Sidebar context if needed
-  const ProtectedLayout = () => (
-    <div className={`flex h-screen overflow-hidden selection:bg-white selection:text-black integration-transition ${integrationMode ? 'bg-black' : 'bg-black'}`}>
-      <Sidebar
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        integrationMode={integrationMode}
-        setIntegrationMode={setIntegrationMode}
-      />
-      <main className="flex-1 overflow-y-auto p-3 md:p-8 pb-24 lg:pb-8 relative">
-        <div className="max-w-7xl mx-auto relative z-10 mt-4">
-          <DashboardContent
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            integrationMode={integrationMode}
-            n8nConnected={n8nConnected}
-          />
-        </div>
-      </main>
-      <MobileBottomNav
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        integrationMode={integrationMode}
-        setIntegrationMode={setIntegrationMode}
-      />
-    </div>
-  );
+  // Removed ProtectedLayout as it's been integrated into the Route
 
   return (
     <Suspense fallback={<LoadingFallback />}>
@@ -110,7 +86,24 @@ function App() {
         {/* Protected Dashboard Routes */}
         <Route path="/dashboard/*" element={
           <RequireAuth user={user}>
-            <ProtectedLayout />
+            <div className={`flex h-screen overflow-hidden selection:bg-white selection:text-black integration-transition ${integrationMode ? 'bg-black' : 'bg-black'}`}>
+              <Sidebar
+                integrationMode={integrationMode}
+                setIntegrationMode={setIntegrationMode}
+              />
+              <main className="flex-1 overflow-y-auto p-3 md:p-8 pb-24 lg:pb-8 relative">
+                <div className="max-w-7xl mx-auto relative z-10 mt-4">
+                  <DashboardLayout
+                    integrationMode={integrationMode}
+                    n8nConnected={n8nConnected}
+                  />
+                </div>
+              </main>
+              <MobileBottomNav
+                integrationMode={integrationMode}
+                setIntegrationMode={setIntegrationMode}
+              />
+            </div>
           </RequireAuth>
         } />
 
@@ -122,19 +115,23 @@ function App() {
 }
 
 // Internal Component to manage local tab state until full route migration
-const DashboardContent = ({ activeTab, setActiveTab, integrationMode, n8nConnected }: any) => {
+const DashboardLayout = ({ integrationMode, n8nConnected }: any) => {
+  const location = useLocation();
+  const path = location.pathname.split('/').pop() || 'dashboard';
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'dashboard': return <Dashboard onNavigate={setActiveTab} />;
-      case 'automation': return <AutomationPortal />;
-      case 'ig-connections': return <IGPortal />;
-      case 'content': return <div className="p-20 text-center"><h2 className="text-white text-2xl font-bold uppercase tracking-widest">Content Library</h2><p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[10px] mt-4">Synchronizing with Notion Institutional Database...</p></div>;
-      case 'agents': return <AICommandCenter />;
-      case 'cosmic': return <CosmicPlanner />;
-      case 'integrations': return <IntegrationPortal isActive={true} />;
-      case 'subscription': return <SubscriptionPage />;
-      default: return <Dashboard />;
+  const getTitle = (p: string) => {
+    switch (p) {
+      case 'dashboard': return 'Mission Control';
+      case 'automation': return 'Automation Engine';
+      case 'ig-connections': return 'Instagram Nodes';
+      case 'content': return 'Content Library';
+      case 'agents': return 'AI Command Center';
+      case 'cosmic': return 'Scheduler';
+      case 'integrations': return 'Integration Portal';
+      case 'logs': return 'Logs & History';
+      case 'settings': return 'System Settings';
+      case 'subscription': return 'Institutional Plan';
+      default: return p.replace('-', ' ');
     }
   };
 
@@ -142,12 +139,12 @@ const DashboardContent = ({ activeTab, setActiveTab, integrationMode, n8nConnect
     <>
       <header className="mb-8 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b-0.5 border-white/5 pb-6 md:pb-8">
         <div>
-          <h1 className="text-2xl md:text-4xl font-bold text-white tracking-tight capitalize">
-            {activeTab.replace('-', ' ')}
-          </h1>
-          <p className="text-zen-sage mt-2 text-xs md:text-sm font-medium tracking-wide">
+          <h2 className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mb-1">
             Institutional Oversight & Mission Control
-          </p>
+          </h2>
+          <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight capitalize">
+            {getTitle(path)}
+          </h1>
         </div>
         <div className="flex items-center gap-4 md:gap-6">
           <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-xl bg-white/5 border-0.5 border-white/10 text-[10px] font-bold tracking-widest text-white/60">
@@ -180,13 +177,25 @@ const DashboardContent = ({ activeTab, setActiveTab, integrationMode, n8nConnect
       ) : (
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeTab}
+            key={location.pathname}
             initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
             transition={{ duration: 0.4, ease: "easeOut" as any }}
           >
-            {renderContent()}
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="automation" element={<AutomationPortal />} />
+              <Route path="ig-connections" element={<IGPortal />} />
+              <Route path="content" element={<ContentLibrary />} />
+              <Route path="agents" element={<AICommandCenter />} />
+              <Route path="cosmic" element={<CosmicPlanner />} />
+              <Route path="integrations" element={<IntegrationPortal isActive={true} />} />
+              <Route path="logs" element={<Logs />} />
+              <Route path="settings" element={<SettingsModule />} />
+              <Route path="subscription" element={<SubscriptionPage />} />
+              <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            </Routes>
           </motion.div>
         </AnimatePresence>
       )}

@@ -6,17 +6,26 @@ const AutomationPortal: React.FC = () => {
     const [n8nStatus, setN8nStatus] = useState<'checking' | 'online' | 'offline'>('checking');
     const [syncing, setSyncing] = useState<string | null>(null);
 
-    useEffect(() => {
-        const checkStatus = async () => {
-            try {
-                const response = await fetch('http://localhost:5678/healthz').catch(() => null);
-                setN8nStatus(response && response.status === 200 ? 'online' : 'offline');
-            } catch {
-                setN8nStatus('offline');
+    const checkStatus = async () => {
+        setN8nStatus('checking');
+        try {
+            // Try healthz first, fallback to home page
+            const response = await fetch('http://localhost:5678/healthz').catch(() => null);
+            if (response && response.status === 200) {
+                setN8nStatus('online');
+            } else {
+                // Fallback: Try a different endpoint or the home page
+                const fallbackResponse = await fetch('http://localhost:5678/').catch(() => null);
+                setN8nStatus(fallbackResponse ? 'online' : 'offline');
             }
-        };
+        } catch {
+            setN8nStatus('offline');
+        }
+    };
+
+    useEffect(() => {
         checkStatus();
-        const interval = setInterval(checkStatus, 10000);
+        const interval = setInterval(checkStatus, 15000);
         return () => clearInterval(interval);
     }, []);
 
@@ -80,7 +89,12 @@ const AutomationPortal: React.FC = () => {
                         >
                             Open n8n Interface <ExternalLink size={14} />
                         </a>
-                        <button className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-sm hover:bg-white/10 transition-all">
+                        <button
+                            onClick={checkStatus}
+                            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-sm hover:bg-white/10 transition-all active:scale-95 disabled:opacity-50"
+                            disabled={n8nStatus === 'checking'}
+                        >
+                            <RefreshCw size={14} className={n8nStatus === 'checking' ? 'animate-spin' : ''} />
                             Refresh Connection
                         </button>
                     </div>

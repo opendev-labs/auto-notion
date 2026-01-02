@@ -1,121 +1,161 @@
 import { motion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
-import { Activity, ShieldCheck, TrendingUp, Zap, Globe, Clock } from 'lucide-react';
+import {
+    Zap,
+    Share2,
+    UserPlus,
+    Moon,
+    Link2,
+    History,
+    Settings,
+    ArrowUpRight,
+    Activity,
+    ShieldCheck,
+    Globe
+} from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 
-const Dashboard = ({ onNavigate }: { onNavigate?: (tab: string) => void }) => {
-    const stats = [
-        { label: 'Running Automations', value: '7', icon: Zap, color: 'text-white' },
-        { label: 'Automation Success Rate', value: '99.8%', icon: ShieldCheck, color: 'text-white' },
-        { label: 'System Uptime', value: '100%', icon: Globe, color: 'text-white' },
-        { label: 'Total Actions Executed', value: '42.8k', icon: Activity, color: 'text-white' },
+const Dashboard = () => {
+    const modules = [
+        {
+            id: 'automation',
+            label: 'Automations',
+            icon: Zap,
+            path: '/dashboard/automation',
+            description: 'n8n Logic Core',
+            settings: [
+                { label: 'Auto-Sync', type: 'toggle', value: true },
+                { label: 'Cloud Mode', type: 'toggle', value: false }
+            ]
+        },
+        {
+            id: 'ig-connections',
+            label: 'Instagram',
+            icon: Share2,
+            path: '/dashboard/ig-connections',
+            description: 'Meta Graph Nodes',
+            settings: [
+                { label: 'Live Fetching', type: 'toggle', value: true },
+                { label: 'DM Automation', type: 'toggle', value: true }
+            ]
+        },
+        {
+            id: 'agents',
+            label: 'AI Agents',
+            icon: UserPlus,
+            path: '/dashboard/agents',
+            description: 'Cognitive Engine',
+            settings: [
+                { label: 'Sentiment AI', type: 'toggle', value: true },
+                { label: 'Autonomous Replies', type: 'toggle', value: false }
+            ]
+        },
+        {
+            id: 'cosmic',
+            label: 'Scheduler',
+            icon: Moon,
+            path: '/dashboard/cosmic',
+            description: 'Chronos Planning',
+            settings: [
+                { label: 'Smart Scheduling', type: 'toggle', value: true },
+                { label: 'Optimal Window', type: 'toggle', value: true }
+            ]
+        }
     ];
 
-    const containerVariants: Variants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    };
-
-    const itemVariants: Variants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } as any }
-    };
+    const stats = [
+        { label: 'Engine Load', value: '12%', icon: Activity, color: 'text-white' },
+        { label: 'Logic Integrity', value: '99.9%', icon: ShieldCheck, color: 'text-white' },
+        { label: 'Cloud Nodes', value: '8 Active', icon: Globe, color: 'text-white' },
+    ];
 
     return (
-        <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="space-y-12"
-        >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+        <div className="space-y-12">
+            {/* Quick Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {stats.map((stat, i) => (
-                    <motion.div
-                        key={i}
-                        variants={itemVariants}
-                        className="glass p-5 md:p-8 rounded-[2.5rem] flex items-center gap-4 md:gap-6 group"
-                    >
-                        <div className={`p-4 md:p-5 rounded-3xl bg-white/5 border-0.5 border-white/10 ${stat.color} group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all duration-700 shadow-2xl`}>
-                            <stat.icon size={24} strokeWidth={2.5} />
+                    <div key={i} className="glass p-6 rounded-3xl flex items-center gap-4 group">
+                        <div className="p-3 rounded-xl bg-white/5 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
+                            <stat.icon size={20} />
                         </div>
                         <div>
-                            <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-1">{stat.label}</p>
-                            <h4 className="text-xl md:text-2xl font-bold text-white tracking-tighter">{stat.value}</h4>
+                            <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest">{stat.label}</p>
+                            <h4 className="text-xl font-bold text-white">{stat.value}</h4>
                         </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Modules Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {modules.map((module) => (
+                    <motion.div
+                        key={module.id}
+                        whileHover={{ y: -5 }}
+                        className="glass-dark rounded-[2.5rem] p-8 border-0.5 border-white/5 relative overflow-hidden group"
+                    >
+                        <div className="flex justify-between items-start mb-8">
+                            <div className="flex items-center gap-4">
+                                <div className="p-4 rounded-2xl bg-white/5 text-white/60 group-hover:bg-white group-hover:text-black transition-all duration-500">
+                                    <module.icon size={24} />
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-white">{module.label}</h3>
+                                    <p className="text-[10px] text-white/30 font-bold uppercase tracking-widest">{module.description}</p>
+                                </div>
+                            </div>
+                            <NavLink
+                                to={module.path}
+                                className="p-3 rounded-xl bg-white/5 text-white/20 hover:text-white hover:bg-white/10 transition-all"
+                            >
+                                <ArrowUpRight size={20} />
+                            </NavLink>
+                        </div>
+
+                        {/* Mini Settings for Module */}
+                        <div className="space-y-4 pt-6 border-t border-white/5">
+                            <h4 className="text-[10px] font-black text-white/20 uppercase tracking-[0.2em] mb-4">Module Controls</h4>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {module.settings.map((setting, idx) => (
+                                    <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                                        <span className="text-[10px] font-bold text-white/60 uppercase tracking-widest">{setting.label}</span>
+                                        <div className={`w-8 h-4 rounded-full relative p-0.5 cursor-pointer transition-all ${setting.value ? 'bg-white' : 'bg-white/10'}`}>
+                                            <div className={`w-3 h-3 rounded-full shadow-sm transition-all ${setting.value ? 'translate-x-4 bg-black' : 'translate-x-0 bg-white/40'}`} />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <NavLink to={module.path} className="mt-8 w-full block text-center py-4 rounded-2xl bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-white hover:bg-white/10 transition-all">
+                            Enter Full Module
+                        </NavLink>
                     </motion.div>
                 ))}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
-                <motion.div
-                    variants={itemVariants}
-                    className="lg:col-span-2 glass p-5 md:p-10 rounded-[2rem] md:rounded-[3rem] border-white/5 relative overflow-hidden group"
-                >
-                    <div className="flex justify-between items-center mb-10">
-                        <div className="space-y-1">
-                            <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-3">
-                                Automation Executions Over Time
-                                <TrendingUp size={20} className="text-white/40" />
-                            </h3>
-                            <div className="flex items-center gap-2">
-                                <div className="status-pulse"><div className="status-pulse-inner" /></div>
-                                <span className="text-[9px] font-bold text-white/20 uppercase tracking-widest">Instagram & Notion Automations Active</span>
-                            </div>
+            {/* System Status / Settings Hub */}
+            <div className="glass-dark rounded-[3rem] p-10 border border-white/5">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div className="flex items-center gap-6">
+                        <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-white/20 border border-white/10">
+                            <Settings size={32} />
                         </div>
-                        <div className="flex gap-2">
-                            {['7D', '1M', '1Y'].map(t => (
-                                <button key={t} className="px-3 py-1 rounded-lg bg-white/5 border-0.5 border-white/10 text-[9px] font-bold text-white/40 hover:text-white hover:bg-white/10 transition-all">{t}</button>
-                            ))}
+                        <div>
+                            <h3 className="text-2xl font-bold text-white mb-2">System Config</h3>
+                            <p className="text-zen-sage text-sm font-medium">Control global behavior across all automation nodes.</p>
                         </div>
                     </div>
-                    <div className="h-72 flex items-end gap-4 px-2">
-                        {[40, 70, 45, 90, 65, 80, 55, 95].map((h, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ height: 0 }}
-                                animate={{ height: `${h}%` }}
-                                transition={{ delay: 0.5 + (i * 0.05), duration: 1, ease: "easeOut" as any }}
-                                className="flex-1 bg-white/5 border-t-0.5 border-x-0.5 border-white/10 rounded-t-2xl hover:bg-white group/bar transition-all duration-700 relative"
-                            >
-                                <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-white text-black px-3 py-1.5 rounded-xl text-[10px] font-bold opacity-0 group-hover/bar:opacity-100 transition-all duration-500 whitespace-nowrap shadow-2xl">
-                                    {h}% Success
-                                </div>
-                            </motion.div>
-                        ))}
+                    <div className="flex gap-4">
+                        <NavLink to="/dashboard/settings" className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-zen-sage transition-all">
+                            System Settings
+                        </NavLink>
+                        <NavLink to="/dashboard/logs" className="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2">
+                            <History size={14} /> View Audit Logs
+                        </NavLink>
                     </div>
-                </motion.div>
-
-                <motion.div
-                    variants={itemVariants}
-                    className="glass p-5 md:p-10 rounded-[2rem] md:rounded-[3rem] border-white/5 flex flex-col justify-between group"
-                >
-                    <div>
-                        <div className="flex justify-between items-start mb-8">
-                            <h3 className="text-xl font-bold text-white tracking-tight">Scheduler Status</h3>
-                            <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 flex items-center gap-2">
-                                <Clock size={10} className="text-white/40" />
-                                <span className="text-[9px] font-bold text-white/40 tracking-widest uppercase">System Active</span>
-                            </div>
-                        </div>
-                        <div className="text-center py-8 md:py-10 rounded-3xl bg-white/[0.02] border-0.5 border-white/5 group-hover:bg-white/[0.04] transition-all duration-700">
-                            <div className="flex flex-col items-center mb-6">
-                                <div className="text-4xl mb-2">Optimal posting window</div>
-                                <div className="text-green-400 font-bold text-sm tracking-widest">ACTIVE NOW</div>
-                            </div>
-                            <p className="text-2xl font-bold text-white tracking-tight">High Engagement Period</p>
-                            <p className="text-white/30 text-xs mt-3 font-bold tracking-widest uppercase">Based on Meta Analytics Performance</p>
-                        </div>
-                    </div>
-                    <button onClick={() => onNavigate?.('cosmic')} className="w-full btn-secondary mt-10">
-                        Create Scheduled Automation
-                    </button>
-                </motion.div>
+                </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 

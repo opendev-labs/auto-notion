@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { NavLink } from 'react-router-dom';
 import { auth } from '../services/firebase';
 import { signOut } from 'firebase/auth';
 
@@ -23,24 +24,22 @@ function cn(...inputs: ClassValue[]) {
 }
 
 interface SidebarProps {
-    activeTab: string;
-    setActiveTab: (tab: string) => void;
     integrationMode: boolean;
     setIntegrationMode: (mode: boolean) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, integrationMode, setIntegrationMode }) => {
+const Sidebar: React.FC<SidebarProps> = ({ integrationMode, setIntegrationMode }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const navItems = [
-        { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-        { id: 'automation', label: 'Automations', icon: Zap },
-        { id: 'ig-connections', label: 'Instagram', icon: Share2 },
-        { id: 'content', label: 'Content Library', icon: BookOpen },
-        { id: 'agents', label: 'AI Agents', icon: UserPlus },
-        { id: 'cosmic', label: 'Scheduler', icon: Moon },
-        { id: 'integrations', label: 'Integrations', icon: Link2 },
-        { id: 'logs', label: 'Logs & History', icon: History },
+        { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
+        { id: 'automation', label: 'Automations', icon: Zap, path: '/dashboard/automation' },
+        { id: 'ig-connections', label: 'Instagram', icon: Share2, path: '/dashboard/ig-connections' },
+        { id: 'content', label: 'Content Library', icon: BookOpen, path: '/dashboard/content' },
+        { id: 'agents', label: 'AI Agents', icon: UserPlus, path: '/dashboard/agents' },
+        { id: 'cosmic', label: 'Scheduler', icon: Moon, path: '/dashboard/cosmic' },
+        { id: 'integrations', label: 'Integrations', icon: Link2, path: '/dashboard/integrations' },
+        { id: 'logs', label: 'Logs & History', icon: History, path: '/dashboard/logs' },
     ];
 
     return (
@@ -64,25 +63,20 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, integrationM
                 <nav className="flex-1 space-y-3">
                     {navItems.map((item) => {
                         const Icon = item.icon;
-                        const isActive = activeTab === item.id;
                         return (
-                            <button
+                            <NavLink
                                 key={item.id}
-                                onClick={() => {
-                                    setActiveTab(item.id);
-                                    setIsOpen(false);
-                                }}
-                                className={cn(
-                                    "nav-item w-full group py-4 transition-all duration-500",
-                                    isActive ? "nav-item-active" : "nav-item-inactive"
+                                to={item.path}
+                                end={item.path === '/dashboard'}
+                                onClick={() => setIsOpen(false)}
+                                className={({ isActive }) => cn(
+                                    "nav-item w-full group py-4 transition-all duration-500 flex items-center gap-3 px-4 rounded-xl",
+                                    isActive ? "nav-item-active bg-white/10 text-white" : "nav-item-inactive text-white/40 hover:bg-white/5"
                                 )}
                             >
-                                <Icon size={18} className={cn(
-                                    "transition-all duration-500",
-                                    isActive ? "scale-110" : "group-hover:scale-110 group-hover:text-white"
-                                )} />
+                                <Icon size={18} className="transition-all duration-500 group-hover:scale-110" />
                                 <span className="font-bold text-sm tracking-wide">{item.label}</span>
-                            </button>
+                            </NavLink>
                         )
                     })}
                 </nav>
@@ -133,15 +127,21 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, integrationM
                     </div>
 
                     <div className="flex gap-4 mb-6 text-[9px] text-white/30 uppercase tracking-[0.15em] font-extrabold px-4">
-                        <button onClick={() => { setActiveTab('privacy'); setIsOpen(false); }} className="hover:text-white transition-colors">Privacy</button>
+                        <NavLink to="/dashboard/privacy" className="hover:text-white transition-colors">Privacy</NavLink>
                         <span>•</span>
-                        <button onClick={() => { setActiveTab('terms'); setIsOpen(false); }} className="hover:text-white transition-colors">Terms</button>
+                        <NavLink to="/dashboard/terms" className="hover:text-white transition-colors">Terms</NavLink>
                     </div>
 
-                    <button className="nav-item w-full nav-item-inactive group py-4 border-t-0.5 border-white/5 rounded-none mt-4">
+                    <NavLink
+                        to="/dashboard/settings"
+                        className={({ isActive }) => cn(
+                            "nav-item w-full group py-4 border-t-0.5 border-white/5 rounded-none mt-4 flex items-center gap-3 px-4",
+                            isActive ? "text-white" : "text-white/40"
+                        )}
+                    >
                         <Settings size={18} className="group-hover:rotate-90 transition-transform duration-700" />
                         <span className="font-bold text-sm tracking-wide">Settings</span>
-                    </button>
+                    </NavLink>
 
                     <div className="mt-8 p-6 rounded-3xl bg-white/[0.02] border-0.5 border-white/5">
                         <div className="flex items-center gap-3 mb-3">
