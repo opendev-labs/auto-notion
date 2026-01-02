@@ -259,7 +259,9 @@
                 const response = await fetch(API_URL);
                 const commits = await response.json();
                 renderCommits(commits);
-                updateSyncTime();
+                if (commits.length > 0) {
+                    updateSyncTime(commits[0].commit.author.date);
+                }
             } catch (error) {
                 console.error('Failed to fetch commits:', error);
                 document.getElementById('commit-feed').innerHTML = `
@@ -270,9 +272,9 @@
             }
         }
 
-        function updateSyncTime() {
-            const now = new Date();
-            document.getElementById('last-sync').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        function updateSyncTime(dateString) {
+            const date = dateString ? new Date(dateString) : new Date();
+            document.getElementById('last-sync').innerText = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         }
 
         function renderCommits(commits) {
@@ -288,7 +290,9 @@
                 const typeMatch = title.match(/^(feat|fix|style|chore|docs|refactor)/);
                 const type = typeMatch ? typeMatch[0] : 'misc';
                 const body = messageParts.length > 1 ? messageParts.slice(1).join('\n') : '';
-                const date = new Date(commit.commit.author.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+                const commitDate = new Date(commit.commit.author.date);
+                const date = commitDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+                const time = commitDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 const author = commit.commit.author.name;
 
                 // Color coding for types - Enhanced Green
@@ -310,7 +314,7 @@
                                     <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide ${typeColor}">
                                         ${type}
                                     </span>
-                                    <span class="text-[11px] font-mono text-white/30">${date}</span>
+                                    <span class="text-[11px] font-mono text-white/30">${date} @ ${time}</span>
                                 </div>
                                 <a href="${commit.html_url}" target="_blank" class="text-[10px] font-mono text-white/20 hover:text-white transition-colors">
                                     ${commit.sha.substring(0, 7)} ↗

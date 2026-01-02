@@ -8,6 +8,17 @@
       "**/node_modules/**"
     ],
     "cleanUrls": true,
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      }
+    ],
     "rewrites": [
       {
         "source": "/auth",
@@ -15,6 +26,10 @@
       },
       {
         "source": "/signin",
+        "destination": "/dashboard/index.html"
+      },
+      {
+        "source": "/dashboard",
         "destination": "/dashboard/index.html"
       },
       {
