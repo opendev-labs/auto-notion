@@ -19,6 +19,13 @@
 
 ![Auto-Notion Mission Control](homepage-screenshot.png)
 
+### 🧩 The Mission Control Portal
+Our **Live Mission Control** is not just a dev log—it's a transparency portal for non-technical stakeholders. It provides a real-time, institutional-grade feed of every strategic update, performance optimization, and system calibration.
+
+- **Human-Readable Updates**: Every system change is translated into "Mission Details" for clear operational visibility.
+- **Verified Status**: All updates are cryptographically verified and hash-locked for absolute accountability.
+- **Pulse Monitoring**: Track the 'heartbeat' of the automation engine and AI agent evolution in real-time.
+
 ---
 
 <p align="center">
@@ -26,9 +33,8 @@
 </p>
 
 <p align="center">
-  <a href="https://auto-notion.web.app"><strong>🚀 Live Demo</strong></a> •
-  <a href="https://opendev-labs.github.io/auto-notion/"><strong>📡 Live Mission Log</strong></a> •
-  <a href="https://auto-notion.web.app/dashboard"><strong>📊 Dashboard</strong></a> •
+  <a href="https://auto-notion.web.app"><strong>🚀 Launch Platform</strong></a> •
+  <a href="https://opendev-labs.github.io/auto-notion/"><strong>📡 Live Mission Control</strong></a> •
   <a href="#features"><strong>✨ Features</strong></a> •
   <a href="#quick-start"><strong>⚡ Quick Start</strong></a>
 </p>

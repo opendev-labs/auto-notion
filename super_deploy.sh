@@ -48,9 +48,17 @@ echo -e "${BLUE}[SOURCE]${RESET} Synchronizing mission intelligence..."
 
 TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
 SUMMARY="Institutional synchronization [${TIMESTAMP}]"
+# Intelligent Detail Extraction (Non-Developer Friendly)
+WALKTHROUGH_PATH="/home/cube/.gemini/antigravity/brain/2ca0f206-9131-4aaf-91ff-379be982eac0/walkthrough.md"
 DETAILS="Standard mission update and performance optimization. Auto-deply active."
 
-git add .
+if [ -f "$WALKTHROUGH_PATH" ]; then
+    # Extract the first paragraph or specific summary after the header
+    EXTRACTED_SUMMARY=$(grep -v '^#' "$WALKTHROUGH_PATH" | grep -v '^$' | head -n 1)
+    if [ ! -z "$EXTRACTED_SUMMARY" ]; then
+        DETAILS="$EXTRACTED_SUMMARY"
+    fi
+fi
 
 # Automated professional commit: Technical title + Client-facing body
 git commit -m "feat: ${SUMMARY}" -m "Client Log: ${DETAILS}" -m "Metadata: Pipeline Automated" \
