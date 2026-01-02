@@ -1,0 +1,196 @@
+{
+    "name": "Instagram Content Publisher",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "instagram-post",
+                "responseMode": "responseNode",
+                "options": {}
+            },
+            "id": "ig-webhook",
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 2,
+            "position": [
+                250,
+                300
+            ],
+            "webhookId": "instagram-post"
+        },
+        {
+            "parameters": {
+                "assignments": {
+                    "assignments": [
+                        {
+                            "id": "post-content",
+                            "name": "caption",
+                            "value": "={{ $json.content }}",
+                            "type": "string"
+                        },
+                        {
+                            "id": "media-url",
+                            "name": "image_url",
+                            "value": "={{ $json.media_url }}",
+                            "type": "string"
+                        },
+                        {
+                            "id": "source",
+                            "name": "source",
+                            "value": "={{ $json.source || 'auto-notion' }}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "prepare-post",
+            "name": "Prepare Post Data",
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 3.4,
+            "position": [
+                480,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://graph.facebook.com/v24.0/{{ $env.IG_ACCOUNT_ID }}/media",
+                "authentication": "predefinedCredentialType",
+                "nodeCredentialType": "facebookGraphApi",
+                "sendQuery": true,
+                "queryParameters": {
+                    "parameters": [
+                        {
+                            "name": "image_url",
+                            "value": "={{ $json.image_url }}"
+                        },
+                        {
+                            "name": "caption",
+                            "value": "={{ $json.caption }}"
+                        },
+                        {
+                            "name": "access_token",
+                            "value": "={{ $env.META_ACCESS_TOKEN }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "create-media-container",
+            "name": "Create Media Container",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                720,
+                300
+            ],
+            "notes": "Step 1: Create media container on IG"
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://graph.facebook.com/v24.0/{{ $env.IG_ACCOUNT_ID }}/media_publish",
+                "authentication": "predefinedCredentialType",
+                "nodeCredentialType": "facebookGraphApi",
+                "sendQuery": true,
+                "queryParameters": {
+                    "parameters": [
+                        {
+                            "name": "creation_id",
+                            "value": "={{ $json.id }}"
+                        },
+                        {
+                            "name": "access_token",
+                            "value": "={{ $env.META_ACCESS_TOKEN }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "publish-media",
+            "name": "Publish Media",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                960,
+                300
+            ],
+            "notes": "Step 2: Publish the created container"
+        },
+        {
+            "parameters": {
+                "respondWith": "json",
+                "responseBody": "={{ JSON.stringify({ success: true, post_id: $json.id, published_at: new Date().toISOString() }) }}",
+                "options": {}
+            },
+            "id": "ig-response",
+            "name": "Return Success",
+            "type": "n8n-nodes-base.respondToWebhook",
+            "typeVersion": 1.1,
+            "position": [
+                1200,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Prepare Post Data",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Prepare Post Data": {
+            "main": [
+                [
+                    {
+                        "node": "Create Media Container",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Create Media Container": {
+            "main": [
+                [
+                    {
+                        "node": "Publish Media",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Publish Media": {
+            "main": [
+                [
+                    {
+                        "node": "Return Success",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {
+        "executionOrder": "v1"
+    },
+    "staticData": null,
+    "tags": [
+        {
+            "name": "auto-notion"
+        },
+        {
+            "name": "instagram"
+        }
+    ]
+}

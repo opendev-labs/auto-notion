@@ -1,0 +1,65 @@
+{
+    "name": "Auto-Notion Notion Sync",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "notion-sync",
+                "options": {}
+            },
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ],
+            "webhookId": "notion-sync-webhook"
+        },
+        {
+            "parameters": {
+                "resource": "databasePage",
+                "operation": "create",
+                "databaseId": "YOUR_NOTION_DATABASE_ID",
+                "propertiesUi": {
+                    "propertyValues": [
+                        {
+                            "property": "Name",
+                            "title": "={{$node[\"Webhook\"].json[\"data\"][\"name\"] || \"New Sync Item\"}}"
+                        },
+                        {
+                            "property": "Type",
+                            "select": "={{$node[\"Webhook\"].json[\"data_type\"]}}"
+                        }
+                    ]
+                }
+            },
+            "name": "Notion",
+            "type": "n8n-nodes-base.notion",
+            "typeVersion": 1,
+            "position": [
+                500,
+                300
+            ],
+            "credentials": {
+                "notionApi": {
+                    "id": "YOUR_NOTION_CREDENTIAL_ID",
+                    "name": "Notion account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Notion",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

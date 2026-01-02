@@ -1,0 +1,62 @@
+{
+    "name": "Auto-Notion Central Hub",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "auto-notion",
+                "options": {}
+            },
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ],
+            "webhookId": "auto-notion-webhook"
+        },
+        {
+            "parameters": {
+                "dataType": "string",
+                "value1": "={{$node[\"Webhook\"].json[\"action\"]}}",
+                "rules": {
+                    "rules": [
+                        {
+                            "value2": "create_post",
+                            "output": 1
+                        },
+                        {
+                            "value2": "send_dm",
+                            "output": 2
+                        },
+                        {
+                            "value2": "sync",
+                            "output": 3
+                        }
+                    ]
+                }
+            },
+            "name": "Action Router",
+            "type": "n8n-nodes-base.switch",
+            "typeVersion": 1,
+            "position": [
+                450,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Action Router",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

@@ -1,0 +1,119 @@
+{
+    "name": "Notion CRM Sync",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "notion-sync",
+                "responseMode": "responseNode",
+                "options": {}
+            },
+            "id": "notion-webhook",
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 2,
+            "position": [
+                250,
+                300
+            ],
+            "webhookId": "notion-sync"
+        },
+        {
+            "parameters": {
+                "resource": "databasePage",
+                "operation": "create",
+                "databaseId": "={{ $json.database_id || $env.NOTION_CRM_DB }}",
+                "propertiesUi": {
+                    "propertyValues": [
+                        {
+                            "key": "Name",
+                            "title": "={{ $json.data.name || $json.name || 'New Lead' }}"
+                        },
+                        {
+                            "key": "Instagram",
+                            "richText": "={{ $json.data.ig_handle || $json.ig_handle || '' }}"
+                        },
+                        {
+                            "key": "Source",
+                            "select": "={{ $json.data.source || $json.source || 'Auto-Notion' }}"
+                        },
+                        {
+                            "key": "Status",
+                            "select": "={{ $json.data.status || 'New' }}"
+                        },
+                        {
+                            "key": "Notes",
+                            "richText": "={{ $json.data.message || $json.message || '' }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "create-notion-page",
+            "name": "Create Lead in Notion",
+            "type": "n8n-nodes-base.notion",
+            "typeVersion": 2.2,
+            "position": [
+                520,
+                300
+            ],
+            "credentials": {
+                "notionApi": {
+                    "id": "notion-creds",
+                    "name": "Notion API"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "respondWith": "json",
+                "responseBody": "={{ JSON.stringify({ success: true, notion_page_id: $json.id, created_at: new Date().toISOString() }) }}",
+                "options": {}
+            },
+            "id": "notion-response",
+            "name": "Return Success",
+            "type": "n8n-nodes-base.respondToWebhook",
+            "typeVersion": 1.1,
+            "position": [
+                800,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Create Lead in Notion",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Create Lead in Notion": {
+            "main": [
+                [
+                    {
+                        "node": "Return Success",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {
+        "executionOrder": "v1"
+    },
+    "staticData": null,
+    "tags": [
+        {
+            "name": "auto-notion"
+        },
+        {
+            "name": "notion"
+        }
+    ]
+}

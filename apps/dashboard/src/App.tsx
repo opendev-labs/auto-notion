@@ -20,7 +20,7 @@ import { SubscriptionPage } from './modules/SubscriptionPage';
 import Login from './components/Login';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from './services/firebase';
-import { LogOut } from 'lucide-react';
+import { LogOut, Activity, Power, CheckCircle, XCircle } from 'lucide-react';
 
 const RequireAuth = ({ children, user }: { children: any, user: any }) => {
   return user ? children : <Navigate to="/auth" replace />;
@@ -31,6 +31,7 @@ function App() {
   const [integrationMode, setIntegrationMode] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [n8nConnected, setN8nConnected] = useState<boolean | null>(null);
 
   const location = useLocation();
   console.log("App current path:", location.pathname);
@@ -43,6 +44,24 @@ function App() {
       setLoading(false);
     });
     return () => unsubscribe();
+  }, []);
+
+  // Check n8n connectivity
+  useEffect(() => {
+    const checkN8n = async () => {
+      try {
+        // In a real scenario, this would hit a local proxy or the n8n API directly if CORS allows
+        // For now, we'll simulate the check based on a common local n8n port
+        const response = await fetch('http://localhost:5678/healthz').catch(() => null);
+        setN8nConnected(response ? response.status === 200 : false);
+      } catch (err) {
+        setN8nConnected(false);
+      }
+    };
+
+    checkN8n();
+    const interval = setInterval(checkN8n, 10000); // Check every 10s
+    return () => clearInterval(interval);
   }, []);
 
   if (loading) return <LoadingFallback text="Authenticating..." />;
@@ -62,6 +81,7 @@ function App() {
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             integrationMode={integrationMode}
+            n8nConnected={n8nConnected}
           />
         </div>
       </main>
@@ -101,7 +121,7 @@ function App() {
 }
 
 // Internal Component to manage local tab state until full route migration
-const DashboardContent = ({ activeTab, setActiveTab, integrationMode }: any) => {
+const DashboardContent = ({ activeTab, setActiveTab, integrationMode, n8nConnected }: any) => {
 
   const renderContent = () => {
     switch (activeTab) {
@@ -130,6 +150,15 @@ const DashboardContent = ({ activeTab, setActiveTab, integrationMode }: any) => 
             <span className="w-1.5 h-1.5 bg-green-500 rounded-full shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
             SYSTEM LIVE
           </div>
+
+          <div className={`flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-xl border-0.5 text-[10px] font-bold tracking-widest transition-all ${n8nConnected
+              ? 'bg-purple-500/10 border-purple-500/20 text-purple-400'
+              : 'bg-white/5 border-white/10 text-white/40'
+            }`}>
+            <Activity size={12} className={n8nConnected ? 'animate-pulse' : ''} />
+            N8N {n8nConnected ? 'ONLINE' : 'OFFLINE'}
+          </div>
+
           <button
             onClick={() => signOut(auth).then(() => window.location.href = '/auth')}
             className="p-2 md:p-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-all group"

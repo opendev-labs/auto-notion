@@ -1,0 +1,289 @@
+{
+    "name": "Auto-Notion Hub",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "auto-notion",
+                "responseMode": "responseNode",
+                "options": {}
+            },
+            "id": "webhook-receiver",
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 2,
+            "position": [
+                250,
+                300
+            ],
+            "webhookId": "auto-notion-hub"
+        },
+        {
+            "parameters": {
+                "rules": {
+                    "rules": [
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict"
+                                },
+                                "conditions": [
+                                    {
+                                        "leftValue": "={{ $json.action }}",
+                                        "rightValue": "instagram_post",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals"
+                                        }
+                                    }
+                                ]
+                            },
+                            "renameOutput": true,
+                            "outputLabel": "Instagram Post"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict"
+                                },
+                                "conditions": [
+                                    {
+                                        "leftValue": "={{ $json.action }}",
+                                        "rightValue": "notion_sync",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals"
+                                        }
+                                    }
+                                ]
+                            },
+                            "renameOutput": true,
+                            "outputLabel": "Notion Sync"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict"
+                                },
+                                "conditions": [
+                                    {
+                                        "leftValue": "={{ $json.action }}",
+                                        "rightValue": "send_dm",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals"
+                                        }
+                                    }
+                                ]
+                            },
+                            "renameOutput": true,
+                            "outputLabel": "Send DM"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "action-router",
+            "name": "Route by Action",
+            "type": "n8n-nodes-base.switch",
+            "typeVersion": 3.2,
+            "position": [
+                480,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "assignments": {
+                    "assignments": [
+                        {
+                            "id": "ig-post-data",
+                            "name": "content",
+                            "value": "={{ $json.payload.content }}",
+                            "type": "string"
+                        },
+                        {
+                            "id": "ig-media",
+                            "name": "media_url",
+                            "value": "={{ $json.payload.media_url }}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "prepare-ig-post",
+            "name": "Prepare IG Post",
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 3.4,
+            "position": [
+                720,
+                160
+            ]
+        },
+        {
+            "parameters": {
+                "assignments": {
+                    "assignments": [
+                        {
+                            "id": "notion-data",
+                            "name": "database_id",
+                            "value": "={{ $json.payload.database_id }}",
+                            "type": "string"
+                        },
+                        {
+                            "id": "notion-entry",
+                            "name": "entry_data",
+                            "value": "={{ $json.payload.data }}",
+                            "type": "object"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "prepare-notion",
+            "name": "Prepare Notion Data",
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 3.4,
+            "position": [
+                720,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "assignments": {
+                    "assignments": [
+                        {
+                            "id": "dm-recipient",
+                            "name": "user_id",
+                            "value": "={{ $json.payload.user_id }}",
+                            "type": "string"
+                        },
+                        {
+                            "id": "dm-message",
+                            "name": "message",
+                            "value": "={{ $json.payload.message }}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "prepare-dm",
+            "name": "Prepare DM",
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 3.4,
+            "position": [
+                720,
+                440
+            ]
+        },
+        {
+            "parameters": {
+                "respondWith": "json",
+                "responseBody": "={{ JSON.stringify({ success: true, action: $json.action, timestamp: new Date().toISOString() }) }}",
+                "options": {}
+            },
+            "id": "webhook-response",
+            "name": "Respond to Webhook",
+            "type": "n8n-nodes-base.respondToWebhook",
+            "typeVersion": 1.1,
+            "position": [
+                960,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Route by Action",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Route by Action": {
+            "main": [
+                [
+                    {
+                        "node": "Prepare IG Post",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Prepare Notion Data",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Prepare DM",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Prepare IG Post": {
+            "main": [
+                [
+                    {
+                        "node": "Respond to Webhook",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Prepare Notion Data": {
+            "main": [
+                [
+                    {
+                        "node": "Respond to Webhook",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Prepare DM": {
+            "main": [
+                [
+                    {
+                        "node": "Respond to Webhook",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {
+        "executionOrder": "v1"
+    },
+    "staticData": null,
+    "tags": [
+        {
+            "name": "auto-notion"
+        }
+    ],
+    "triggerCount": 0,
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "auto-notion-local"
+    }
+}

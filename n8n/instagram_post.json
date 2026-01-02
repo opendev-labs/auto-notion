@@ -1,0 +1,54 @@
+{
+    "name": "Auto-Notion Instagram Post",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "instagram-post",
+                "options": {}
+            },
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ],
+            "webhookId": "instagram-post-webhook"
+        },
+        {
+            "parameters": {
+                "resource": "media",
+                "operation": "upload",
+                "imageUrl": "={{$node[\"Webhook\"].json[\"media_url\"]}}",
+                "caption": "={{$node[\"Webhook\"].json[\"content\"]}}"
+            },
+            "name": "Instagram",
+            "type": "n8n-nodes-base.instagram",
+            "typeVersion": 1,
+            "position": [
+                500,
+                300
+            ],
+            "credentials": {
+                "instagramGraphApi": {
+                    "id": "YOUR_INSTAGRAM_CREDENTIAL_ID",
+                    "name": "Instagram Graph API account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Instagram",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

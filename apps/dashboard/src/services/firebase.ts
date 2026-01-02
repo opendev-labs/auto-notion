@@ -12,7 +12,7 @@ import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore";
 // Firebase configuration from user request
 const firebaseConfig = {
     apiKey: "AIzaSyBMsqr--MMnif5HrvtcTvoPyIkqHznuqkg",
-    authDomain: "auto-notion.web.app",
+    authDomain: "meta-auto-notion.firebaseapp.com",
     projectId: "meta-auto-notion",
     storageBucket: "meta-auto-notion.firebasestorage.app",
     messagingSenderId: "357502904034",
