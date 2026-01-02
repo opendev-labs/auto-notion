@@ -47,8 +47,9 @@
     </script>
     <style>
         body {
-            /* Deep Space / Dark Ocean Gradient */
-            background: radial-gradient(ellipse at bottom, #1e293b 0%, #020617 100%);
+            /* Deep Void / Black Ocean */
+            background: #000000;
+            background: radial-gradient(ellipse at bottom, #111111 0%, #000000 100%);
             color: #f5f5f7;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -57,7 +58,7 @@
         }
 
         .glass {
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -77,18 +78,16 @@
             box-shadow: 0 0 12px rgba(48, 209, 88, 0.5);
         }
 
-        /* Ocean Animation */
+        /* Ocean Animation - Black Mode */
         .ocean {
             height: 5%;
             width: 100%;
             position: fixed;
             bottom: 0;
             left: 0;
-            background: #015871;
-            /* Deep Ocean Base */
+            background: #000000;
             z-index: -1;
-            /* Behind content */
-            opacity: 0.8;
+            opacity: 1;
         }
 
         .wave {
@@ -99,17 +98,16 @@
             height: 198px;
             animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
             transform: translate3d(0, 0, 0);
-            opacity: 0.6;
-            /* Slight transparency for tinting */
-            filter: brightness(0.4) sepia(1) hue-rotate(170deg) saturate(2);
-            /* Darken & Blue Tint */
+            opacity: 0.3;
+            /* Make it black/dark gray */
+            filter: grayscale(100%) brightness(0.2) contrast(1.2);
         }
 
         .wave:nth-of-type(2) {
             top: -175px;
             animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
-            opacity: 0.4;
-            filter: brightness(0.5) sepia(1) hue-rotate(180deg) saturate(3);
+            opacity: 0.15;
+            filter: grayscale(100%) brightness(0.3) contrast(1.1);
         }
 
         @keyframes wave {
