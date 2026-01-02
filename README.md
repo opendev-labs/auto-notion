@@ -1,7 +1,7 @@
 # Auto-Notion
 
 <p align="center">
-  <img src="apps/landing/public/logo.png" width="180" alt="Auto-Notion Institutional Logo"/>
+  <img src="apps/landing/public/logo.svg" width="120" alt="Auto-Notion Logo"/>
 </p>
 
 <p align="center">
@@ -15,11 +15,9 @@
   <strong>High-Fidelity AI Agent Orchestration & Institutional Automation</strong>
 </p>
 
-## 📡 System Preview
+## 📡 Platform Preview
 
-<p align="center">
-  <img src="homepage-screenshot.png" width="100%" alt="Auto-Notion Platform Preview" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.5);"/>
-</p>
+![Auto-Notion Mission Control](homepage-screenshot.png)
 
 ---
 
