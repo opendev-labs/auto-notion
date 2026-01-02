@@ -21,15 +21,11 @@ function cn(...inputs: ClassValue[]) {
 }
 
 interface SidebarProps {
-    integrationMode: boolean;
-    setIntegrationMode: (mode: boolean) => void;
     collapsed: boolean;
     setCollapsed: (collapsed: boolean) => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
-    _integrationMode,
-    _setIntegrationMode,
     collapsed,
     setCollapsed
 }) => {
