@@ -65,7 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
                 <div className={cn("flex items-center gap-4 mb-16 px-2 overflow-hidden whitespace-nowrap", collapsed && "justify-center px-0")}>
                     <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 overflow-hidden">
-                        <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain" />
+                        <img src="/logo.png" alt="Auto-Notion" className="w-full h-full object-contain" />
                     </div>
                     {!collapsed && (
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>

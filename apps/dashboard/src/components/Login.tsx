@@ -67,7 +67,7 @@ export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }
                         className="flex items-center gap-3 text-2xl font-bold tracking-tight"
                     >
                         <div className="w-9 h-9 rounded-xl flex items-center justify-center backdrop-blur-xl overflow-hidden">
-                            <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain" />
+                            <img src="/logo.png" alt="Auto-Notion" className="w-full h-full object-contain" />
                         </div>
                         <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
                             Auto-Notion
@@ -148,7 +148,7 @@ export default function Login({ onLoginSuccess }: { onLoginSuccess: () => void }
                 >
                     <div className="space-y-6">
                         <div className="w-10 h-10 rounded-2xl flex items-center justify-center backdrop-blur-xl overflow-hidden">
-                            <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain" />
+                            <img src="/logo.png" alt="Auto-Notion" className="w-full h-full object-contain" />
                         </div>
                         <div className="space-y-3">
                             <h1 className="text-4xl font-bold tracking-tight text-white">

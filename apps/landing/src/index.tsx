@@ -59,7 +59,7 @@ const Navbar = () => {
           <div className="relative w-6 h-6 flex items-center justify-center transition-transform duration-500">
             <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             <img
-              src="/logo.svg"
+              src="/logo.png"
               alt="Auto-Notion Logo"
               className="w-full h-full object-contain relative z-10 filter brightness-110 drop-shadow-[0_0_8px_rgba(99,102,241,0.4)]"
             />
@@ -517,7 +517,7 @@ const Footer = () => {
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-8" onClick={() => window.location.href = '/'} style={{ cursor: 'pointer' }}>
               <div className="w-8 h-8 flex items-center justify-center">
-                <img src="/logo.svg" alt="Logo" className="w-full h-full object-contain" />
+                <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
               </div>
               <span className="text-xl font-black text-white uppercase tracking-tighter">AUTO-NOTION</span>
             </div>

@@ -46,7 +46,7 @@ export const PaymentService = {
             currency: order.currency,
             name: "Auto-Notion",
             description: "Premium Subscription",
-            image: "/logo.svg",
+            image: "/logo.png",
             // order_id: "order_9A33XWu170gLgm", // This must come from backend in prod
             handler: async function (response: any) {
                 console.log("Payment Successful:", response);
