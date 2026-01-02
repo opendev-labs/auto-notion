@@ -6,8 +6,10 @@ interface AutomationPortalProps {
     n8nConnected?: boolean | null;
 }
 
-const AutomationPortal: React.FC<AutomationPortalProps> = ({ _n8nConnected }) => {
-    const [n8nStatus, setN8nStatus] = useState<'checking' | 'online' | 'offline'>('checking');
+const AutomationPortal: React.FC<AutomationPortalProps> = ({ n8nConnected }) => {
+    const [n8nStatus, setN8nStatus] = useState<'checking' | 'online' | 'offline'>(
+        n8nConnected === true ? 'online' : n8nConnected === false ? 'offline' : 'checking'
+    );
     const [syncing, setSyncing] = useState<string | null>(null);
 
     const checkStatus = async () => {
@@ -28,10 +30,12 @@ const AutomationPortal: React.FC<AutomationPortalProps> = ({ _n8nConnected }) =>
     };
 
     useEffect(() => {
-        checkStatus();
-        const interval = setInterval(checkStatus, 15000);
-        return () => clearInterval(interval);
-    }, []);
+        if (n8nConnected !== null) {
+            setN8nStatus(n8nConnected ? 'online' : 'offline');
+        } else {
+            checkStatus();
+        }
+    }, [n8nConnected]);
 
     const triggerSync = async (type: string) => {
         setSyncing(type);

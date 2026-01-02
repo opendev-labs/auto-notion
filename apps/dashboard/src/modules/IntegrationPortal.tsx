@@ -18,7 +18,7 @@ interface IntegrationPortalProps {
     n8nConnected?: boolean | null;
 }
 
-export default function IntegrationPortal({ isActive, _n8nConnected }: IntegrationPortalProps) {
+export default function IntegrationPortal({ isActive, n8nConnected }: IntegrationPortalProps) {
     const [status, setStatus] = useState<'idle' | 'connecting' | 'connected'>('idle');
     const [logs, setLogs] = useState<string[]>([]);
 
@@ -111,10 +111,10 @@ export default function IntegrationPortal({ isActive, _n8nConnected }: Integrati
                             </h2>
                             <p className="text-white/50 text-sm mt-1">Zero-Cost Sovereign Stack Monitor</p>
                         </div>
-                        <div className={`px-4 py-2 rounded-full border ${status === 'connected' ? 'bg-green-500/10 border-green-500/50 text-green-400' : 'bg-yellow-500/10 border-yellow-500/50 text-yellow-400'}`}>
+                        <div className={`px-4 py-2 rounded-full border ${n8nConnected ? 'bg-green-500/10 border-green-500/50 text-green-400' : 'bg-yellow-500/10 border-yellow-500/50 text-yellow-400'}`}>
                             <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
                                 <span className="w-2 h-2 rounded-full bg-current animate-pulse" />
-                                {status === 'connected' ? 'System Operational' : 'Awaiting Connection'}
+                                {n8nConnected ? 'System Operational' : 'Awaiting Connection'}
                             </span>
                         </div>
                     </div>

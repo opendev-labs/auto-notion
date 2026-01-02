@@ -89,8 +89,6 @@ function App() {
           <RequireAuth user={user}>
             <div className="flex h-screen overflow-hidden selection:bg-white selection:text-black bg-black">
               <Sidebar
-                integrationMode={integrationMode}
-                setIntegrationMode={setIntegrationMode}
                 collapsed={sidebarCollapsed}
                 setCollapsed={setSidebarCollapsed}
               />
