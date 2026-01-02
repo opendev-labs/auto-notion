@@ -1,5 +1,17 @@
 [
   {
+    "hash": "d326ac6c",
+    "title": "style: fix mission log UI glitch and improve typography",
+    "body": "",
+    "date": "2026-01-02 19:53:35 +0530"
+  },
+  {
+    "hash": "a2c89ca5",
+    "title": "chore: update mission log [skip ci]",
+    "body": "",
+    "date": "2026-01-02 14:18:05 +0000"
+  },
+  {
     "hash": "95f79088",
     "title": "fix: robust mission log generation with multiline support and CI verification",
     "body": "",
