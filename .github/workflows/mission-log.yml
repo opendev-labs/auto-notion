@@ -20,6 +20,15 @@ jobs:
       - name: Generate mission log
         run: |
           python3 scripts/generate_mission_log.py
+          
+      - name: Verify mission log
+        run: |
+          if [ ! -s docs/mission-log.json ]; then
+            echo "Error: docs/mission-log.json is empty"
+            exit 1
+          fi
+          # Print first 20 lines for debug
+          head -n 20 docs/mission-log.json
 
       - name: Commit mission log
         run: |
