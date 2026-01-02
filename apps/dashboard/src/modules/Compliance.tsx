@@ -2,9 +2,9 @@
 import { Shield, FileText, Trash2, RefreshCcw } from 'lucide-react';
 
 export const PrivacyPolicy = () => (
-    <div className="glass p-10 rounded-[3rem] space-y-6 text-zen-sage leading-relaxed">
+    <div className="glass-dark p-8 rounded-lg space-y-6 text-white/60 leading-relaxed border border-white/10">
         <div className="flex items-center gap-4 mb-8">
-            <div className="p-4 bg-institutional-indigo/20 text-institutional-indigo rounded-2xl">
+            <div className="p-4 bg-white/5 text-white/40 rounded-md border border-white/10">
                 <Shield size={32} />
             </div>
             <h2 className="text-3xl font-bold text-white">Privacy Policy</h2>
@@ -22,9 +22,9 @@ export const PrivacyPolicy = () => (
 );
 
 export const TermsOfService = () => (
-    <div className="glass p-10 rounded-[3rem] space-y-6 text-zen-sage leading-relaxed">
+    <div className="glass-dark p-8 rounded-lg space-y-6 text-white/60 leading-relaxed border border-white/10">
         <div className="flex items-center gap-4 mb-8">
-            <div className="p-4 bg-institutional-blue/20 text-institutional-blue rounded-2xl">
+            <div className="p-4 bg-white/5 text-white/40 rounded-md border border-white/10">
                 <FileText size={32} />
             </div>
             <h2 className="text-3xl font-bold text-white">Terms of Service</h2>
@@ -34,9 +34,9 @@ export const TermsOfService = () => (
 );
 
 export const DataDeletion = () => (
-    <div className="glass p-10 rounded-[3rem] space-y-6 text-zen-sage leading-relaxed">
+    <div className="glass-dark p-8 rounded-lg space-y-6 text-white/60 leading-relaxed border border-white/10">
         <div className="flex items-center gap-4 mb-8">
-            <div className="p-4 bg-red-500/20 text-red-500 rounded-2xl">
+            <div className="p-4 bg-red-500/10 text-red-500 rounded-md border border-red-500/20">
                 <Trash2 size={32} />
             </div>
             <h2 className="text-3xl font-bold text-white">User Data Deletion</h2>
@@ -55,9 +55,9 @@ export const DataDeletion = () => (
 );
 
 export const RefundPolicy = () => (
-    <div className="glass p-10 rounded-[3rem] space-y-6 text-zen-sage leading-relaxed">
+    <div className="glass-dark p-8 rounded-lg space-y-6 text-white/60 leading-relaxed border border-white/10">
         <div className="flex items-center gap-4 mb-8">
-            <div className="p-4 bg-orange-500/20 text-orange-500 rounded-2xl">
+            <div className="p-4 bg-orange-500/10 text-orange-400 rounded-md border border-orange-500/20">
                 <RefreshCcw size={32} />
             </div>
             <h2 className="text-3xl font-bold text-white">Refund & Cancellation Policy</h2>

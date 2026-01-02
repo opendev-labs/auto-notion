@@ -3,7 +3,7 @@ import { Settings as SettingsIcon, Bell, Shield, User, Database, Globe } from 'l
 const Settings: React.FC = () => {
     return (
         <div className="space-y-8">
-            <section className="glass-dark rounded-[2.5rem] p-8 md:p-12 border-0.5 border-white/5 relative overflow-hidden">
+            <section className="glass-dark rounded-lg p-8 md:p-12 border border-white/10 relative overflow-hidden">
                 <div className="max-w-3xl">
                     <h2 className="text-3xl font-bold text-white mb-4 flex items-center gap-4">
                         <SettingsIcon className="text-white/40" />
@@ -20,13 +20,13 @@ const Settings: React.FC = () => {
                             <div className="space-y-4">
                                 <label className="block">
                                     <span className="text-xs font-bold text-white/60 uppercase tracking-widest block mb-2">Automation Environment</span>
-                                    <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-white/20">
+                                    <select className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-sm text-white outline-none focus:border-white/20 appearance-none">
                                         <option value="production">Production Hub</option>
                                         <option value="staging">Staging Node</option>
                                         <option value="development">Local Sandbox</option>
                                     </select>
                                 </label>
-
+                                certificates: none
                                 <label className="block">
                                     <span className="text-xs font-bold text-white/60 uppercase tracking-widest block mb-2">Primary Sync Target</span>
                                     <div className="relative">
@@ -34,7 +34,7 @@ const Settings: React.FC = () => {
                                         <input
                                             type="text"
                                             defaultValue="Notion Institutional CRM"
-                                            className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-sm text-white outline-none focus:border-white/20"
+                                            className="w-full bg-black/40 border border-white/10 rounded-lg pl-12 pr-4 py-3 text-sm text-white outline-none focus:border-white/20"
                                         />
                                     </div>
                                 </label>
@@ -44,7 +44,7 @@ const Settings: React.FC = () => {
                         <div className="space-y-6">
                             <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">System Preferences</h3>
 
-                            <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                            <div className="flex items-center justify-between p-4 rounded-lg bg-black border border-white/10">
                                 <div className="flex items-center gap-3">
                                     <Bell size={18} className="text-white/40" />
                                     <div>
@@ -57,7 +57,7 @@ const Settings: React.FC = () => {
                                 </div>
                             </div>
 
-                            <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                            <div className="flex items-center justify-between p-4 rounded-lg bg-black border border-white/10">
                                 <div className="flex items-center gap-3">
                                     <Globe size={18} className="text-white/40" />
                                     <div>
@@ -73,10 +73,10 @@ const Settings: React.FC = () => {
                     </div>
 
                     <div className="mt-12 flex gap-4">
-                        <button className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-zen-sage transition-all shadow-xl">
+                        <button className="px-8 py-4 bg-white text-black rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-zinc-200 transition-all shadow-xl">
                             Deploy Configurations
                         </button>
-                        <button className="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all">
+                        <button className="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all">
                             Reset to Default
                         </button>
                     </div>
@@ -84,24 +84,24 @@ const Settings: React.FC = () => {
             </section>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="glass-dark p-8 rounded-3xl border border-white/5 group hover:border-white/10 transition-all">
+                <div className="glass-dark p-8 rounded-lg border border-white/10 group hover:border-white/20 transition-all">
                     <User className="text-white/20 mb-6 group-hover:scale-110 transition-transform" />
                     <h3 className="text-lg font-bold text-white mb-2">Account Logic</h3>
-                    <p className="text-[10px] text-white/30 font-bold uppercase tracking-widest leading-relaxed">
+                    <p className="text-[10px] text-white/40 font-bold uppercase tracking-widest leading-relaxed">
                         Manage institutional credentials and access signatures.
                     </p>
                 </div>
-                <div className="glass-dark p-8 rounded-3xl border border-white/5 group hover:border-white/10 transition-all">
+                <div className="glass-dark p-8 rounded-lg border border-white/10 group hover:border-white/20 transition-all">
                     <Shield className="text-white/20 mb-6 group-hover:scale-110 transition-transform" />
                     <h3 className="text-lg font-bold text-white mb-2">Security Hash</h3>
-                    <p className="text-[10px] text-white/30 font-bold uppercase tracking-widest leading-relaxed">
+                    <p className="text-[10px] text-white/40 font-bold uppercase tracking-widest leading-relaxed">
                         Monitor cryptographic integrity and session tokens.
                     </p>
                 </div>
-                <div className="glass-dark p-8 rounded-3xl border border-white/5 group hover:border-white/10 transition-all">
+                <div className="glass-dark p-8 rounded-lg border border-white/10 group hover:border-white/20 transition-all">
                     <Database className="text-white/20 mb-6 group-hover:scale-110 transition-transform" />
                     <h3 className="text-lg font-bold text-white mb-2">Data Sovereignty</h3>
-                    <p className="text-[10px] text-white/30 font-bold uppercase tracking-widest leading-relaxed">
+                    <p className="text-[10px] text-white/40 font-bold uppercase tracking-widest leading-relaxed">
                         Control local storage and cached intelligence nodes.
                     </p>
                 </div>

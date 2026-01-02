@@ -1,0 +1,34 @@
+name: Mission Log Generator
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  generate-log:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate mission log
+        run: |
+          # Use a heredoc to create a safe JSON-like output from git log
+          # We need to be careful with escaping quotes in titles and bodies
+          git log \
+            --pretty=format:'{"hash":"%h","title":"%s","body":"%b","date":"%ai"}' \
+            -n 60 | jq -s '.' > docs/mission-log.json
+
+      - name: Commit mission log
+        run: |
+          git config user.name "mission-bot"
+          git config user.email "mission@opendev-labs"
+          git add docs/mission-log.json
+          git commit -m "chore: update mission log [skip ci]" || true
+          git push

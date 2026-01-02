@@ -18,7 +18,7 @@ const CosmicPlanner = () => {
                     <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-2">Scheduler</h2>
                     <p className="text-gray-400 font-medium">Manage and optimize your automated content delivery.</p>
                 </div>
-                <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10">
+                <div className="flex bg-white/5 p-1 rounded-lg border border-white/10">
                     <TabButton active={activeTab === 'forecast'} onClick={() => setActiveTab('forecast')} icon={Sparkles} label="Market Forecast" />
                     <TabButton active={activeTab === 'generator'} onClick={() => setActiveTab('generator')} icon={Database} label="Content Generator" />
                     <TabButton active={activeTab === 'scheduled'} onClick={() => setActiveTab('scheduled')} icon={Calendar} label="Scheduled" />
@@ -38,8 +38,8 @@ const CosmicPlanner = () => {
                 )}
                 {activeTab === 'scheduled' && (
                     <motion.div key="scheduled" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }}>
-                        <div className="glass p-20 rounded-[3rem] text-center border-white/5">
-                            <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div className="glass p-20 rounded-lg text-center border-white/10">
+                            <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/5">
                                 <Calendar size={32} className="text-gray-500" />
                             </div>
                             <h3 className="text-2xl font-bold text-white mb-2">Mission Log Empty</h3>
@@ -57,7 +57,7 @@ const CosmicPlanner = () => {
 const TabButton = ({ active, onClick, icon: Icon, label }: any) => (
     <button
         onClick={onClick}
-        className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${active ? 'bg-white text-black shadow-lg' : 'text-gray-500 hover:text-white hover:bg-white/5'
+        className={`flex items-center gap-2 px-5 py-2.5 rounded-md font-bold text-xs uppercase tracking-wider transition-all ${active ? 'bg-white text-black shadow-lg' : 'text-gray-500 hover:text-white hover:bg-white/5'
             }`}
     >
         <Icon size={14} />
@@ -74,9 +74,9 @@ const ForecastView = () => {
 
     return (
         <div className="space-y-8">
-            <div className="glass p-10 rounded-[3rem] border-none flex flex-col md:flex-row items-center gap-10">
+            <div className="glass p-10 rounded-lg border border-white/10 flex flex-col md:flex-row items-center gap-10">
                 <div className="flex-1 space-y-4">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 font-bold text-xs uppercase tracking-widest">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-md bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 font-bold text-xs uppercase tracking-widest">
                         <Sparkles size={14} />
                         Energetic Forecast
                     </div>
@@ -85,7 +85,7 @@ const ForecastView = () => {
                         Missions Control is currently hard-synced to the lunar cycle. All automated posts are gated by these auspicious windows to maximize collective integration.
                     </p>
                 </div>
-                <div className="w-full md:w-64 aspect-square glass-dark rounded-[2.5rem] flex flex-col items-center justify-center text-white p-8 bg-black/50">
+                <div className="w-full md:w-64 aspect-square glass-dark rounded-lg flex flex-col items-center justify-center text-white p-8 bg-black/80 border border-white/10">
                     <Moon size={80} className="mb-4 text-indigo-300 drop-shadow-[0_0_20px_rgba(165,180,252,0.4)]" />
                     <p className="text-xl font-bold">Waxing Gibbous</p>
                     <p className="text-xs text-white/50 mt-1 uppercase tracking-widest">92% Illumination</p>
@@ -94,16 +94,16 @@ const ForecastView = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {windows.map((win, i) => (
-                    <div key={i} className="glass p-8 rounded-[2rem] border-none group hover:translate-y-[-4px] transition-all bg-white/[0.02]">
+                    <div key={i} className="glass p-8 rounded-lg border border-white/10 group hover:translate-y-[-4px] transition-all bg-white/[0.02]">
                         <div className="flex justify-between items-start mb-6">
-                            <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-indigo-300">
+                            <div className="w-12 h-12 bg-white/5 rounded-md flex items-center justify-center text-indigo-300 border border-white/5">
                                 {i === 1 ? <Sun size={24} /> : <Map size={24} />}
                             </div>
                             <span className="text-2xl font-bold text-white">{win.time}</span>
                         </div>
                         <h4 className="font-bold text-lg text-white mb-1">{win.event}</h4>
-                        <p className="text-sm text-gray-500 mb-4">{win.phase}</p>
-                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-green-400 bg-green-900/20 border border-green-500/20 w-fit px-3 py-1 rounded-full">
+                        <p className="text-sm text-gray-400 mb-4">{win.phase}</p>
+                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-green-400 bg-green-500/10 border border-green-500/20 w-fit px-3 py-1 rounded-md">
                             <CheckCircle2 size={10} />
                             Auspicious Window
                         </div>
@@ -126,12 +126,12 @@ const GeneratorView = () => {
 
     return (
         <div className="space-y-8">
-            <div className="glass p-8 rounded-[2.5rem] border-white/5 flex flex-col md:flex-row items-center gap-8 justify-between">
+            <div className="glass p-8 rounded-lg border border-white/10 flex flex-col md:flex-row items-center gap-8 justify-between">
                 <div>
                     <h3 className="text-2xl font-bold text-white mb-2">Content Engine</h3>
                     <p className="text-gray-400 max-w-md">Select a strategy profile to generate a high-fidelity content plan aligned with your brand voice.</p>
                 </div>
-                <div className="flex items-center gap-4 bg-black/30 p-2 rounded-[1.5rem] border border-white/5">
+                <div className="flex items-center gap-4 bg-black/80 p-2 rounded-lg border border-white/10">
                     <select
                         value={selectedPage}
                         onChange={(e) => setSelectedPage(e.target.value)}
@@ -141,7 +141,7 @@ const GeneratorView = () => {
                     </select>
                     <button
                         onClick={handleGenerate}
-                        className="bg-white text-black px-8 py-3 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-indigo-400 hover:text-white transition-all shadow-xl"
+                        className="bg-white text-black px-8 py-3 rounded-md font-black uppercase tracking-widest text-xs hover:bg-zinc-200 transition-all shadow-xl"
                     >
                         Generate Plan
                     </button>
@@ -155,24 +155,24 @@ const GeneratorView = () => {
                             layoutId={post.id}
                             key={post.id}
                             onClick={() => setSelectedPost(post)}
-                            className="glass p-6 rounded-[2rem] border-white/5 group hover:border-indigo-500/50 cursor-pointer relative overflow-hidden"
+                            className="glass p-6 rounded-lg border border-white/10 group hover:border-white/30 cursor-pointer relative overflow-hidden"
                             whileHover={{ y: -4 }}
                         >
-                            <div className="absolute top-4 right-4 text-[10px] font-black uppercase tracking-wider text-white/30 bg-white/5 px-2 py-1 rounded-md">
+                            <div className="absolute top-4 right-4 text-[10px] font-black uppercase tracking-wider text-white/30 bg-white/5 px-2 py-1 rounded-md border border-white/5">
                                 {post.type.replace('_', ' ')}
                             </div>
                             <div className="mb-6">
-                                <p className="text-indigo-400 text-xs font-bold uppercase tracking-widest mb-1">{post.scheduledDate}</p>
+                                <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">{post.scheduledDate}</p>
                                 <p className="text-white font-black text-xl">{post.scheduledTime}</p>
                             </div>
-                            <div className="aspect-video bg-black/50 rounded-xl mb-4 border border-white/5 flex items-center justify-center relative overflow-hidden group-hover:border-indigo-500/30 transition-colors">
+                            <div className="aspect-video bg-black/80 rounded-md mb-4 border border-white/10 flex items-center justify-center relative overflow-hidden group-hover:border-white/20 transition-colors">
                                 <Layout className="text-white/20" size={32} />
-                                <div className="absolute inset-0 bg-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>
-                            <p className="text-gray-400 text-sm line-clamp-2 mb-4 font-medium">{post.primaryText}</p>
+                            <p className="text-white/60 text-sm line-clamp-2 mb-4 font-medium">{post.primaryText}</p>
                             <div className="flex items-center gap-2">
                                 <span className={`w-2 h-2 rounded-full ${post.complianceCheck.checksPassed ? 'bg-green-500' : 'bg-red-500'}`} />
-                                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">
+                                <span className="text-[10px] font-bold text-white/30 uppercase tracking-wider">
                                     {post.complianceCheck.checksPassed ? 'Compliance Pass' : 'Review Needed'}
                                 </span>
                             </div>
@@ -180,7 +180,7 @@ const GeneratorView = () => {
                     ))}
                 </div>
             ) : (
-                <div className="glass p-20 rounded-[3rem] text-center border-white/5 dashed border-2 border-white/10">
+                <div className="glass p-20 rounded-lg text-center border-white/10 dashed border-2 border-white/10">
                     <RefreshCw size={48} className="text-white/10 mx-auto mb-6" />
                     <p className="text-white/30 font-bold uppercase tracking-widest">Awaiting Engine Output</p>
                 </div>
@@ -203,7 +203,7 @@ const PostPreviewModal = ({ post, onClose }: { post: ContentItem, onClose: () =>
     >
         <motion.div
             layoutId={post.id}
-            className="w-full max-w-4xl bg-[#111] rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl flex flex-col md:flex-row"
+            className="w-full max-w-4xl bg-[#050505] rounded-lg border border-white/10 overflow-hidden shadow-2xl flex flex-col md:flex-row"
             onClick={e => e.stopPropagation()}
         >
             {/* Preview Side */}
@@ -246,28 +246,28 @@ const PostPreviewModal = ({ post, onClose }: { post: ContentItem, onClose: () =>
 
                 <div className="space-y-8">
                     <div>
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3 block">Caption</label>
-                        <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-wrap font-medium bg-white/5 p-4 rounded-2xl border border-white/5">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-3 block">Caption</label>
+                        <p className="text-white/60 text-sm leading-relaxed whitespace-pre-wrap font-medium bg-black border border-white/10 p-5 rounded-lg">
                             {post.primaryText}
                             <br /><br />
                             {post.callToAction}
                             <br /><br />
-                            <span className="text-indigo-400">
+                            <span className="text-white/40">
                                 {post.hashtagStrategy?.primary.join(" ")} {post.hashtagStrategy?.niche?.join(" ")}
                             </span>
                         </p>
                     </div>
 
                     <div>
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3 block">Compliance Audit</label>
-                        <div className={`p-4 rounded-2xl border ${post.complianceCheck.checksPassed ? 'bg-green-500/10 border-green-500/20' : 'bg-red-500/10 border-red-500/20'}`}>
+                        <label className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-3 block">Compliance Audit</label>
+                        <div className={`p-4 rounded-lg border ${post.complianceCheck.checksPassed ? 'bg-green-500/5 border-green-500/20' : 'bg-red-500/5 border-red-500/20'}`}>
                             {post.complianceCheck.checksPassed ? (
-                                <div className="flex items-center gap-3 text-green-400 font-bold text-sm">
+                                <div className="flex items-center gap-3 text-green-400/80 font-bold text-sm">
                                     <CheckCircle2 size={18} />
                                     All Institutional Checks Passed
                                 </div>
                             ) : (
-                                <div className="text-red-400 font-bold text-sm">
+                                <div className="text-red-400/80 font-bold text-sm">
                                     {post.complianceCheck.recommendations.join(", ")}
                                 </div>
                             )}
@@ -275,17 +275,17 @@ const PostPreviewModal = ({ post, onClose }: { post: ContentItem, onClose: () =>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Schedule</p>
+                        <div className="bg-white/5 p-4 rounded-lg border border-white/10">
+                            <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">Schedule</p>
                             <p className="text-white font-bold">{post.scheduledDate} @ {post.scheduledTime}</p>
                         </div>
-                        <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Target</p>
+                        <div className="bg-white/5 p-4 rounded-lg border border-white/10">
+                            <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">Target</p>
                             <p className="text-white font-bold truncate">{post.targetAudience}</p>
                         </div>
                     </div>
 
-                    <button className="w-full py-4 bg-white text-black rounded-xl font-black uppercase tracking-widest text-xs hover:bg-indigo-400 hover:text-white transition-all shadow-xl">
+                    <button className="w-full py-4 bg-white text-black rounded-lg font-black uppercase tracking-widest text-xs hover:bg-zinc-200 transition-all shadow-xl">
                         Approve & Schedule
                     </button>
                 </div>

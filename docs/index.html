@@ -47,10 +47,7 @@
     </script>
     <style>
         body {
-            /* Pure Black Void Base */
-            background: #000000;
-            background: radial-gradient(ellipse at bottom, #0a1f0a 0%, #000000 70%);
-            /* Subtle Green Glow at bottom */
+            background: #050505;
             color: #f5f5f7;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -59,11 +56,10 @@
         }
 
         .glass {
-            background: rgba(8, 20, 10, 0.7);
-            /* Hint of green in glass */
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
@@ -73,7 +69,7 @@
             top: 12px;
             bottom: 0;
             width: 1px;
-            background: linear-gradient(to bottom, rgba(48, 209, 88, 0.3), transparent);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
         }
 
         .status-dot {
@@ -209,16 +205,18 @@
             <!-- Metrics Grid -->
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-16 animate-slide-up"
                 style="animation-delay: 0.2s;">
-                <div class="glass rounded-2xl p-4 sm:p-5 text-center transition-all hover:bg-white/[0.03]">
+                <div
+                    class="glass rounded-lg p-4 sm:p-5 text-center transition-all hover:bg-white/[0.03] border border-white/10">
                     <div class="text-[10px] uppercase font-bold text-white/20 mb-1">Latest Release</div>
                     <div class="text-xl font-mono text-white/80">v4.1.0</div>
                 </div>
-                <div class="glass rounded-2xl p-4 sm:p-5 text-center transition-all hover:bg-white/[0.03]">
+                <div
+                    class="glass rounded-lg p-4 sm:p-5 text-center transition-all hover:bg-white/[0.03] border border-white/10">
                     <div class="text-[10px] uppercase font-bold text-white/20 mb-1">Repo Status</div>
-                    <div class="text-xl font-mono text-cupertino-green">Active</div>
+                    <div class="text-xl font-mono text-green-400">Active</div>
                 </div>
                 <div
-                    class="col-span-2 sm:col-span-1 glass rounded-2xl p-4 sm:p-5 text-center transition-all hover:bg-white/[0.03]">
+                    class="col-span-2 sm:col-span-1 glass rounded-lg p-4 sm:p-5 text-center transition-all hover:bg-white/[0.03] border border-white/10">
                     <div class="text-[10px] uppercase font-bold text-white/20 mb-1">Last Sync</div>
                     <div class="text-xl font-mono text-white/80" id="last-sync">--:--</div>
                 </div>
@@ -239,9 +237,9 @@
 
                     <!-- Loading Skeleton -->
                     <div class="animate-pulse space-y-8 pl-8">
-                        <div class="h-32 bg-white/[0.03] rounded-3xl"></div>
-                        <div class="h-32 bg-white/[0.03] rounded-3xl opacity-50"></div>
-                        <div class="h-32 bg-white/[0.03] rounded-3xl opacity-30"></div>
+                        <div class="h-32 bg-white/[0.03] rounded-lg border border-white/10"></div>
+                        <div class="h-32 bg-white/[0.03] rounded-lg border border-white/10 opacity-50"></div>
+                        <div class="h-32 bg-white/[0.03] rounded-lg border border-white/10 opacity-30"></div>
                     </div>
                 </div>
             </div>
@@ -251,22 +249,29 @@
 
     <!-- Scripts -->
     <script>
-        const REPO = 'opendev-labs/auto-notion';
-        const API_URL = `https://api.github.com/repos/${REPO}/commits`;
+        const JSON_URL = './mission-log.json';
 
         async function fetchCommits() {
             try {
-                const response = await fetch(API_URL);
+                const response = await fetch(JSON_URL);
+                if (!response.ok) {
+                    throw new Error('OFFLINE');
+                }
                 const commits = await response.json();
                 renderCommits(commits);
                 if (commits.length > 0) {
-                    updateSyncTime(commits[0].commit.author.date);
+                    updateSyncTime(commits[0].date);
                 }
             } catch (error) {
-                console.error('Failed to fetch commits:', error);
+                console.error('Failed to load mission log:', error);
                 document.getElementById('commit-feed').innerHTML = `
-                    <div class="p-6 text-center text-white/30 glass rounded-2xl">
-                        Signal Lost. Unable to establish link with GitHub API.
+                    <div class="p-8 text-center glass rounded-lg border border-white/10 space-y-4">
+                        <p class="text-white/40 text-xs font-bold uppercase tracking-widest">
+                            Signal Lost. Unable to localize mission-log.json.
+                        </p>
+                        <button onclick="location.reload()" class="px-6 py-2 bg-white/5 border border-white/10 rounded-md text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-white hover:bg-white/10 transition-all">
+                            Reconnect
+                        </button>
                     </div>
                 `;
             }
@@ -281,83 +286,77 @@
             const feed = document.getElementById('commit-feed');
             const timeline = '<div class="timeline-line"></div>';
 
-            // Take first 10 commits
-            const items = commits.slice(0, 10).map((commit, index) => {
-                const isLatest = index === 0;
-                const messageParts = commit.commit.message.split('\n\n');
-                const title = messageParts[0];
-                const cleanTitle = title.replace(/^(feat|fix|style|chore|docs|refactor)(\(.*\))?:/, '').trim();
-                const typeMatch = title.match(/^(feat|fix|style|chore|docs|refactor)/);
-                const type = typeMatch ? typeMatch[0] : 'misc';
-                const body = messageParts.length > 1 ? messageParts.slice(1).join('\n') : '';
-                const commitDate = new Date(commit.commit.author.date);
+            // Filter out chore or empty commits if necessary, take first 15
+            const items = commits
+                .filter(c => !c.title.startsWith('chore:'))
+                .slice(0, 15)
+                .map((commit, index) => {
+                    const isLatest = index === 0;
+                    const title = commit.title;
+                    const cleanTitle = title.replace(/^(feat|fix|style|docs|refactor)(\(.*\))?:/, '').trim();
+                    const typeMatch = title.match(/^(feat|fix|style|docs|refactor)/);
+                    const type = typeMatch ? typeMatch[0] : 'release';
 
-                // Strict format: 2 Jan 2026 @ 18:01
-                const day = commitDate.getDate();
-                const month = commitDate.toLocaleString('en-GB', { month: 'short' });
-                const year = commitDate.getFullYear();
-                const date = `${day} ${month} ${year}`;
-                const time = commitDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+                    const body = commit.body || '';
+                    const commitDate = new Date(commit.date);
 
-                const author = commit.commit.author.name;
+                    // Parsing detailed logic for "Client Log:"
+                    let descriptiveTitle = cleanTitle;
+                    let elaboratedDetail = 'Mission intelligence synchronized.';
 
-                // Color coding for types - Enhanced Green
-                let typeColor = 'text-white/30 bg-white/5';
-                if (type === 'feat') typeColor = 'text-cupertino-green bg-cupertino-green/10';
-                if (type === 'fix') typeColor = 'text-red-400/80 bg-red-400/5';
-                if (type === 'docs') typeColor = 'text-white/50 bg-white/5';
+                    if (body.includes('Client Log:')) {
+                        const clientPart = body.split('Client Log:')[1];
+                        elaboratedDetail = clientPart.trim();
+                    } else if (body.trim()) {
+                        elaboratedDetail = body.trim();
+                    }
 
-                return `
+                    // Format: 2 Jan 2026 @ 18:01
+                    const day = commitDate.getDate();
+                    const month = commitDate.toLocaleString('en-GB', { month: 'short' });
+                    const year = commitDate.getFullYear();
+                    const date = `${day} ${month} ${year}`;
+                    const time = commitDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+
+                    // Color coding for types
+                    let typeColor = 'text-white/30 bg-white/5';
+                    if (type === 'feat') typeColor = 'text-cupertino-green bg-cupertino-green/10';
+                    if (type === 'fix') typeColor = 'text-red-400/80 bg-red-400/5';
+                    if (type === 'docs') typeColor = 'text-blue-400/80 bg-blue-400/5';
+
+                    return `/* html */
                     <div class="relative pl-10 pb-12 group last:pb-0">
-                        <!-- Node Dot -->
-                        <div class="absolute left-[18.5px] top-6 w-[9px] h-[9px] rounded-full bg-black border-[2px] ${isLatest ? 'border-cupertino-green scale-110 shadow-[0_0_15px_rgba(48,209,88,0.3)]' : 'border-white/10 group-hover:border-white/40'} transition-all z-10"></div>
+                        <div class="absolute left-[18.5px] top-6 w-[9px] h-[9px] rounded-full bg-black border-[2px] ${isLatest ? 'border-white scale-110 shadow-[0_0_15px_rgba(255,255,255,0.2)]' : 'border-white/10 group-hover:border-white/40'} transition-all z-10"></div>
                         
-                        <div class="glass rounded-3xl p-6 transition-all duration-300 hover:bg-white/[0.05] hover:scale-[1.01] hover:shadow-2xl opacity-0 animate-slide-up" style="animation-delay: ${index * 0.1}s">
+                        <div class="glass rounded-lg p-6 transition-all duration-300 hover:bg-white/[0.02] hover:scale-[1.005] border border-white/10 opacity-0 animate-slide-up" style="animation-delay: ${index * 0.1}s">
                             
-                            <!-- Header -->
                             <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
                                 <div class="flex items-center gap-3">
-                                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide ${typeColor}">
+                                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide border ${typeColor}">
                                         ${type}
                                     </span>
-                                    <span class="text-[11px] font-mono text-white/30">${date} @ <span class="text-cupertino-green font-bold">${time}</span></span>
+                                    <span class="text-[11px] font-mono text-white/30">${date} @ <span class="text-white font-bold">${time}</span></span>
                                 </div>
                                 <div class="flex items-center gap-4">
-                                    <span class="text-[9px] font-mono text-white/20 uppercase tracking-widest hidden sm:block">Origin: main</span>
-                                    <a href="${commit.html_url}" target="_blank" class="text-[10px] font-mono text-white/20 hover:text-white transition-colors">
-                                        ${commit.sha.substring(0, 7)} ↗
-                                    </a>
+                                    <span class="text-[9px] font-mono text-white/20 uppercase tracking-widest hidden sm:block">Status: Verified</span>
+                                    <span class="text-[10px] font-mono text-white/20">
+                                        ${commit.hash}
+                                    </span>
                                 </div>
                             </div>
 
-                            <!-- Content -->
-                            <h3 class="text-lg font-bold mb-2 leading-snug text-white tracking-tight">${descriptiveTitle}</h3>
+                            <h3 class="text-lg font-black mb-2 leading-snug text-white tracking-widest uppercase text-xs">${descriptiveTitle}</h3>
                             
-                            <div class="mt-4 pt-4 border-t border-white/5 text-sm text-white/50 leading-relaxed font-normal font-sans bg-white/[0.02] p-5 rounded-2xl border border-white/[0.03]">
-                                <div class="flex items-center gap-2 mb-2 text-[10px] uppercase tracking-widest font-black text-white/20">
-                                    Logic Update Insight
+                            <div class="mt-4 pt-4 border-t border-white/10 text-[11px] text-white/40 leading-relaxed font-bold font-mono tracking-tighter bg-black p-5 rounded-lg border border-white/5">
+                                <div class="flex items-center gap-2 mb-2 text-[9px] uppercase tracking-[0.2em] font-black text-white/20">
+                                    Operator Insight
                                 </div>
-                                ${elaboratedDetail ? elaboratedDetail.replace(/\n/g, '<br>') : 'Mission intelligence synchronized.'}
+                                ${elaboratedDetail.replace(/\n/g, '<br>')}
                             </div>
-
-                            <div class="mt-6 flex items-center justify-between border-t border-white/5 pt-4">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-5 h-5 rounded-full bg-gradient-to-tr from-white/10 to-white/5 flex items-center justify-center text-[10px] font-bold text-white/30 border border-white/5">
-                                        ${author.charAt(0)}
-                                    </div>
-                                    <span class="text-xs text-white/30 font-medium">${author}</span>
-                                </div>
-                                <div class="flex gap-2">
-                                    <div class="h-1 w-8 bg-cupertino-green/20 rounded-full overflow-hidden">
-                                        <div class="h-full bg-cupertino-green w-full opacity-50"></div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 `;
-            }).join('');
+                }).join('');
 
             feed.innerHTML = timeline + items;
         }

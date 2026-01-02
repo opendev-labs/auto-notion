@@ -58,13 +58,13 @@ const Sidebar: React.FC<SidebarProps> = ({
                 {/* Collapse Toggle */}
                 <button
                     onClick={() => setCollapsed(!collapsed)}
-                    className="absolute right-4 top-8 p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/40 hover:text-white transition-all z-50"
+                    className="absolute right-4 top-8 p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white/40 hover:text-white transition-all z-50"
                 >
                     <Activity size={16} className={cn("transition-transform duration-500", collapsed ? "rotate-180" : "rotate-0")} />
                 </button>
 
                 <div className={cn("flex items-center gap-4 mb-16 px-2 overflow-hidden whitespace-nowrap", collapsed && "justify-center px-0")}>
-                    <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 overflow-hidden">
+                    <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 overflow-hidden">
                         <img src="/logo.svg" alt="Auto-Notion" className="w-full h-full object-contain" />
                     </div>
                     {!collapsed && (
@@ -86,7 +86,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                                 onClick={() => setIsOpen(false)}
                                 title={collapsed ? item.label : ""}
                                 className={({ isActive }) => cn(
-                                    "nav-item w-full group py-4 transition-all duration-500 flex items-center gap-3 px-4 rounded-xl",
+                                    "nav-item w-full group py-4 transition-all duration-500 flex items-center gap-3 px-4 rounded-lg",
                                     collapsed ? "justify-center" : "justify-start",
                                     isActive ? "nav-item-active bg-white/10 text-white shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]" : "nav-item-inactive text-white/40 hover:bg-white/5"
                                 )}

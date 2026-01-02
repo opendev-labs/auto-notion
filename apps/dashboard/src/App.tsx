@@ -130,7 +130,7 @@ function App() {
                     <div className="flex items-center gap-4">
                       <button
                         onClick={() => window.location.href = '/dashboard'}
-                        className="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-white/60 hover:text-white"
+                        className="p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-white/60 hover:text-white"
                       >
                         <Activity size={20} className="rotate-180" />
                       </button>
@@ -140,12 +140,12 @@ function App() {
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
-                      <div className={`px-3 py-1 rounded-full text-[9px] font-bold tracking-widest bg-white/5 border border-white/10 text-white/40`}>
+                      <div className={`px-3 py-1 rounded-md text-[9px] font-bold tracking-widest bg-white/5 border border-white/10 text-white/40`}>
                         NODE ACTIVE
                       </div>
                       <button
                         onClick={() => signOut(auth).then(() => window.location.href = '/auth')}
-                        className="p-2 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20"
+                        className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20"
                       >
                         <LogOut size={16} />
                       </button>

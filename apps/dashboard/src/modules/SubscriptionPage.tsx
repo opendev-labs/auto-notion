@@ -90,15 +90,15 @@ export const SubscriptionPage = () => {
                 {plans.map((plan) => {
                     const Icon = plan.icon;
                     return (
-                        <div key={plan.id} className={`glass p-8 rounded-[2rem] border relative group transition-all duration-300 hover:-translate-y-2 ${plan.border} ${plan.popular ? 'border-institutional-indigo/50 shadow-[0_0_40px_-10px_rgba(99,102,241,0.3)]' : 'border-white/10'}`}>
+                        <div key={plan.id} className={`glass-dark p-8 rounded-lg border relative group transition-all duration-300 hover:-translate-y-2 ${plan.border} ${plan.popular ? 'border-white/30 shadow-[0_0_40px_-10px_rgba(255,255,255,0.1)]' : 'border-white/10'}`}>
                             {plan.popular && (
-                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-institutional-indigo text-white px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
-                                    Most Popular
+                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-black px-4 py-1 rounded-md text-[10px] font-black tracking-widest uppercase">
+                                    Strategic Choice
                                 </div>
                             )}
 
                             <div className="flex flex-col h-full">
-                                <div className={`w-14 h-14 rounded-2xl ${plan.bg} ${plan.color} flex items-center justify-center mb-6`}>
+                                <div className={`w-14 h-14 rounded-lg bg-white/5 ${plan.color} flex items-center justify-center mb-6 border border-white/10 shadow-xl`}>
                                     <Icon size={28} />
                                 </div>
 
@@ -123,12 +123,12 @@ export const SubscriptionPage = () => {
                                 <button
                                     onClick={() => handleSubscribe(plan)}
                                     disabled={loading === plan.id}
-                                    className={`w-full py-4 rounded-xl font-bold tracking-wide transition-all ${plan.popular
-                                        ? 'bg-institutional-indigo hover:bg-institutional-indigo/90 text-white shadow-lg shadow-indigo-500/20'
-                                        : 'bg-white text-black hover:bg-gray-200'
+                                    className={`w-full py-4 rounded-lg font-black tracking-widest uppercase text-xs transition-all ${plan.popular
+                                        ? 'bg-white text-black shadow-xl hover:bg-zinc-200'
+                                        : 'bg-white/5 border border-white/10 text-white hover:bg-white/10'
                                         } disabled:opacity-50 disabled:cursor-not-allowed`}
                                 >
-                                    {loading === plan.id ? 'Processing...' : 'Subscribe Now'}
+                                    {loading === plan.id ? 'Processing Pulse...' : 'Activate Node'}
                                 </button>
                             </div>
                         </div>

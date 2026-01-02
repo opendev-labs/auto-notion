@@ -74,9 +74,9 @@ const AutomationPortal: React.FC<AutomationPortalProps> = ({ n8nConnected }) => 
 
     return (
         <div className="space-y-8">
-            <section className="glass-dark rounded-3xl p-8 border-0.5 border-white/5 relative overflow-hidden">
+            <section className="glass-dark rounded-lg p-8 border border-white/10 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8">
-                    <div className={`flex items-center gap-3 px-4 py-2 rounded-xl border-0.5 text-xs font-bold tracking-widest ${n8nStatus === 'online' ? 'bg-purple-500/10 border-purple-500/20 text-purple-400' : 'bg-red-500/10 border-red-500/20 text-red-400'
+                    <div className={`flex items-center gap-3 px-4 py-2 rounded-md border text-xs font-bold tracking-widest ${n8nStatus === 'online' ? 'bg-purple-500/10 border-purple-500/20 text-purple-400' : 'bg-red-500/10 border-red-500/20 text-red-400'
                         }`}>
                         <Activity size={14} className={n8nStatus === 'online' ? 'animate-pulse' : ''} />
                         N8N ENGINE: {n8nStatus.toUpperCase()}
@@ -93,13 +93,13 @@ const AutomationPortal: React.FC<AutomationPortalProps> = ({ n8nConnected }) => 
                             href="http://localhost:5678"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-6 py-3 bg-white text-black rounded-2xl font-bold text-sm hover:bg-zen-sage transition-all"
+                            className="flex items-center gap-2 px-6 py-3 bg-white text-black rounded-lg font-bold text-sm hover:bg-zen-sage transition-all"
                         >
                             Open n8n Interface <ExternalLink size={14} />
                         </a>
                         <button
                             onClick={checkStatus}
-                            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-sm hover:bg-white/10 transition-all active:scale-95 disabled:opacity-50"
+                            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white rounded-lg font-bold text-sm hover:bg-white/10 transition-all active:scale-95 disabled:opacity-50"
                             disabled={n8nStatus === 'checking'}
                         >
                             <RefreshCw size={14} className={n8nStatus === 'checking' ? 'animate-spin' : ''} />
@@ -114,9 +114,9 @@ const AutomationPortal: React.FC<AutomationPortalProps> = ({ n8nConnected }) => 
                     <motion.div
                         key={card.id}
                         whileHover={{ y: -5 }}
-                        className="glass-dark rounded-3xl p-8 border-0.5 border-white/5 group hover:border-white/10 transition-all"
+                        className="glass-dark rounded-lg p-8 border border-white/10 group hover:border-white/20 transition-all"
                     >
-                        <div className={`w-12 h-12 rounded-2xl bg-${card.color}-500/10 flex items-center justify-center mb-6 text-${card.color}-400 group-hover:scale-110 transition-transform`}>
+                        <div className={`w-12 h-12 rounded-lg bg-${card.color}-500/10 flex items-center justify-center mb-6 text-${card.color}-400 group-hover:scale-110 transition-transform`}>
                             <card.icon size={24} />
                         </div>
                         <h3 className="text-xl font-bold text-white mb-3">{card.title}</h3>
@@ -125,7 +125,7 @@ const AutomationPortal: React.FC<AutomationPortalProps> = ({ n8nConnected }) => 
                         <button
                             onClick={() => triggerSync(card.id)}
                             disabled={syncing !== null || n8nStatus !== 'online'}
-                            className={`w-full py-4 rounded-2xl font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-all ${syncing === card.id
+                            className={`w-full py-4 rounded-lg font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-all ${syncing === card.id
                                 ? 'bg-white/20 text-white'
                                 : n8nStatus === 'online'
                                     ? `bg-white/5 border border-white/10 text-white hover:bg-white/10`
@@ -142,14 +142,14 @@ const AutomationPortal: React.FC<AutomationPortalProps> = ({ n8nConnected }) => 
                 ))}
             </div>
 
-            <div className="glass-dark rounded-3xl p-8 border-0.5 border-white/5">
+            <div className="glass-dark rounded-lg p-8 border border-white/10">
                 <div className="flex items-center gap-3 mb-6">
-                    <div className="p-2 rounded-lg bg-white/5 text-white/60">
+                    <div className="p-2 rounded-md bg-white/5 text-white/60">
                         <Terminal size={18} />
                     </div>
                     <h3 className="text-lg font-bold text-white uppercase tracking-widest">Automation Logs</h3>
                 </div>
-                <div className="bg-black/40 rounded-2xl p-6 font-mono text-[10px] text-zinc-500 space-y-2 border border-white/5">
+                <div className="bg-black/40 rounded-lg p-6 font-mono text-[10px] text-zinc-500 space-y-2 border border-white/10">
                     <p>[{new Date().toISOString()}] INITIALIZING AUTOMATION PORTAL...</p>
                     <p>[{new Date().toISOString()}] N8N_BASE_URL: http://localhost:5678</p>
                     <p className={n8nStatus === 'online' ? 'text-green-500/60' : 'text-red-500/60'}>

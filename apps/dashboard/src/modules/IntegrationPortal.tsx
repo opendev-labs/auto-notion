@@ -101,7 +101,7 @@ export default function IntegrationPortal({ isActive, n8nConnected }: Integratio
                 {/* 1. The Neural Stack Visualizer */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                    className="col-span-1 lg:col-span-3 glass-cosmic p-8 rounded-[2rem] border border-white/10"
+                    className="col-span-1 lg:col-span-3 glass-cosmic p-8 rounded-lg border border-white/10"
                 >
                     <div className="flex items-center justify-between mb-8">
                         <div>
@@ -157,8 +157,8 @@ export default function IntegrationPortal({ isActive, n8nConnected }: Integratio
                             title="Instagram"
                             subtitle="Sovereign Output"
                             color="text-pink-500"
-                            status={status === 'connected' ? 'active' : 'inactive'}
-                            onClick={status !== 'connected' ? handleConnectInstagram : undefined}
+                            status={n8nConnected ? 'active' : 'inactive'}
+                            onClick={!n8nConnected ? handleConnectInstagram : undefined}
                         />
                     </div>
                 </motion.div>
@@ -167,13 +167,13 @@ export default function IntegrationPortal({ isActive, n8nConnected }: Integratio
                 <div className="col-span-1 lg:col-span-2 space-y-6">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}
-                        className="glass-cosmic p-6 rounded-[2rem] border border-white/5 h-96 flex flex-col"
+                        className="glass-cosmic p-6 rounded-lg border border-white/10 h-96 flex flex-col"
                     >
                         <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                             <Terminal size={18} className="text-white/50" />
                             System Intelligence Stream
                         </h3>
-                        <div className="flex-1 overflow-y-auto bg-black/50 rounded-xl p-4 font-mono text-xs space-y-2 border border-white/5 shadow-inner">
+                        <div className="flex-1 overflow-y-auto bg-black border border-white/10 rounded-lg p-4 font-mono text-xs space-y-2 shadow-inner">
                             {logs.map((log, i) => (
                                 <motion.div
                                     key={i} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
@@ -186,10 +186,10 @@ export default function IntegrationPortal({ isActive, n8nConnected }: Integratio
                             {logs.length === 0 && <span className="text-white/20 italic">Waiting for system events...</span>}
                         </div>
                         <div className="mt-4 flex gap-2">
-                            <button className="flex-1 bg-white/5 hover:bg-white/10 text-white text-xs font-bold py-2 rounded-lg transition-colors border border-white/5" onClick={() => addLog("Force-Sync: Checking Google Sheets for new rows...")}>
+                            <button className="flex-1 bg-white/5 hover:bg-white/10 text-white text-xs font-bold py-2 rounded-md transition-colors border border-white/10" onClick={() => addLog("Force-Sync: Checking Google Sheets for new rows...")}>
                                 Check Content Matrix
                             </button>
-                            <button className="flex-1 bg-white/5 hover:bg-white/10 text-white text-xs font-bold py-2 rounded-lg transition-colors border border-white/5" onClick={() => addLog("Trigger: Running 'Post-Processor' function...")}>
+                            <button className="flex-1 bg-white/5 hover:bg-white/10 text-white text-xs font-bold py-2 rounded-md transition-colors border border-white/10" onClick={() => addLog("Trigger: Running 'Post-Processor' function...")}>
                                 Test Deployment
                             </button>
                         </div>
@@ -201,11 +201,11 @@ export default function IntegrationPortal({ isActive, n8nConnected }: Integratio
                     initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}
                     className="col-span-1"
                 >
-                    <div className="glass-cosmic p-6 rounded-[2rem] border border-white/5 h-full relative overflow-hidden group">
+                    <div className="glass-cosmic p-6 rounded-lg border border-white/10 h-full relative overflow-hidden group">
                         <div className="absolute top-0 right-0 p-32 bg-pink-500/20 blur-[100px] rounded-full group-hover:bg-pink-500/30 transition-all duration-1000" />
 
                         <div className="relative z-10">
-                            <div className="w-16 h-16 bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 shadow-xl">
+                            <div className="w-16 h-16 bg-gradient-to-tr from-zinc-800 to-black border border-white/10 rounded-lg flex items-center justify-center mb-6 shadow-xl">
                                 <Instagram size={32} className="text-white" />
                             </div>
 
@@ -217,7 +217,7 @@ export default function IntegrationPortal({ isActive, n8nConnected }: Integratio
                             {status === 'idle' && (
                                 <button
                                     onClick={handleConnectInstagram}
-                                    className="w-full py-4 bg-white text-black rounded-xl font-black uppercase tracking-widest text-xs hover:bg-pink-500 hover:text-white transition-all shadow-xl flex items-center justify-center gap-2"
+                                    className="w-full py-4 bg-white text-black rounded-lg font-black uppercase tracking-widest text-xs hover:bg-zinc-200 transition-all shadow-xl flex items-center justify-center gap-2"
                                 >
                                     <Link size={14} />
                                     Connect Instagram (Official)
@@ -225,7 +225,7 @@ export default function IntegrationPortal({ isActive, n8nConnected }: Integratio
                             )}
 
                             {status === 'connecting' && (
-                                <div className="w-full py-4 bg-white/10 text-white rounded-xl font-bold uppercase text-xs flex items-center justify-center gap-2 animate-pulse">
+                                <div className="w-full py-4 bg-white/10 text-white rounded-lg font-bold uppercase text-xs flex items-center justify-center gap-2 animate-pulse">
                                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                                     Authenticating...
                                 </div>
@@ -233,7 +233,7 @@ export default function IntegrationPortal({ isActive, n8nConnected }: Integratio
 
                             {status === 'connected' && (
                                 <div className="space-y-4">
-                                    <div className="bg-green-500/10 border border-green-500/30 p-4 rounded-xl flex items-center justify-between">
+                                    <div className="bg-white/5 border border-white/10 p-4 rounded-lg flex items-center justify-between">
                                         <div className="flex items-center gap-3">
                                             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                                             <span className="text-green-400 font-bold text-sm">Active</span>
@@ -258,9 +258,9 @@ const StackNode = ({ icon: Icon, title, subtitle, color, status, onClick }: any)
     <motion.div
         whileHover={onClick ? { scale: 1.05 } : {}}
         onClick={onClick}
-        className={`relative z-10 bg-[#0a0a0a] border border-white/10 p-4 rounded-2xl w-full md:w-40 flex flex-col items-center text-center gap-3 shadow-2xl transition-all ${status === 'inactive' ? 'opacity-50 grayscale cursor-pointer hover:grayscale-0 hover:opacity-100' : ''}`}
+        className={`relative z-10 bg-[#0a0a0a] border border-white/10 p-4 rounded-lg w-full md:w-40 flex flex-col items-center text-center gap-3 shadow-2xl transition-all ${status === 'inactive' ? 'opacity-50 grayscale cursor-pointer hover:grayscale-0 hover:opacity-100' : ''}`}
     >
-        <div className={`p-3 rounded-xl bg-white/5 ${color} shadow-lg`}>
+        <div className={`p-3 rounded-md bg-white/5 ${color} shadow-lg`}>
             <Icon size={20} />
         </div>
         <div>

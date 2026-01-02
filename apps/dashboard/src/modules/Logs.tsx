@@ -17,30 +17,30 @@ const Logs: React.FC = () => {
                     <p className="text-zen-sage text-sm font-medium">Real-time audit trail of all platform operations.</p>
                 </div>
                 <div className="flex gap-4">
-                    <button className="p-3 bg-white/5 border border-white/10 rounded-xl text-white/60 hover:text-white transition-all">
+                    <button className="p-3 bg-white/5 border border-white/10 rounded-md text-white/60 hover:text-white transition-all">
                         <Download size={18} />
                     </button>
-                    <button className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400/60 hover:text-red-400 transition-all">
+                    <button className="p-3 bg-red-500/10 border border-red-500/20 rounded-md text-red-400/60 hover:text-red-400 transition-all">
                         <Trash2 size={18} />
                     </button>
                 </div>
             </header>
 
-            <div className="glass-dark rounded-[2rem] border-0.5 border-white/5 overflow-hidden">
-                <div className="p-6 border-b border-white/5 flex flex-col md:flex-row gap-4 justify-between bg-white/[0.02]">
+            <div className="glass-dark rounded-lg border border-white/10 overflow-hidden">
+                <div className="p-6 border-b border-white/10 flex flex-col md:flex-row gap-4 justify-between bg-black/40">
                     <div className="relative flex-1 max-w-md">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20" size={16} />
                         <input
                             type="text"
                             placeholder="Search logs by action or message..."
-                            className="w-full bg-black/40 border-0.5 border-white/10 rounded-xl pl-12 pr-4 py-3 text-xs text-white outline-none focus:border-white/40 transition-all"
+                            className="w-full bg-black/40 border border-white/10 rounded-lg pl-12 pr-4 py-3 text-xs text-white outline-none focus:border-white/40 transition-all"
                         />
                     </div>
                     <div className="flex gap-2">
-                        <button className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[10px] font-bold text-white/40 uppercase tracking-widest hover:bg-white/10 transition-all">
+                        <button className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-md text-[10px] font-bold text-white/40 uppercase tracking-widest hover:bg-white/10 transition-all">
                             <Filter size={14} /> Filter
                         </button>
-                        <select className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-[10px] font-bold text-white/40 uppercase tracking-widest outline-none appearance-none cursor-pointer">
+                        <select className="bg-white/5 border border-white/10 rounded-md px-4 py-2 text-[10px] font-bold text-white/40 uppercase tracking-widest outline-none appearance-none cursor-pointer">
                             <option>All Levels</option>
                             <option>Success</option>
                             <option>Error</option>
@@ -63,11 +63,11 @@ const Logs: React.FC = () => {
                         <tbody className="divide-y divide-white/5">
                             {logEntries.map((log) => (
                                 <tr key={log.id} className="group hover:bg-white/[0.02] transition-colors">
-                                    <td className="px-8 py-6 text-xs text-white/40 font-mono tracking-tighter whitespace-nowrap">
+                                    <td className="px-6 py-6 text-xs text-white/40 font-mono tracking-tighter whitespace-nowrap">
                                         {log.timestamp}
                                     </td>
                                     <td className="px-6 py-6">
-                                        <span className={`px-3 py-1 rounded-full text-[9px] font-black tracking-widest uppercase ${log.level === 'SUCCESS' ? 'bg-green-500/10 text-green-400' :
+                                        <span className={`px-3 py-1 rounded-md text-[9px] font-black tracking-widest uppercase ${log.level === 'SUCCESS' ? 'bg-green-500/10 text-green-400' :
                                             log.level === 'ERROR' ? 'bg-red-500/10 text-red-400' :
                                                 log.level === 'WARNING' ? 'bg-orange-500/10 text-orange-400' :
                                                     'bg-blue-500/10 text-blue-400'
@@ -92,10 +92,10 @@ const Logs: React.FC = () => {
                     </table>
                 </div>
 
-                <div className="p-6 border-t border-white/5 flex justify-between items-center text-[10px] font-bold text-white/20 uppercase tracking-widest">
+                <div className="p-6 border-t border-white/10 flex justify-between items-center text-[10px] font-bold text-white/20 uppercase tracking-widest">
                     <span>Showing 5 of 1,248 entries</span>
                     <div className="flex gap-4">
-                        <button className="hover:text-white transition-colors disabled:opacity-30" disabled>Previous</button>
+                        <button className="hover:text-white transition-colors disabled:opacity-30 border-r border-white/10 pr-4" disabled>Previous</button>
                         <button className="hover:text-white transition-colors">Next Page</button>
                     </div>
                 </div>

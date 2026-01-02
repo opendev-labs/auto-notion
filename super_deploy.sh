@@ -1,66 +1,112 @@
 #!/bin/bash
 # ==============================================================================
-# Auto-Notion Professional Deployment System
-# (c) 2026 OpenDev-Labs | Institutional Logic
+# INSTITUTIONAL DEPLOYMENT PIPELINE
+# © 2026 OpenDev-Labs
+# Purpose: Build → Commit → Deploy (Deterministic & Fully Automated)
 # ==============================================================================
 
 set -e
 
-# Visual Branding
-BANNER="
-    ___         __               _   __      __  _            
-   /   | __  __/ /_____         / | / /___  / /_(_)___  ____  
-  / /| |/ / / / __/ __ \______ /  |/ / __ \/ __/ / __ \/ __ \ 
- / ___ / /_/ / /_/ /_/ /_____// /|  / /_/ / /_/ / /_/ / / / / 
-/_/  |_\__,_/\__/\____/      /_/ |_/\____/\__/_/\____/_/ /_/  
-                                                              
-"
+# ──────────────────────────────────────────────────────────────────────────────
+# UI CONSTANTS
+# ──────────────────────────────────────────────────────────────────────────────
+GREEN="\033[1;32m"
+BLUE="\033[1;34m"
+YELLOW="\033[1;33m"
+RED="\033[1;31m"
+GRAY="\033[1;90m"
+RESET="\033[0m"
 
-echo -e "\033[1;32m$BANNER\033[0m"
-echo -e "\033[1;34m[SYSTEM]\033[0m Initializing Super Deployment Sequence..."
+DIVIDER="${GRAY}────────────────────────────────────────────────────────${RESET}"
 
-# 1. Dependency & Environment Check
-echo -e "\033[1;34m[CHECK]\033[0m Verifying specialized environments..."
-if ! command -v node &> /dev/null; then echo "❌ Node.js not found"; exit 1; fi
-if ! command -v git &> /dev/null; then echo "❌ Git not found"; exit 1; fi
-if ! command -v firebase &> /dev/null; then echo "❌ Firebase CLI not found"; exit 1; fi
+# ──────────────────────────────────────────────────────────────────────────────
+# HEADER
+# ──────────────────────────────────────────────────────────────────────────────
+clear
+echo -e "${DIVIDER}"
+echo -e "${GREEN}DEPLOYMENT CONTROL (AUTOMATED MODE)${RESET}"
+echo -e "${GRAY}Build • Version • Release • Publish${RESET}"
+echo -e "${DIVIDER}"
+echo ""
 
-# 2. Source Synchronization
-echo -e "\033[1;34m[GIT]\033[0m Synchronizing source with GitHub main..."
+# ──────────────────────────────────────────────────────────────────────────────
+# 1. ENVIRONMENT CHECK
+# ──────────────────────────────────────────────────────────────────────────────
+echo -e "${BLUE}[CHECK]${RESET} Validating system requirements..."
+
+command -v node >/dev/null || { echo -e "${RED}✖ Node.js missing${RESET}"; exit 1; }
+command -v git >/dev/null || { echo -e "${RED}✖ Git missing${RESET}"; exit 1; }
+command -v firebase >/dev/null || { echo -e "${RED}✖ Firebase CLI missing${RESET}"; exit 1; }
+
+echo -e "${GREEN}✔ Environment ready${RESET}"
+echo ""
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 2. VERSION CONTROL (AUTOMATED)
+# ──────────────────────────────────────────────────────────────────────────────
+echo -e "${BLUE}[SOURCE]${RESET} Synchronizing mission intelligence..."
+
+TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+SUMMARY="Institutional synchronization [${TIMESTAMP}]"
+DETAILS="Standard mission update and performance optimization. Auto-deply active."
+
 git add .
-COMMIT_MSG="deploy: mission update $(date '+%Y-%m-%d %H:%M:%S')"
-git commit -m "$COMMIT_MSG" -m "Automated professional deployment sync." || echo "No changes to commit"
+
+# Automated professional commit: Technical title + Client-facing body
+git commit -m "feat: ${SUMMARY}" -m "Client Log: ${DETAILS}" -m "Metadata: Pipeline Automated" \
+  || echo -e "${GRAY}No changes detected${RESET}"
+
 git push origin main
 
-# 3. Clean Build Chain
-echo -e "\033[1;34m[BUILD]\033[0m Executing unified build pipeline..."
+echo -e "${GREEN}✔ Source synchronized${RESET}"
+echo ""
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 3. BUILD PIPELINE
+# ──────────────────────────────────────────────────────────────────────────────
+echo -e "${BLUE}[BUILD]${RESET} Executing pipeline"
+echo -e "${DIVIDER}"
+
+START_TIME=$(date +%s)
+
 rm -rf dist
 mkdir -p dist/dashboard
 
-# Build Dashboard
-echo -e "\033[1;32m   -> Building Dashboard Module...\033[0m"
+echo -e "${GRAY}→ Dashboard${RESET}"
 cd apps/dashboard
-npm install --legacy-peer-deps --quiet
+npm install --legacy-peer-deps
 npm run build
 cd ../..
 cp -r apps/dashboard/dist/* dist/dashboard/
 
-# Build Landing
-echo -e "\033[1;32m   -> Building Landing Interface...\033[0m"
+echo -e "${GRAY}→ Landing${RESET}"
 cd apps/landing
-npm install --legacy-peer-deps --quiet
+npm install --legacy-peer-deps
 npm run build
 cd ../..
 cp -r apps/landing/dist/* dist/
 
-# 4. Global Deployment
-echo -e "\033[1;34m[CLOUD]\033[0m Deploying to Firebase Hosting..."
+END_TIME=$(date +%s)
+DURATION=$((END_TIME - START_TIME))
+
+echo -e "${GREEN}✔ Build complete in ${DURATION}s${RESET}"
+echo ""
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 4. DEPLOYMENT
+# ──────────────────────────────────────────────────────────────────────────────
+echo -e "${BLUE}[DEPLOY]${RESET} Publishing to hosting"
 firebase deploy --only hosting --non-interactive
 
-# 5. Final Confirmation
-echo -e "\033[1;32m[SUCCESS]\033[0m Deployment complete."
-echo -e "----------------------------------------------------------------"
-echo -e "🚀 LIVE DASHBOARD: https://auto-notion.web.app/dashboard"
-echo -e "📡 MISSION LOG   : https://opendev-labs.github.io/auto-notion"
-echo -e "----------------------------------------------------------------"
-echo -e "Institutional consciousness synchronized. Stand by for logic."
+echo ""
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 5. FINAL STATUS
+# ──────────────────────────────────────────────────────────────────────────────
+echo -e "${DIVIDER}"
+echo -e "${GREEN}DEPLOYMENT SUCCESSFUL${RESET}"
+echo ""
+echo "Dashboard : https://auto-notion.web.app/dashboard"
+echo "Repository: https://opendev-labs.github.io/auto-notion"
+echo -e "${DIVIDER}"
+echo -e "${GRAY}Pipeline complete. System stable.${RESET}"
