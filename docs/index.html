@@ -47,9 +47,8 @@
     </script>
     <style>
         body {
-            /* Deep Bio-Digital Gradient */
+            /* Pure Black Void */
             background: #000000;
-            background: radial-gradient(ellipse at bottom, #051a0d 0%, #000000 100%);
             color: #f5f5f7;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -58,11 +57,12 @@
         }
 
         .glass {
-            background: rgba(10, 20, 15, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            background: rgba(8, 8, 8, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            /* Lower contrast border */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
         .timeline-line {
@@ -71,14 +71,14 @@
             top: 12px;
             bottom: 0;
             width: 1px;
-            background: linear-gradient(to bottom, rgba(48, 209, 88, 0.3), transparent);
+            background: linear-gradient(to bottom, rgba(30, 30, 30, 0.5), transparent);
         }
 
         .status-dot {
-            box-shadow: 0 0 12px rgba(48, 209, 88, 0.5);
+            box-shadow: 0 0 15px rgba(48, 209, 88, 0.3);
         }
 
-        /* Ocean Animation - Dark Green Mode */
+        /* Ocean Animation - Black Lover Edition */
         .ocean {
             height: 5%;
             width: 100%;
@@ -86,6 +86,7 @@
             bottom: 0;
             left: 0;
             background: #000000;
+            /* Pure Black Base */
             z-index: -1;
             opacity: 1;
         }
@@ -98,17 +99,18 @@
             height: 198px;
             animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
             transform: translate3d(0, 0, 0);
-            opacity: 0.5;
-            /* Dark Green Filter */
-            filter: brightness(0.6) sepia(1) hue-rotate(70deg) saturate(3) contrast(1.2);
+            opacity: 0.15;
+            /* Very subtle */
+            /* Deep Black-Green Filter: Mostly black, tiny hint of emerald */
+            filter: brightness(0.2) sepia(1) hue-rotate(80deg) saturate(1.5) contrast(1.1);
         }
 
         .wave:nth-of-type(2) {
             top: -175px;
             animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
-            opacity: 0.3;
-            /* Slightly different green for depth */
-            filter: brightness(0.5) sepia(1) hue-rotate(60deg) saturate(4) contrast(1.1);
+            opacity: 0.08;
+            /* Extremely subtle */
+            filter: brightness(0.15) sepia(1) hue-rotate(90deg) saturate(2) contrast(1.2);
         }
 
         @keyframes wave {
@@ -133,7 +135,7 @@
             }
         }
 
-        /* Custom Scrollbar */
+        /* Custom Scrollbar - Very Dark */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -143,13 +145,13 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(48, 209, 88, 0.2);
+            background: rgba(50, 50, 50, 0.5);
             border-radius: 3px;
         }
     </style>
 </head>
 
-<body class="selection:bg-cupertino-green/30 selection:text-white">
+<body class="selection:bg-white/10 selection:text-white">
 
     <!-- Ocean Background -->
     <div class="ocean">
@@ -161,12 +163,12 @@
     <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
         <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <img src="https://auto-notion.web.app/logo.svg" alt="Logo" class="w-6 h-6 object-contain opacity-80">
-                <span class="font-medium text-sm tracking-wide">Auto-Notion</span>
+                <img src="https://auto-notion.web.app/logo.svg" alt="Logo"
+                    class="w-6 h-6 object-contain opacity-70 grayscale">
+                <span class="font-medium text-sm tracking-wide text-white/80">Auto-Notion</span>
             </div>
-            <div class="flex items-center gap-6 text-[13px] font-medium text-white/60">
-                <a href="#" class="text-white hover:text-cupertino-green transition-colors hidden sm:block">Mission
-                    Control</a>
+            <div class="flex items-center gap-6 text-[13px] font-medium text-white/50">
+                <a href="#" class="text-white/80 hover:text-white transition-colors hidden sm:block">Mission Control</a>
                 <a href="https://auto-notion.web.app" target="_blank" class="hover:text-white transition-colors">Launch
                     App</a>
                 <a href="https://github.com/opendev-labs/auto-notion" target="_blank"
@@ -175,7 +177,7 @@
         </div>
     </nav>
 
-    <!-- Content Container (Mobile Optimized Padding) -->
+    <!-- Content Container -->
     <div class="min-h-screen pt-24 pb-48 px-4 sm:px-12 flex justify-center relative z-10">
 
         <main class="w-full max-w-2xl">
@@ -183,48 +185,47 @@
             <!-- Header -->
             <header class="mb-12 text-center animate-slide-up" style="animation-delay: 0.1s;">
                 <div
-                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-6 backdrop-blur-md">
                     <span class="relative flex h-2 w-2">
                         <span
-                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cupertino-green opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-cupertino-green status-dot"></span>
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cupertino-green opacity-40"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-cupertino-green/80 status-dot"></span>
                     </span>
-                    <span class="text-[11px] font-medium text-cupertino-green uppercase tracking-wider">Systems
-                        Nominal</span>
+                    <span class="text-[11px] font-medium text-white/60 uppercase tracking-wider">Systems Nominal</span>
                 </div>
-                <h1
-                    class="text-4xl sm:text-5xl font-semibold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+                <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight mb-4 text-white">
                     Live Mission Log
                 </h1>
-                <p class="text-white/40 text-sm max-w-md mx-auto leading-relaxed">
+                <p class="text-white/30 text-sm max-w-md mx-auto leading-relaxed">
                     Real-time automated feed from the <span
-                        class="text-white/80 border-b border-white/20">opendev-labs</span> repository.
+                        class="text-white/60 border-b border-white/10">opendev-labs</span> repository.
                 </p>
             </header>
 
             <!-- Metrics Grid -->
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-16 animate-slide-up"
                 style="animation-delay: 0.2s;">
-                <div class="glass rounded-2xl p-4 sm:p-5 text-center transition-all hover:bg-white/5">
-                    <div class="text-[10px] uppercase font-bold text-white/30 mb-1">Latest Release</div>
-                    <div class="text-xl font-mono text-white/90">v4.1.0</div>
+                <div class="glass rounded-2xl p-4 sm:p-5 text-center transition-all hover:bg-white/[0.03]">
+                    <div class="text-[10px] uppercase font-bold text-white/20 mb-1">Latest Release</div>
+                    <div class="text-xl font-mono text-white/80">v4.1.0</div>
                 </div>
-                <div class="glass rounded-2xl p-4 sm:p-5 text-center transition-all hover:bg-white/5">
-                    <div class="text-[10px] uppercase font-bold text-white/30 mb-1">Repo Status</div>
-                    <div class="text-xl font-mono text-cupertino-green">Active</div>
+                <div class="glass rounded-2xl p-4 sm:p-5 text-center transition-all hover:bg-white/[0.03]">
+                    <div class="text-[10px] uppercase font-bold text-white/20 mb-1">Repo Status</div>
+                    <div class="text-xl font-mono text-cupertino-green/90">Active</div>
                 </div>
                 <div
-                    class="col-span-2 sm:col-span-1 glass rounded-2xl p-4 sm:p-5 text-center transition-all hover:bg-white/5">
-                    <div class="text-[10px] uppercase font-bold text-white/30 mb-1">Last Sync</div>
-                    <div class="text-xl font-mono text-white/90" id="last-sync">--:--</div>
+                    class="col-span-2 sm:col-span-1 glass rounded-2xl p-4 sm:p-5 text-center transition-all hover:bg-white/[0.03]">
+                    <div class="text-[10px] uppercase font-bold text-white/20 mb-1">Last Sync</div>
+                    <div class="text-xl font-mono text-white/80" id="last-sync">--:--</div>
                 </div>
             </div>
 
             <!-- Feed Container -->
             <div class="animate-slide-up" style="animation-delay: 0.3s;">
                 <div class="flex items-center justify-between mb-8 px-2">
-                    <h2 class="text-lg font-semibold">Transmission Feed</h2>
-                    <span class="text-[10px] font-mono text-white/30 uppercase bg-white/5 px-2 py-1 rounded">Protocol:
+                    <h2 class="text-lg font-semibold text-white/90">Transmission Feed</h2>
+                    <span
+                        class="text-[10px] font-mono text-white/20 uppercase bg-white/[0.03] px-2 py-1 rounded">Protocol:
                         GIT-REST-API</span>
                 </div>
 
@@ -234,9 +235,9 @@
 
                     <!-- Loading Skeleton -->
                     <div class="animate-pulse space-y-8 pl-8">
-                        <div class="h-32 bg-white/5 rounded-3xl"></div>
-                        <div class="h-32 bg-white/5 rounded-3xl opacity-50"></div>
-                        <div class="h-32 bg-white/5 rounded-3xl opacity-30"></div>
+                        <div class="h-32 bg-white/[0.03] rounded-3xl"></div>
+                        <div class="h-32 bg-white/[0.03] rounded-3xl opacity-50"></div>
+                        <div class="h-32 bg-white/[0.03] rounded-3xl opacity-30"></div>
                     </div>
                 </div>
             </div>
@@ -258,7 +259,7 @@
             } catch (error) {
                 console.error('Failed to fetch commits:', error);
                 document.getElementById('commit-feed').innerHTML = `
-                    <div class="p-6 text-center text-white/40 glass rounded-2xl">
+                    <div class="p-6 text-center text-white/30 glass rounded-2xl">
                         Signal Lost. Unable to establish link with GitHub API.
                     </div>
                 `;
@@ -286,18 +287,18 @@
                 const date = new Date(commit.commit.author.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
                 const author = commit.commit.author.name;
 
-                // Color coding for types
-                let typeColor = 'text-white/40 bg-white/5';
-                if (type === 'feat') typeColor = 'text-cupertino-green bg-cupertino-green/10'; // Green for features now
-                if (type === 'fix') typeColor = 'text-red-400 bg-red-400/10';
-                if (type === 'docs') typeColor = 'text-orange-400 bg-orange-400/10';
+                // Color coding for types - Muted for Black Theme
+                let typeColor = 'text-white/30 bg-white/5';
+                if (type === 'feat') typeColor = 'text-white/60 bg-white/10';
+                if (type === 'fix') typeColor = 'text-white/50 bg-white/5';
+                if (type === 'docs') typeColor = 'text-white/40 bg-white/5';
 
                 return `
                     <div class="relative pl-10 pb-12 group last:pb-0">
                         <!-- Node Dot -->
-                        <div class="absolute left-[18.5px] top-6 w-[9px] h-[9px] rounded-full bg-black border-[2px] ${isLatest ? 'border-cupertino-green scale-110 shadow-[0_0_10px_rgba(48,209,88,0.4)]' : 'border-white/20 group-hover:border-white/60'} transition-all z-10"></div>
+                        <div class="absolute left-[18.5px] top-6 w-[9px] h-[9px] rounded-full bg-black border-[2px] ${isLatest ? 'border-cupertino-green scale-110 shadow-[0_0_10px_rgba(48,209,88,0.2)]' : 'border-white/10 group-hover:border-white/40'} transition-all z-10"></div>
                         
-                        <div class="glass rounded-3xl p-6 transition-all duration-300 hover:bg-white/[0.08] hover:scale-[1.01] hover:shadow-2xl opacity-0 animate-slide-up" style="animation-delay: ${index * 0.1}s">
+                        <div class="glass rounded-3xl p-6 transition-all duration-300 hover:bg-white/[0.05] hover:scale-[1.01] hover:shadow-2xl opacity-0 animate-slide-up" style="animation-delay: ${index * 0.1}s">
                             
                             <!-- Header -->
                             <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
@@ -313,19 +314,19 @@
                             </div>
 
                             <!-- Content -->
-                            <h3 class="text-lg font-medium mb-2 leading-snug">${cleanTitle}</h3>
+                            <h3 class="text-lg font-medium mb-2 leading-snug text-white/90">${cleanTitle}</h3>
                             
                             ${body ? `
-                                <div class="mt-4 pt-4 border-t border-white/5 text-sm text-white/50 leading-relaxed font-light">
+                                <div class="mt-4 pt-4 border-t border-white/5 text-sm text-white/40 leading-relaxed font-light">
                                     ${body.replace(/\n/g, '<br>')}
                                 </div>
                             ` : ''}
 
                             <div class="mt-4 flex items-center gap-2">
-                                <div class="w-5 h-5 rounded-full bg-gradient-to-tr from-white/10 to-white/5 flex items-center justify-center text-[10px] font-bold text-white/40">
+                                <div class="w-5 h-5 rounded-full bg-gradient-to-tr from-white/10 to-white/5 flex items-center justify-center text-[10px] font-bold text-white/30">
                                     ${author.charAt(0)}
                                 </div>
-                                <span class="text-xs text-white/30">${author}</span>
+                                <span class="text-xs text-white/20">${author}</span>
                             </div>
 
                         </div>
