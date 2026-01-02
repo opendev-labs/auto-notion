@@ -4,7 +4,6 @@ import {
     Share2,
     UserPlus,
     Moon,
-    Link2,
     History,
     Settings,
     ArrowUpRight,
