@@ -47,9 +47,9 @@
     </script>
     <style>
         body {
-            /* Deep Void / Black Ocean */
+            /* Deep Bio-Digital Gradient */
             background: #000000;
-            background: radial-gradient(ellipse at bottom, #111111 0%, #000000 100%);
+            background: radial-gradient(ellipse at bottom, #051a0d 0%, #000000 100%);
             color: #f5f5f7;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -58,7 +58,7 @@
         }
 
         .glass {
-            background: rgba(10, 10, 10, 0.6);
+            background: rgba(10, 20, 15, 0.6);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -71,14 +71,14 @@
             top: 12px;
             bottom: 0;
             width: 1px;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+            background: linear-gradient(to bottom, rgba(48, 209, 88, 0.3), transparent);
         }
 
         .status-dot {
             box-shadow: 0 0 12px rgba(48, 209, 88, 0.5);
         }
 
-        /* Ocean Animation - Black Mode */
+        /* Ocean Animation - Dark Green Mode */
         .ocean {
             height: 5%;
             width: 100%;
@@ -98,16 +98,17 @@
             height: 198px;
             animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
             transform: translate3d(0, 0, 0);
-            opacity: 0.3;
-            /* Make it black/dark gray */
-            filter: grayscale(100%) brightness(0.2) contrast(1.2);
+            opacity: 0.5;
+            /* Dark Green Filter */
+            filter: brightness(0.6) sepia(1) hue-rotate(70deg) saturate(3) contrast(1.2);
         }
 
         .wave:nth-of-type(2) {
             top: -175px;
             animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
-            opacity: 0.15;
-            filter: grayscale(100%) brightness(0.3) contrast(1.1);
+            opacity: 0.3;
+            /* Slightly different green for depth */
+            filter: brightness(0.5) sepia(1) hue-rotate(60deg) saturate(4) contrast(1.1);
         }
 
         @keyframes wave {
@@ -142,13 +143,13 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(48, 209, 88, 0.2);
             border-radius: 3px;
         }
     </style>
 </head>
 
-<body class="selection:bg-cupertino-blue/30 selection:text-white">
+<body class="selection:bg-cupertino-green/30 selection:text-white">
 
     <!-- Ocean Background -->
     <div class="ocean">
@@ -164,7 +165,7 @@
                 <span class="font-medium text-sm tracking-wide">Auto-Notion</span>
             </div>
             <div class="flex items-center gap-6 text-[13px] font-medium text-white/60">
-                <a href="#" class="text-white hover:text-cupertino-blue transition-colors hidden sm:block">Mission
+                <a href="#" class="text-white hover:text-cupertino-green transition-colors hidden sm:block">Mission
                     Control</a>
                 <a href="https://auto-notion.web.app" target="_blank" class="hover:text-white transition-colors">Launch
                     App</a>
@@ -287,7 +288,7 @@
 
                 // Color coding for types
                 let typeColor = 'text-white/40 bg-white/5';
-                if (type === 'feat') typeColor = 'text-cupertino-blue bg-cupertino-blue/10';
+                if (type === 'feat') typeColor = 'text-cupertino-green bg-cupertino-green/10'; // Green for features now
                 if (type === 'fix') typeColor = 'text-red-400 bg-red-400/10';
                 if (type === 'docs') typeColor = 'text-orange-400 bg-orange-400/10';
 
