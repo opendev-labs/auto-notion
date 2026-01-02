@@ -1,5 +1,17 @@
 [
   {
+    "hash": "4aaa51b6",
+    "title": "feat(branding): replace Vite logo with Auto-Notion logo and add SEO meta tags",
+    "body": "- Replaced Vite favicon with Auto-Notion logo in dashboard\n- Added Open Graph and Twitter meta tags for better social sharing previews\n- Integrated user-provided screenshot as preview image (preview.png)\n- Added screenshot to repository root as requested",
+    "date": "2026-01-02 20:22:51 +0530"
+  },
+  {
+    "hash": "c2f00d03",
+    "title": "chore: update mission log [skip ci]",
+    "body": "",
+    "date": "2026-01-02 14:23:58 +0000"
+  },
+  {
     "hash": "d326ac6c",
     "title": "style: fix mission log UI glitch and improve typography",
     "body": "",
