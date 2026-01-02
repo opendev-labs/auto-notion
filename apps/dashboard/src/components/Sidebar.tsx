@@ -8,7 +8,8 @@ import {
     Settings,
     Sparkles,
     Home,
-    LogOut
+    LogOut,
+    Zap
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -35,6 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, integrationM
         { id: 'content', label: 'Content Bank', icon: Database },
         { id: 'agents', label: 'AI Agents', icon: UserPlus },
         { id: 'cosmic', label: 'Cosmic Scheduler', icon: Moon },
+        { id: 'automation', label: 'Automation', icon: Zap },
     ];
 
     return (

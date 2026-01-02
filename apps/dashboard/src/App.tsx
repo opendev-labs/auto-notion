@@ -12,6 +12,7 @@ const IGPortal = lazy(() => import('./modules/IGPortal'));
 const AgentManager = lazy(() => import('./modules/AgentManager'));
 const CosmicPlanner = lazy(() => import('./modules/CosmicPlanner'));
 const IntegrationPortal = lazy(() => import('./modules/IntegrationPortal'));
+const AutomationPortal = lazy(() => import('./modules/AutomationPortal'));
 const PrivacyPolicy = lazy(() => import('./modules/Compliance').then(m => ({ default: m.PrivacyPolicy })));
 const TermsOfService = lazy(() => import('./modules/Compliance').then(m => ({ default: m.TermsOfService })));
 const DataDeletion = lazy(() => import('./modules/Compliance').then(m => ({ default: m.DataDeletion })));
@@ -129,6 +130,7 @@ const DashboardContent = ({ activeTab, setActiveTab, integrationMode, n8nConnect
       case 'ig-connections': return <IGPortal />;
       case 'agents': return <AgentManager />;
       case 'cosmic': return <CosmicPlanner />;
+      case 'automation': return <AutomationPortal />;
       case 'subscription': return <SubscriptionPage />;
       default: return <Dashboard />;
     }
@@ -152,8 +154,8 @@ const DashboardContent = ({ activeTab, setActiveTab, integrationMode, n8nConnect
           </div>
 
           <div className={`flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-xl border-0.5 text-[10px] font-bold tracking-widest transition-all ${n8nConnected
-              ? 'bg-purple-500/10 border-purple-500/20 text-purple-400'
-              : 'bg-white/5 border-white/10 text-white/40'
+            ? 'bg-purple-500/10 border-purple-500/20 text-purple-400'
+            : 'bg-white/5 border-white/10 text-white/40'
             }`}>
             <Activity size={12} className={n8nConnected ? 'animate-pulse' : ''} />
             N8N {n8nConnected ? 'ONLINE' : 'OFFLINE'}
