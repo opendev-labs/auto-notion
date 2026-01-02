@@ -17,6 +17,7 @@ from api.core.meta_client_v24 import MetaGraphClient, MetaAppConfig
 from notion.core.notion_client import NotionClient
 from engine.content.strategy_engine import ContentIntelligence
 from api.security.compliance_manager import AutoNotionCompliance
+from api.integration.n8n_client import N8nClient
 
 def setup_logging():
     """Setup comprehensive logging"""
@@ -86,12 +87,20 @@ def initialize_services(meta_config):
         business_id=meta_config.business_id
     )
     logger.info("Compliance manager initialized")
+
+    # Initialize n8n Bridge
+    n8n_client = N8nClient()
+    if n8n_client.check_connection():
+        logger.info("n8n Bridge: Connected")
+    else:
+        logger.warning("n8n Bridge: Not detected (expected at http://localhost:5678)")
     
     return {
         "meta": meta_client,
         "notion": notion_client,
         "content": content_engine,
-        "compliance": compliance
+        "compliance": compliance,
+        "n8n": n8n_client
     }
 
 def run_daily_workflow(services):
