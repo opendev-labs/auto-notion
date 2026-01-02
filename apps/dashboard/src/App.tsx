@@ -74,8 +74,8 @@ function App() {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
-        <Route path="/auth" element={!user ? <Login onLoginSuccess={() => { }} /> : <Navigate to="/dashboard" />} />
-        <Route path="/signin" element={!user ? <Login onLoginSuccess={() => { }} /> : <Navigate to="/dashboard" />} />
+        <Route path="/auth" element={!user ? <Login onLoginSuccess={() => { }} /> : <Navigate to="/" />} />
+        <Route path="/signin" element={!user ? <Login onLoginSuccess={() => { }} /> : <Navigate to="/" />} />
 
         {/* Compliance Pages (Public) */}
         <Route path="/privacy" element={<div className="min-h-screen bg-black p-8"><PrivacyPolicy /></div>} />
@@ -84,7 +84,7 @@ function App() {
         <Route path="/data-deletion" element={<div className="min-h-screen bg-black p-8"><DataDeletion /></div>} />
 
         {/* Protected Dashboard Routes */}
-        <Route path="/dashboard/*" element={
+        <Route path="/*" element={
           <RequireAuth user={user}>
             <div className={`flex h-screen overflow-hidden selection:bg-white selection:text-black integration-transition ${integrationMode ? 'bg-black' : 'bg-black'}`}>
               <Sidebar
@@ -108,7 +108,7 @@ function App() {
         } />
 
         {/* Default Redirect */}
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
   );
@@ -194,7 +194,7 @@ const DashboardLayout = ({ integrationMode, n8nConnected }: any) => {
               <Route path="logs" element={<Logs />} />
               <Route path="settings" element={<SettingsModule />} />
               <Route path="subscription" element={<SubscriptionPage />} />
-              <Route path="*" element={<Navigate to="/dashboard" replace />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </motion.div>
         </AnimatePresence>

@@ -32,14 +32,14 @@ const Sidebar: React.FC<SidebarProps> = ({ integrationMode, setIntegrationMode }
     const [isOpen, setIsOpen] = useState(false);
 
     const navItems = [
-        { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-        { id: 'automation', label: 'Automations', icon: Zap, path: '/dashboard/automation' },
-        { id: 'ig-connections', label: 'Instagram', icon: Share2, path: '/dashboard/ig-connections' },
-        { id: 'content', label: 'Content Library', icon: BookOpen, path: '/dashboard/content' },
-        { id: 'agents', label: 'AI Agents', icon: UserPlus, path: '/dashboard/agents' },
-        { id: 'cosmic', label: 'Scheduler', icon: Moon, path: '/dashboard/cosmic' },
-        { id: 'integrations', label: 'Integrations', icon: Link2, path: '/dashboard/integrations' },
-        { id: 'logs', label: 'Logs & History', icon: History, path: '/dashboard/logs' },
+        { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/' },
+        { id: 'automation', label: 'Automations', icon: Zap, path: '/automation' },
+        { id: 'ig-connections', label: 'Instagram', icon: Share2, path: '/ig-connections' },
+        { id: 'content', label: 'Content Library', icon: BookOpen, path: '/content' },
+        { id: 'agents', label: 'AI Agents', icon: UserPlus, path: '/agents' },
+        { id: 'cosmic', label: 'Scheduler', icon: Moon, path: '/cosmic' },
+        { id: 'integrations', label: 'Integrations', icon: Link2, path: '/integrations' },
+        { id: 'logs', label: 'Logs & History', icon: History, path: '/logs' },
     ];
 
     return (
@@ -67,7 +67,7 @@ const Sidebar: React.FC<SidebarProps> = ({ integrationMode, setIntegrationMode }
                             <NavLink
                                 key={item.id}
                                 to={item.path}
-                                end={item.path === '/dashboard'}
+                                end={item.path === '/'}
                                 onClick={() => setIsOpen(false)}
                                 className={({ isActive }) => cn(
                                     "nav-item w-full group py-4 transition-all duration-500 flex items-center gap-3 px-4 rounded-xl",
@@ -127,13 +127,13 @@ const Sidebar: React.FC<SidebarProps> = ({ integrationMode, setIntegrationMode }
                     </div>
 
                     <div className="flex gap-4 mb-6 text-[9px] text-white/30 uppercase tracking-[0.15em] font-extrabold px-4">
-                        <NavLink to="/dashboard/privacy" className="hover:text-white transition-colors">Privacy</NavLink>
+                        <NavLink to="/privacy" className="hover:text-white transition-colors">Privacy</NavLink>
                         <span>•</span>
-                        <NavLink to="/dashboard/terms" className="hover:text-white transition-colors">Terms</NavLink>
+                        <NavLink to="/terms" className="hover:text-white transition-colors">Terms</NavLink>
                     </div>
 
                     <NavLink
-                        to="/dashboard/settings"
+                        to="/settings"
                         className={({ isActive }) => cn(
                             "nav-item w-full group py-4 border-t-0.5 border-white/5 rounded-none mt-4 flex items-center gap-3 px-4",
                             isActive ? "text-white" : "text-white/40"

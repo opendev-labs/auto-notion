@@ -145,10 +145,10 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className="flex gap-4">
-                        <NavLink to="/dashboard/settings" className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-zen-sage transition-all">
+                        <NavLink to="/settings" className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-zen-sage transition-all">
                             System Settings
                         </NavLink>
-                        <NavLink to="/dashboard/logs" className="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2">
+                        <NavLink to="/logs" className="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2">
                             <History size={14} /> View Audit Logs
                         </NavLink>
                     </div>

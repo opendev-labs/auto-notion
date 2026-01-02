@@ -12,10 +12,10 @@ export default function MobileBottomNav({
     setIntegrationMode
 }: MobileBottomNavProps) {
     const navItems = [
-        { id: 'dashboard', label: 'Home', icon: Home, path: '/dashboard' },
-        { id: 'ig-connections', label: 'Instagram', icon: Instagram, path: '/dashboard/ig-connections' },
-        { id: 'agents', label: 'Agents', icon: Bot, path: '/dashboard/agents' },
-        { id: 'cosmic', label: 'Cosmic', icon: Moon, path: '/dashboard/cosmic' },
+        { id: 'dashboard', label: 'Home', icon: Home, path: '/' },
+        { id: 'ig-connections', label: 'Instagram', icon: Instagram, path: '/ig-connections' },
+        { id: 'agents', label: 'Agents', icon: Bot, path: '/agents' },
+        { id: 'cosmic', label: 'Cosmic', icon: Moon, path: '/cosmic' },
     ];
 
     return (
@@ -28,7 +28,7 @@ export default function MobileBottomNav({
                         <NavLink
                             key={item.id}
                             to={item.path}
-                            end={item.path === '/dashboard'}
+                            end={item.path === '/'}
                             className={({ isActive }) => cn(
                                 "flex flex-col items-center justify-center py-3 px-4 min-w-[64px] transition-all duration-300",
                                 isActive ? "text-white" : "text-white/40"
