@@ -111,11 +111,48 @@ function App() {
         } />
 
         {/* Individual Module Pages (No Sidebar) */}
+        <Route path="/agents" element={
+          <RequireAuth user={user}>
+            <div className="h-screen bg-black text-white selection:bg-white selection:text-black overflow-hidden">
+              <div className="h-full flex flex-col p-4 md:p-8">
+                {/* Minimal Header for Agents */}
+                <div className="flex items-center justify-between mb-6 shrink-0">
+                  <div className="flex items-center gap-4">
+                    <button
+                      onClick={() => window.location.href = '/dashboard'}
+                      className="p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-white/60 hover:text-white"
+                    >
+                      <Activity size={20} className="rotate-180" />
+                    </button>
+                    <div>
+                      <h2 className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em]">Institutional Engine</h2>
+                      <h1 className="text-xl font-bold tracking-tight">AI Command Center</h1>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className={`px-3 py-1 rounded-md text-[9px] font-bold tracking-widest bg-white/5 border border-white/10 text-white/40`}>
+                      ARCHITECT ACTIVE
+                    </div>
+                    <button
+                      onClick={() => signOut(auth).then(() => window.location.href = '/auth')}
+                      className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20"
+                    >
+                      <LogOut size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div className="flex-1 min-h-0">
+                  <AICommandCenter n8nConnected={n8nConnected} isActive={true} />
+                </div>
+              </div>
+            </div>
+          </RequireAuth>
+        } />
+
         {[
           { path: '/automation', component: AutomationPortal, title: 'Automation Engine' },
           { path: '/ig-connections', component: IGPortal, title: 'Instagram Nodes' },
           { path: '/content', component: ContentLibrary, title: 'Content Library' },
-          { path: '/agents', component: AICommandCenter, title: 'AI Command Center' },
           { path: '/cosmic', component: CosmicPlanner, title: 'Scheduler' },
           { path: '/integrations', component: IntegrationPortal, title: 'Integration Portal' },
           { path: '/logs', component: Logs, title: 'Logs & History' },

@@ -49,7 +49,7 @@ echo -e "${BLUE}[SOURCE]${RESET} Synchronizing mission intelligence..."
 TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
 SUMMARY="Institutional synchronization [${TIMESTAMP}]"
 # Intelligent Detail Extraction (Non-Developer Friendly)
-WALKTHROUGH_PATH="/home/cube/.gemini/antigravity/brain/2ca0f206-9131-4aaf-91ff-379be982eac0/walkthrough.md"
+WALKTHROUGH_PATH="/home/cube/.gemini/antigravity/brain/02728b33-2dc2-46a5-8d8e-3ec045f718d1/walkthrough.md"
 DETAILS="Standard mission update and performance optimization. Auto-deply active."
 
 if [ -f "$WALKTHROUGH_PATH" ]; then
