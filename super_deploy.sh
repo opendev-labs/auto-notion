@@ -53,10 +53,18 @@ WALKTHROUGH_PATH="/home/cube/.gemini/antigravity/brain/02728b33-2dc2-46a5-8d8e-3
 DETAILS="Standard mission update and performance optimization. Auto-deply active."
 
 if [ -f "$WALKTHROUGH_PATH" ]; then
-    # Extract a comprehensive paragraph from the walkthrough (ignoring headers and empty lines)
-    EXTRACTED_SUMMARY=$(grep -v '^#' "$WALKTHROUGH_PATH" | grep -v '^$' | head -n 15 | tr '\n' ' ' | sed 's/  */ /g')
+    # Extract mission summary from walkthrough.md
+    # We look for content between <!-- MISSION_SUMMARY_START --> and <!-- MISSION_SUMMARY_END -->
+    # Fallback to the first 10 significant lines if tags are missing
+    if grep -q "<!-- MISSION_SUMMARY_START -->" "$WALKTHROUGH_PATH"; then
+        EXTRACTED_SUMMARY=$(sed -n '/<!-- MISSION_SUMMARY_START -->/,/<!-- MISSION_SUMMARY_END -->/p' "$WALKTHROUGH_PATH" | grep -v "<!--")
+    else
+        EXTRACTED_SUMMARY=$(grep -v '^#' "$WALKTHROUGH_PATH" | grep -v '^$' | head -n 12)
+    fi
+
     if [ ! -z "$EXTRACTED_SUMMARY" ]; then
-        DETAILS="$EXTRACTED_SUMMARY"
+        # Escape any special characters for the -m flag
+        DETAILS=$(echo "$EXTRACTED_SUMMARY" | sed 's/"/\\"/g')
     fi
 fi
 
