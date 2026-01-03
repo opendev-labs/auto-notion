@@ -72,6 +72,13 @@ fi
 git add .
 git commit -m "feat: ${SUMMARY}" -m "Client Log: ${DETAILS}" -m "Metadata: Pipeline Automated" \
   || echo -e "${GRAY}No changes detected${RESET}"
+
+# Update Mission Log
+echo -e "${BLUE}[MISSION]${RESET} Updating live mission log..."
+python3 scripts/generate_mission_log.py
+git add docs/mission-log.json
+git commit -m "chore: update mission-log.json [skip ci]" || true
+
 git pull --rebase origin main
 git push origin main
 
