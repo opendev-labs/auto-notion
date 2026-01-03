@@ -39,7 +39,7 @@ const Dashboard = () => {
         },
         {
             id: 'agents',
-            label: 'AI Agents',
+            label: 'SUPER AGENTS ADVANCED',
             icon: UserPlus,
             path: '/super-agents',
             description: 'Cognitive Engine',
