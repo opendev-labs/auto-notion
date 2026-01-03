@@ -49,6 +49,10 @@
         "destination": "/dashboard/index.html"
       },
       {
+        "source": "/super-agents",
+        "destination": "/dashboard/index.html"
+      },
+      {
         "source": "/agents",
         "destination": "/dashboard/index.html"
       },

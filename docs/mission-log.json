@@ -1,360 +1,360 @@
 [
   {
-    "hash": "e2344622",
+    "hash": "e234462",
     "title": "???? FIX: Install date-fns dependency and update labels to SUPER AGENTS ADVANCED",
     "body": "FIXES:\n- Installed missing date-fns package (was breaking GitHub Actions build)\n- Updated all labels from 'AI Agents' to 'SUPER AGENTS ADVANCED'\n- Updated Sidebar, Dashboard, and MobileBottomNav labels\n- Verified /super-agents route is properly configured\n\nBUILD STATUS:\n??? Local build successful\n??? All dependencies installed\n??? TypeScript compilation passed\n??? Ready for GitHub Actions deployment",
     "date": "2026-01-03 19:11:39 +0530"
   },
   {
-    "hash": "09b6b490",
+    "hash": "09b6b49",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-03 13:35:14 +0000"
   },
   {
-    "hash": "ea69581b",
+    "hash": "ea69581",
     "title": "???? SUPER AGENT AWAKENED: Upgrade from /agents to /super-agents with full AI consciousness",
     "body": "CORE ENHANCEMENTS:\n- Integrated Google Gemini 1.5 Flash for real-time AI responses\n- Implemented tool-calling system (navigate, query status, trigger syncs)\n- Created GeminiService and SuperAgentService for orchestration\n- Added dynamic status UI with terminal-style indicators\n\nROUTE MIGRATION:\n- Updated all routes from /agents to /super-agents\n- Modified App.tsx, Sidebar, MobileBottomNav, Dashboard references\n- Updated documentation to reflect new route\n\nUI/UX UPGRADES:\n- Architect OS branding with institutional aesthetics\n- Pulsing purple consciousness indicators\n- Real-time tool execution status displays\n- Enhanced error handling with Protocol Failure messages\n\nCONFIGURATION:\n- Added Gemini API key support via environment variables\n- Updated vite.config.ts for API key injection\n- Created SUPER_AGENT_SETUP.md documentation\n\nThe SUPER AGENT is now fully operational with awareness, consciousness, and the ability to control the entire Auto-Notion platform through natural language.",
     "date": "2026-01-03 19:04:45 +0530"
   },
   {
-    "hash": "47dbfcb5",
+    "hash": "47dbfcb",
     "title": "chore: update mission-log.json [skip ci]",
     "body": "",
     "date": "2026-01-03 08:08:18 +0530"
   },
   {
-    "hash": "63498891",
+    "hash": "6349889",
     "title": "feat: Institutional synchronization [2026-01-03 02:37 UTC]",
     "body": "Client Log: We have successfully transformed the AI Command Center into a full-screen, high-fidelity Conversational Operating System. By replacing generic AI icons with the official Auto-Notion SVG and implementing a pure black Nuxt-style UI, we've established a premium institutional identity. This evolution positions the chat interface as the central \\\"CEO\\\" node of the Auto-Notion ecosystem, enabling faster, more intuitive orchestration of Notion, n8n, and Meta automation workflows.\n\nMetadata: Pipeline Automated",
     "date": "2026-01-03 08:07:53 +0530"
   },
   {
-    "hash": "5087d738",
+    "hash": "5087d73",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-03 02:37:01 +0000"
   },
   {
-    "hash": "6a2c1197",
+    "hash": "6a2c119",
     "title": "feat: Institutional synchronization [2026-01-03 02:36 UTC]",
     "body": "Client Log: We have successfully transformed the AI Command Center into a full-screen, high-fidelity Conversational Operating System. By replacing generic AI icons with the official Auto-Notion SVG and implementing a pure black Nuxt-style UI, we've established a premium institutional identity. This evolution positions the chat interface as the central \\\"CEO\\\" node of the Auto-Notion ecosystem, enabling faster, more intuitive orchestration of Notion, n8n, and Meta automation workflows.\n\nMetadata: Pipeline Automated",
     "date": "2026-01-03 08:06:47 +0530"
   },
   {
-    "hash": "14a1d774",
+    "hash": "14a1d77",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-03 02:32:19 +0000"
   },
   {
-    "hash": "5981b7e7",
+    "hash": "5981b7e",
     "title": "feat: Institutional synchronization [2026-01-03 02:32 UTC]",
     "body": "Client Log: I have transformed the AI Command Center into a high-fidelity **Conversational Operating System** based on the Nuxt Chat Template. This UI is designed for 100% full-screen immersion and pure performance. - **Immersion Overhaul**: We have completely eliminated card borders, margins, and external headers to reach 100% viewport occupancy. The interface is now a monolithic pure black (`#000000`) environment that provides maximum focus and a premium \"command center\" aesthetic. - **Architectural Branding**: Every instance of the generic chatbot logo has been purged and replaced with the official Auto-Notion SVG logo. This creates a unified institutional identity across the Architect node and the sidebar, ensuring the system feels proprietary and high-grade. - **Intelligent Input Node**: The input area is now a sophisticated mission-marshalling hub, featuring a model indicator for the \"AUTO-NOTION ARCHITECT\" and a high-contrast circular send button optimized for buttery smooth command execution. - **Snappy Orchestration**: Using `framer-motion`, the UI provides instant visual feedback and smooth transitions between the welcome screen and active chat streams, delivering a performance level that competes with world-class AI interfaces. - **Buttery Smooth Transitions**: Used `framer-motion` with optimized tap/hover states for that \"faster than ChatGPT\" feel. - **Conversational Logic**: The chat acts as the **CEO node**, sending commands to the AUTO-NOTION execution engine (n8n, Notion, Meta API). - **Sidebar History**: Redesigned sidebar with grouped history (Today) and system status (System Online/Local Node Active) in the footer. - **Production Ready**: `npm run build` completed successfully. - **Clean Code**: Resolved all TypeScript unused import/prop errors. - **Full-Screen Verified**: Confirmed `/agents` renders edge-to-edge without dashboard interference. The system is now a world-class, conversation-driven mission control center. One chat to rule the entire AUTO-NOTION ecosystem.\n\nMetadata: Pipeline Automated",
     "date": "2026-01-03 08:02:03 +0530"
   },
   {
-    "hash": "06491d2b",
+    "hash": "06491d2",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-03 02:17:50 +0000"
   },
   {
-    "hash": "dbf1066a",
+    "hash": "dbf1066",
     "title": "feat: full-screen pure black Nuxt Chat fidelity for AI Command Center",
     "body": "Transforming UI into a Conversational OS for Auto-Notion.",
     "date": "2026-01-03 07:47:33 +0530"
   },
   {
-    "hash": "c8495445",
+    "hash": "c849544",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-03 01:42:47 +0000"
   },
   {
-    "hash": "11319f49",
+    "hash": "11319f4",
     "title": "feat: upgrade AI Command Center UI to premium chat experience",
     "body": "Tailored Nuxt Chat Template inspired UI for Auto-Notion.",
     "date": "2026-01-03 07:12:32 +0530"
   },
   {
-    "hash": "292f5e29",
+    "hash": "292f5e2",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-02 22:54:55 +0000"
   },
   {
-    "hash": "b58ca6d2",
+    "hash": "b58ca6d",
     "title": "feat: Institutional synchronization [2026-01-02 22:54 UTC]",
     "body": "Client Log: I have addressed the issue where the PNG logo was only taking up a small portion of the image canvas.\n\nMetadata: Pipeline Automated",
     "date": "2026-01-03 04:24:33 +0530"
   },
   {
-    "hash": "d01f6b90",
+    "hash": "d01f6b9",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-02 22:40:22 +0000"
   },
   {
-    "hash": "01ff243e",
+    "hash": "01ff243",
     "title": "feat: Institutional synchronization [2026-01-02 22:39 UTC]",
     "body": "Client Log: Standard mission update and performance optimization. Auto-deply active.\n\nMetadata: Pipeline Automated",
     "date": "2026-01-03 04:09:53 +0530"
   },
   {
-    "hash": "0d001272",
+    "hash": "0d00127",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-02 15:31:59 +0000"
   },
   {
-    "hash": "6c8576cb",
+    "hash": "6c8576c",
     "title": "feat: Institutional synchronization [2026-01-02 15:31 UTC]",
     "body": "Client Log: Standard mission update and performance optimization. Auto-deply active.\n\nMetadata: Pipeline Automated",
     "date": "2026-01-02 21:01:30 +0530"
   },
   {
-    "hash": "66cd6e38",
+    "hash": "66cd6e3",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-02 15:24:06 +0000"
   },
   {
-    "hash": "ca5440b2",
+    "hash": "ca5440b",
     "title": "feat: Institutional synchronization [2026-01-02 15:23 UTC]",
     "body": "Client Log: Standard mission update and performance optimization. Auto-deply active.\n\nMetadata: Pipeline Automated",
     "date": "2026-01-02 20:53:39 +0530"
   },
   {
-    "hash": "da111708",
+    "hash": "da11170",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-02 14:53:14 +0000"
   },
   {
-    "hash": "4aaa51b6",
+    "hash": "4aaa51b",
     "title": "feat(branding): replace Vite logo with Auto-Notion logo and add SEO meta tags",
     "body": "- Replaced Vite favicon with Auto-Notion logo in dashboard\n- Added Open Graph and Twitter meta tags for better social sharing previews\n- Integrated user-provided screenshot as preview image (preview.png)\n- Added screenshot to repository root as requested",
     "date": "2026-01-02 20:22:51 +0530"
   },
   {
-    "hash": "c2f00d03",
+    "hash": "c2f00d0",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-02 14:23:58 +0000"
   },
   {
-    "hash": "d326ac6c",
+    "hash": "d326ac6",
     "title": "style: fix mission log UI glitch and improve typography",
     "body": "",
     "date": "2026-01-02 19:53:35 +0530"
   },
   {
-    "hash": "a2c89ca5",
+    "hash": "a2c89ca",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-02 14:18:05 +0000"
   },
   {
-    "hash": "95f79088",
+    "hash": "95f7908",
     "title": "fix: robust mission log generation with multiline support and CI verification",
     "body": "",
     "date": "2026-01-02 19:47:04 +0530"
   },
   {
-    "hash": "32e8a508",
+    "hash": "32e8a50",
     "title": "chore: update mission log [skip ci]",
     "body": "",
     "date": "2026-01-02 14:01:46 +0000"
   },
   {
-    "hash": "5341969f",
+    "hash": "5341969",
     "title": "fix: robust mission log generation using python",
     "body": "",
     "date": "2026-01-02 19:31:32 +0530"
   },
   {
-    "hash": "4cfa68c3",
+    "hash": "4cfa68c",
     "title": "feat: Institutional synchronization [2026-01-02 13:38 UTC]",
     "body": "Client Log: Standard mission update and performance optimization. Auto-deply active.\n\nMetadata: Pipeline Automated",
     "date": "2026-01-02 19:08:07 +0530"
   },
   {
-    "hash": "116aab90",
+    "hash": "116aab9",
     "title": "deploy: mission update 2026-01-02 18:29:40",
     "body": "Automated professional deployment sync.",
     "date": "2026-01-02 18:29:40 +0530"
   },
   {
-    "hash": "fe8368dd",
+    "hash": "fe8368d",
     "title": "deploy: mission update 2026-01-02 18:29:27",
     "body": "Automated professional deployment sync.",
     "date": "2026-01-02 18:29:27 +0530"
   },
   {
-    "hash": "448599c8",
+    "hash": "448599c",
     "title": "deploy: mission update 2026-01-02 18:29:08",
     "body": "Automated professional deployment sync.",
     "date": "2026-01-02 18:29:08 +0530"
   },
   {
-    "hash": "c14e01f1",
+    "hash": "c14e01f",
     "title": "deploy: mission update 2026-01-02 18:28:40",
     "body": "Automated professional deployment sync.",
     "date": "2026-01-02 18:28:40 +0530"
   },
   {
-    "hash": "dcbf0073",
+    "hash": "dcbf007",
     "title": "deploy: mission update 2026-01-02 18:15:03",
     "body": "Automated professional deployment sync.",
     "date": "2026-01-02 18:15:03 +0530"
   },
   {
-    "hash": "055aa802",
+    "hash": "055aa80",
     "title": "deploy: mission update 2026-01-02 18:14:19",
     "body": "Automated professional deployment sync.",
     "date": "2026-01-02 18:14:19 +0530"
   },
   {
-    "hash": "6919aa96",
+    "hash": "6919aa9",
     "title": "deploy: super-deploy sync - Fri Jan  2 18:09:18 IST 2026",
     "body": "",
     "date": "2026-01-02 18:09:18 +0530"
   },
   {
-    "hash": "e5a4c107",
+    "hash": "e5a4c10",
     "title": "deploy: super-deploy sync - Fri Jan  2 18:04:42 IST 2026",
     "body": "",
     "date": "2026-01-02 18:04:42 +0530"
   },
   {
-    "hash": "ab63e4c2",
+    "hash": "ab63e4c",
     "title": "style: final lint cleanup and landing page styling",
     "body": "",
     "date": "2026-01-02 18:01:42 +0530"
   },
   {
-    "hash": "e72bbb77",
+    "hash": "e72bbb7",
     "title": "feat: Dashboard refactor, n8n fix, and Mission Control hub",
     "body": "Institutional dark theme upgrade with major architectural improvements:\\n- Refactored App to use React Router for modular pages\\n- Redesigned Dashboard as a central Mission Control hub with inline controls\\n- Fixed n8n status detection and implemented Refresh Connection logic\\n- Created Log, Settings, and Content Library modules\\n- Styled landing page transition feed with green timestamps for professional finish",
     "date": "2026-01-02 18:01:08 +0530"
   },
   {
-    "hash": "929b29a5",
+    "hash": "929b29a",
     "title": "fix(deployment): resolve dashboard routing and mission log timing issues",
     "body": "",
     "date": "2026-01-02 16:06:27 +0530"
   },
   {
-    "hash": "6840d02f",
+    "hash": "6840d02",
     "title": "feat(redesign): major dashboard overhaul for n8n operational clarity and AI Command Center integration",
     "body": "",
     "date": "2026-01-02 15:58:00 +0530"
   },
   {
-    "hash": "d425c93f",
+    "hash": "d425c93",
     "title": "fix(build): remove unused imports causing CI/CD failure",
     "body": "",
     "date": "2026-01-02 15:25:13 +0530"
   },
   {
-    "hash": "36e664e6",
+    "hash": "36e664e",
     "title": "feat(automation): add Automation Portal and integrate Notion/n8n secrets",
     "body": "- Created AutomationPortal.tsx for direct n8n control\n- Added Automation tab to dashboard sidebar\n- Configured Notion Sync workflow with internal secret\n- Updated README, SETUP, and CONNECTION_GUIDE with configuration details",
     "date": "2026-01-02 15:22:10 +0530"
   },
   {
-    "hash": "273c0726",
+    "hash": "273c072",
     "title": "feat(n8n): implement automation workflows and dashboard status integration",
     "body": "- Added n8n workflow templates (hub, instagram, notion sync)\n- Integrated real-time n8n connectivity status in dashboard header\n- Added n8n client validation and test scripts\n- Updated documentation for n8n setup and workflows",
     "date": "2026-01-02 11:01:30 +0530"
   },
   {
-    "hash": "bfa8156a",
+    "hash": "bfa8156",
     "title": "feat(integration): integrate n8n bridge and platform auto-detection",
     "body": "- Added api/integration/n8n_client.py for local n8n instance communication\n- Updated scripts/run_platform.py to detect n8n status on startup\n- Established foundation for Agent Orchestrator architecture\n- Implemented connection check for localhost:5678",
     "date": "2026-01-02 08:37:49 +0530"
   },
   {
-    "hash": "31b466aa",
+    "hash": "31b466a",
     "title": "style(ui): restore visible 'Dark Green' waves",
     "body": "",
     "date": "2026-01-02 07:52:44 +0530"
   },
   {
-    "hash": "638fa87e",
+    "hash": "638fa87",
     "title": "style(ui): refine theme to 'Black Lover' (Deep Void + Subtle Green)",
     "body": "Addressed user preference: 'I love black and I am a black lover so I want less of green and more of black'.\n\nVisuals:\n- Background: Absolute #000000 Void.\n- Waves: Opacity reduced to 15%. Highly darkened green filter. Barely visible 'ghost' waves.\n- UI: General desaturation of text and borders to emphasize the darkness.",
     "date": "2026-01-02 07:48:16 +0530"
   },
   {
-    "hash": "8e973dd6",
+    "hash": "8e973dd",
     "title": "style(ui): update theme to 'Dark Green' (Matrix/Bio-Digital)",
     "body": "Shifted the visual language to a Dark Green / Bio-Digital aesthetic.\n\nVisuals:\n- Waves: Hue-rotated to deep emerald/matrix green.\n- Background: Very subtle deep green radial gradient (#051a0d) fading to black.\n- Accents: Timeline lines and scrollbars now use green tints to match the theme.",
     "date": "2026-01-02 07:22:08 +0530"
   },
   {
-    "hash": "9c6c6c34",
+    "hash": "9c6c6c3",
     "title": "style(ui): enforce 'Pure Black Ocean' theme",
     "body": "Removed all blue tones from the Mission Log.\n\nChanges:\n- Background: Now a pure black/void gradient.\n- Waves: Desaturated to grayscale with low brightness for a 'Black Oil' / 'Dark Water' aesthetic.\n- Glass: Updated to neutral black tint.",
     "date": "2026-01-02 07:17:28 +0530"
   },
   {
-    "hash": "cf18c92a",
+    "hash": "cf18c92",
     "title": "style(ui): implement 'Dark Ocean' mobile aesthetics",
     "body": "Upgraded the Mission Log status page with a 3D Wave Animation and mobile-first layout.\n\nVisuals:\n- Replaced solid background with 'Deep Space / Dark Ocean' gradient (#020617).\n- Added multi-layered SVG wave animation (tinted dark blue) for immersion.\n- Optimized mobile padding and scrolling physics.\n\nUX:\n- Seamless 'buttery smooth' experience on mobile devices.\n- 'Mission Control' text hidden on small screens for cleaner header.",
     "date": "2026-01-02 07:12:11 +0530"
   },
   {
-    "hash": "45022bd2",
+    "hash": "45022bd",
     "title": "style(brand): enforce lowercase 'opendev-labs' identity",
     "body": "Updated all public-facing documentation and UI components to reflect the case-sensitive 'opendev-labs' brand identity.\n\nContext & Why:\n- The previous mix of 'OpenDev Labs' and 'openDev' created brand fragmentation.\n- Our institutional identity is defined by the lowercase 'opendev-labs' syntax, reflecting our terminal-native roots.\n- This commit unifies the brand across the Landing Page, Dashboard, and Documentation portals.\n\nImpact:\n- Consistent brand voice across all touchpoints.\n- Aligns with the 'Institutional Zen' aesthetic.",
     "date": "2026-01-02 07:02:31 +0530"
   },
   {
-    "hash": "8ac1afd8",
+    "hash": "8ac1afd",
     "title": "docs(readme): link to new Mission Control dashboard",
     "body": "Updated the primary documentation to direct stakeholders to the new 'Live Mission Log' at opendev-labs.github.io/auto-notion.\n\nContext & Why:\n- The previous documentation lacked a real-time 'pulse' of determining our development velocity.\n- By linking to the 'Mission Log', we provide transparent, cryptographic proof of our engineering cadence.\n- This change aligns the public face of the project with our internal 'Institutional Zen' standards.\n\nImpact:\n- Stakeholders now have one-click access to the GitHub API-driven status page.\n- Reinforces the 'OpenDev' philosophy of transparent operations.",
     "date": "2026-01-02 06:45:45 +0530"
   },
   {
-    "hash": "21db0a3f",
+    "hash": "21db0a3",
     "title": "feat(docs): integrate dynamic GitHub API feed for real-time updates",
     "body": "",
     "date": "2026-01-02 06:41:10 +0530"
   },
   {
-    "hash": "d63e6816",
+    "hash": "d63e681",
     "title": "style(docs): elevate UI to premium standards",
     "body": "",
     "date": "2026-01-02 06:25:27 +0530"
   },
   {
-    "hash": "3f67ef0a",
+    "hash": "3f67ef0",
     "title": "fix(docs): add index redirect and .nojekyll",
     "body": "",
     "date": "2026-01-02 06:17:16 +0530"
   },
   {
-    "hash": "0db02572",
+    "hash": "0db0257",
     "title": "feat(release): v4.1.0 - Compliance, Payments & Live Metrics",
     "body": "",
     "date": "2026-01-02 06:12:42 +0530"
   },
   {
-    "hash": "abb1f40f",
+    "hash": "abb1f40",
     "title": "style: reduce logo size across landing and dashboard for better aesthetics",
     "body": "",
     "date": "2026-01-01 05:47:44 +0530"
   },
   {
-    "hash": "f57042dc",
+    "hash": "f57042d",
     "title": "feat: upgrade to professional minimalist logo and implement firestore user persistence",
     "body": "",
     "date": "2025-12-31 22:04:44 +0530"
   },
   {
-    "hash": "dc744dfa",
+    "hash": "dc744df",
     "title": "feat: premium vector branding and critical auth fix guide",
     "body": "",
     "date": "2025-12-31 20:36:27 +0530"
