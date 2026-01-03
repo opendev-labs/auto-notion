@@ -53,10 +53,6 @@
         "destination": "/dashboard/index.html"
       },
       {
-        "source": "/agents",
-        "destination": "/dashboard/index.html"
-      },
-      {
         "source": "/cosmic",
         "destination": "/dashboard/index.html"
       },

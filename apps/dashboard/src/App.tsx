@@ -183,7 +183,7 @@ const DashboardLayout = ({ integrationMode, n8nConnected, isHub }: any) => {
       case 'automation': return 'Automation Engine';
       case 'ig-connections': return 'Instagram Nodes';
       case 'content': return 'Content Library';
-      case 'agents': return 'AI Command Center';
+      case 'super-agents': return 'AI SuperAgents';
       case 'cosmic': return 'Scheduler';
       case 'integrations': return 'Integration Portal';
       case 'logs': return 'Logs & History';
@@ -247,7 +247,7 @@ const DashboardLayout = ({ integrationMode, n8nConnected, isHub }: any) => {
                 <Route path="automation" element={<AutomationPortal />} />
                 <Route path="ig-connections" element={<IGPortal />} />
                 <Route path="content" element={<ContentLibrary />} />
-                <Route path="agents" element={<AICommandCenter />} />
+                <Route path="super-agents" element={<AICommandCenter />} />
                 <Route path="cosmic" element={<CosmicPlanner />} />
                 <Route path="integrations" element={<IntegrationPortal isActive={true} />} />
                 <Route path="logs" element={<Logs />} />
