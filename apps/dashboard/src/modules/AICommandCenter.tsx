@@ -6,7 +6,6 @@ import {
     ChevronRight,
     Sparkles,
     User,
-    Bot,
     Paperclip,
     ArrowUp,
     Search,
@@ -29,6 +28,13 @@ interface Message {
 interface AICommandCenterProps {
     n8nConnected?: boolean | null;
 }
+
+const AutoNotionLogo = ({ className = "w-6 h-6" }) => (
+    <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" rx="16" fill="black" />
+        <path d="M50 15L85 85H70L50 45L30 85H15L50 15Z" fill="white" />
+    </svg>
+);
 
 const AICommandCenter: React.FC<AICommandCenterProps> = ({ n8nConnected }) => {
     const [messages, setMessages] = useState<Message[]>([]);
@@ -98,9 +104,7 @@ I've successfully mapped this to the corresponding automation workflow. The oper
             >
                 <div className="p-4 flex items-center justify-between">
                     <div className="flex items-center gap-2 px-2 py-1">
-                        <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
-                            <Bot size={14} className="text-white" />
-                        </div>
+                        <AutoNotionLogo className="w-6 h-6" />
                         <span className="font-bold text-sm tracking-tight">Chat</span>
                     </div>
                     <div className="flex items-center gap-1">
@@ -202,7 +206,7 @@ I've successfully mapped this to the corresponding automation workflow. The oper
                                         />
                                         <div className="flex items-center gap-2 pr-2">
                                             <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-[11px] font-bold text-white/40 cursor-default">
-                                                <Bot size={12} />
+                                                <AutoNotionLogo className="w-5 h-5" />
                                                 AUTO-NOTION ARCHITECT
                                             </div>
                                             <button
@@ -241,8 +245,8 @@ I've successfully mapped this to the corresponding automation workflow. The oper
                                         className="space-y-4"
                                     >
                                         <div className="flex items-center gap-2 mb-2">
-                                            <div className={`w-6 h-6 rounded flex items-center justify-center border ${msg.role === 'user' ? 'bg-white border-white text-black' : 'bg-blue-600 border-blue-600'}`}>
-                                                {msg.role === 'user' ? <User size={14} /> : <Bot size={14} />}
+                                            <div className={`w-6 h-6 rounded flex items-center justify-center overflow-hidden border ${msg.role === 'user' ? 'bg-white border-white text-black' : 'bg-black border-white/20'}`}>
+                                                {msg.role === 'user' ? <User size={14} /> : <AutoNotionLogo className="w-full h-full" />}
                                             </div>
                                             <span className="text-xs font-bold uppercase tracking-widest text-white/40">
                                                 {msg.role === 'user' ? 'Operator' : 'Architect OS'}

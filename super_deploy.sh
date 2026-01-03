@@ -53,17 +53,18 @@ WALKTHROUGH_PATH="/home/cube/.gemini/antigravity/brain/02728b33-2dc2-46a5-8d8e-3
 DETAILS="Standard mission update and performance optimization. Auto-deply active."
 
 if [ -f "$WALKTHROUGH_PATH" ]; then
-    # Extract the first paragraph or specific summary after the header
-    EXTRACTED_SUMMARY=$(grep -v '^#' "$WALKTHROUGH_PATH" | grep -v '^$' | head -n 1)
+    # Extract a comprehensive paragraph from the walkthrough (ignoring headers and empty lines)
+    EXTRACTED_SUMMARY=$(grep -v '^#' "$WALKTHROUGH_PATH" | grep -v '^$' | head -n 15 | tr '\n' ' ' | sed 's/  */ /g')
     if [ ! -z "$EXTRACTED_SUMMARY" ]; then
         DETAILS="$EXTRACTED_SUMMARY"
     fi
 fi
 
-# Automated professional commit: Technical title + Client-facing body
+# Sync and Push
+git add .
 git commit -m "feat: ${SUMMARY}" -m "Client Log: ${DETAILS}" -m "Metadata: Pipeline Automated" \
   || echo -e "${GRAY}No changes detected${RESET}"
-
+git pull --rebase origin main
 git push origin main
 
 echo -e "${GREEN}✔ Source synchronized${RESET}"
