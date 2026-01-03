@@ -41,7 +41,7 @@ const Dashboard = () => {
             id: 'agents',
             label: 'AI Agents',
             icon: UserPlus,
-            path: '/agents',
+            path: '/super-agents',
             description: 'Cognitive Engine',
             settings: [
                 { label: 'Sentiment AI', type: 'toggle', value: true },

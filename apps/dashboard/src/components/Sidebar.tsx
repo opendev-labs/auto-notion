@@ -36,7 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         { id: 'automation', label: 'Automations', icon: Zap, path: '/automation' },
         { id: 'ig-connections', label: 'Instagram', icon: Share2, path: '/ig-connections' },
         { id: 'content', label: 'Content Library', icon: BookOpen, path: '/content' },
-        { id: 'agents', label: 'AI Agents', icon: UserPlus, path: '/agents' },
+        { id: 'agents', label: 'AI Agents', icon: UserPlus, path: '/super-agents' },
         { id: 'cosmic', label: 'Scheduler', icon: Moon, path: '/cosmic' },
         { id: 'integrations', label: 'Integrations', icon: Link2, path: '/integrations' },
         { id: 'logs', label: 'Logs & History', icon: History, path: '/logs' },

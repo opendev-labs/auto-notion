@@ -111,7 +111,7 @@ function App() {
         } />
 
         {/* Individual Module Pages (No Sidebar) */}
-        <Route path="/agents" element={
+        <Route path="/super-agents" element={
           <RequireAuth user={user}>
             <div className="h-screen w-screen bg-black overflow-hidden">
               <AICommandCenter n8nConnected={n8nConnected} />

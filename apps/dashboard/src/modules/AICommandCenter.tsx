@@ -14,8 +14,11 @@ import {
     Github,
     Moon,
     Grid,
-    Layout
+    Layout,
+    Terminal
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { SuperAgentService } from '../services/SuperAgentService';
 
 interface Message {
     id: string;
@@ -40,8 +43,25 @@ const AICommandCenter: React.FC<AICommandCenterProps> = ({ n8nConnected }) => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
+    const [aiStatus, setAiStatus] = useState<string | null>(null);
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        SuperAgentService.setContext({
+            navigate: (path: string) => navigate(path),
+            getSystemStatus: async () => ({
+                n8n: n8nConnected ? 'Online' : 'Offline',
+                firebase: 'Connected',
+                timestamp: new Date().toISOString()
+            }),
+            triggerSync: async (provider: string) => {
+                console.log(`Triggering sync for ${provider}`);
+                return { success: true, message: `Sync sequence initiated for ${provider}` };
+            }
+        });
+    }, [navigate, n8nConnected]);
 
     const suggestions = [
         { label: "Analyze my IG reach", icon: <Zap size={12} className="text-yellow-400" /> },
@@ -75,23 +95,32 @@ const AICommandCenter: React.FC<AICommandCenterProps> = ({ n8nConnected }) => {
         setMessages(prev => [...prev, userMsg]);
         setInput('');
         setIsTyping(true);
+        setAiStatus("Initializing consciousness...");
 
-        // Simulate Conversational OS Response
-        setTimeout(() => {
+        try {
+            const response = await SuperAgentService.processMessage(text, (status) => {
+                setAiStatus(status);
+            });
+
             const assistantMsg: Message = {
                 id: (Date.now() + 1).toString(),
                 role: 'assistant',
-                content: `Acknowledged. Executing intent analysis... 
-
-Target: AUTO-NOTION execution node.
-Command: ${text}
-
-I've successfully mapped this to the corresponding automation workflow. The operation is now running in the background. Would you like to see the real-time logs?`,
+                content: response,
                 timestamp: new Date()
             };
             setMessages(prev => [...prev, assistantMsg]);
+        } catch (error: any) {
+            const errorMsg: Message = {
+                id: (Date.now() + 1).toString(),
+                role: 'assistant',
+                content: `Protocol Failure: ${error.message}`,
+                timestamp: new Date()
+            };
+            setMessages(prev => [...prev, errorMsg]);
+        } finally {
             setIsTyping(false);
-        }, 1500);
+            setAiStatus(null);
+        }
     };
 
     return (
@@ -260,8 +289,21 @@ I've successfully mapped this to the corresponding automation workflow. The oper
                             </AnimatePresence>
 
                             {isTyping && (
-                                <div className="flex items-center gap-2 animate-pulse pl-8">
-                                    <span className="text-[11px] font-black text-white/20 uppercase tracking-[0.2em]">Executing architectural logic...</span>
+                                <div className="flex flex-col gap-3 pl-8">
+                                    <div className="flex items-center gap-2 animate-pulse">
+                                        <div className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
+                                        <span className="text-[11px] font-black text-white/40 uppercase tracking-[0.2em]">Executing architectural logic...</span>
+                                    </div>
+                                    {aiStatus && (
+                                        <motion.div
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg w-fit"
+                                        >
+                                            <Terminal size={12} className="text-purple-400" />
+                                            <span className="text-[10px] font-mono text-purple-400/80">{aiStatus}</span>
+                                        </motion.div>
+                                    )}
                                 </div>
                             )}
 

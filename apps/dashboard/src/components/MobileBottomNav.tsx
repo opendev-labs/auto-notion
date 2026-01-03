@@ -14,7 +14,7 @@ export default function MobileBottomNav({
     const navItems = [
         { id: 'dashboard', label: 'Home', icon: Home, path: '/' },
         { id: 'ig-connections', label: 'Instagram', icon: Instagram, path: '/ig-connections' },
-        { id: 'agents', label: 'Agents', icon: Bot, path: '/agents' },
+        { id: 'agents', label: 'Agents', icon: Bot, path: '/super-agents' },
         { id: 'cosmic', label: 'Cosmic', icon: Moon, path: '/cosmic' },
     ];
 
