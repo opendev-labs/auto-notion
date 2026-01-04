@@ -1,20 +1,42 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Plus, MoreVertical, Search, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Instagram, Plus, MoreVertical, Search, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
+import { linkWithPopup } from 'firebase/auth';
+import { facebookProvider, auth } from '../services/firebase';
+import { NanoBanana } from '../services/nanobanana';
+import { Sparkles, Copy } from 'lucide-react';
 
 const IGPortal = () => {
-    const accounts = [
+    const [connecting, setConnecting] = useState(false);
+    const [accounts, setAccounts] = useState([
         { name: '@MythicWisdom', category: 'Mythology', status: 'Connected', followers: '12.4k' },
         { name: '@DharmaDotes', category: 'Dharma', status: 'Connected', followers: '8.1k' },
         { name: '@KarmaKronicles', category: 'Karma', status: 'Syncing', followers: '15.2k' },
-    ];
+    ]);
 
-    const handleConnect = () => {
-        const appId = "689310950781431";
-        const redirectUri = encodeURIComponent("https://auto-notion.web.app/auth/callback");
-        const scopes = encodeURIComponent("instagram_basic,instagram_content_publish,pages_read_engagement,pages_show_list,ads_management");
-        const authUrl = `https://www.facebook.com/v24.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirectUri}&scope=${scopes}`;
-
-        window.location.href = authUrl;
+    const handleConnect = async () => {
+        if (!auth.currentUser) return;
+        setConnecting(true);
+        try {
+            // Attempt to link the Facebook account to the existing authenticated user
+            const result = await linkWithPopup(auth.currentUser, facebookProvider);
+            // const credential = FacebookAuthProvider.credentialFromResult(result);
+            // const accessToken = credential.accessToken;
+            console.log("Instagram account linked successfully", result);
+            // In a real app, we would now fetch the pages/IG accounts using the accessToken
+            // and add them to the list. For now, we simulate success.
+            setAccounts(prev => [...prev, { name: '@NewConnection', category: 'Uncategorized', status: 'Connected', followers: '0' }]);
+        } catch (error: any) {
+            console.error("Error linking Instagram:", error);
+            if (error.code === 'auth/credential-already-in-use') {
+                // The Facebook account is already linked to another user or this user.
+                alert("This Facebook account is already associated with a user. Try signing in with it directly.");
+            } else {
+                alert("Failed to connect Instagram: " + error.message);
+            }
+        } finally {
+            setConnecting(false);
+        }
     };
 
     return (
@@ -30,11 +52,12 @@ const IGPortal = () => {
                 </div>
                 <button
                     onClick={handleConnect}
-                    className="btn-primary flex items-center gap-3 px-8 group whitespace-nowrap"
+                    disabled={connecting}
+                    className="btn-primary flex items-center gap-3 px-8 group whitespace-nowrap disabled:opacity-50"
                 >
-                    <Plus size={18} />
-                    Connect New Account
-                    <ArrowRight size={16} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500" />
+                    {connecting ? <Loader2 className="animate-spin" size={18} /> : <Plus size={18} />}
+                    {connecting ? 'Connecting...' : 'Connect New Account'}
+                    {!connecting && <ArrowRight size={16} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500" />}
                 </button>
             </div>
 
@@ -89,8 +112,85 @@ const IGPortal = () => {
                     </motion.div>
                 ))}
             </div>
+
+            {/* AI Content Studio Section */}
+            <div className="pt-12 border-t border-white/5">
+                <div className="flex items-center justify-between mb-8">
+                    <div>
+                        <h3 className="text-xl font-bold text-white mb-2">Nano-Banana Studio</h3>
+                        <p className="text-white/40 text-sm">AI-powered content generation for your nodes</p>
+                    </div>
+                    <div className="px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 text-[10px] font-bold uppercase tracking-widest">
+                        Beta v0.9
+                    </div>
+                </div>
+
+                <AIContentGenerator />
+            </div>
+        </div>
+    );
+};
+
+// Sub-component for Generator to keep main clean
+
+const AIContentGenerator = () => {
+    const [topic, setTopic] = useState('');
+    const [result, setResult] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleGenerate = async () => {
+        if (!topic) return;
+        setLoading(true);
+        try {
+            const content = await NanoBanana.generateCaption(topic);
+            setResult(content);
+        } catch (err: any) {
+            setResult("Error generating content: " + err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="glass p-6 md:p-8 rounded-[2rem] border-white/5 space-y-6">
+            <div className="flex gap-4">
+                <input
+                    value={topic}
+                    onChange={(e) => setTopic(e.target.value)}
+                    placeholder="Enter a topic for your next post (e.g. 'Monday Motivation for entrepreneurs')"
+                    className="flex-1 bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:border-white/30 outline-none transition-all"
+                />
+                <button
+                    onClick={handleGenerate}
+                    disabled={loading || !topic}
+                    className="btn-primary px-6 py-3 rounded-xl flex items-center gap-2 disabled:opacity-50"
+                >
+                    {loading ? <Loader2 className="animate-spin" size={18} /> : <Sparkles size={18} />}
+                    <span>Generate</span>
+                </button>
+            </div>
+
+            {result && (
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-black/40 border border-white/10 rounded-xl p-6 relative group"
+                >
+                    <button
+                        onClick={() => navigator.clipboard.writeText(result)}
+                        className="absolute right-4 top-4 p-2 text-white/20 hover:text-white transition-colors"
+                        title="Copy to clipboard"
+                    >
+                        <Copy size={16} />
+                    </button>
+                    <pre className="whitespace-pre-wrap font-sans text-white/80 text-sm leading-relaxed">
+                        {result}
+                    </pre>
+                </motion.div>
+            )}
         </div>
     );
 };
 
 export default IGPortal;
+

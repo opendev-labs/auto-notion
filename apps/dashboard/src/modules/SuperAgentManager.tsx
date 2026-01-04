@@ -39,7 +39,7 @@ const AutoNotionLogo = ({ className = "w-6 h-6" }) => (
     </svg>
 );
 
-const AICommandCenter: React.FC<AICommandCenterProps> = ({ n8nConnected }) => {
+const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
@@ -341,4 +341,4 @@ const AICommandCenter: React.FC<AICommandCenterProps> = ({ n8nConnected }) => {
     );
 };
 
-export default AICommandCenter;
+export default SuperAgentManager;

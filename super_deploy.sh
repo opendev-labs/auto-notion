@@ -44,6 +44,14 @@ echo ""
 # ──────────────────────────────────────────────────────────────────────────────
 # 2. VERSION CONTROL (AUTOMATED)
 # ──────────────────────────────────────────────────────────────────────────────
+echo -e "${BLUE}[CONFIG]${RESET} Verifying secure keys..."
+./scripts/ensure_env.sh || { echo -e "${RED}✖ API Key Config Missing${RESET}"; exit 1; }
+echo -e "${GREEN}✔ Keys verified${RESET}"
+echo ""
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 3. VERSION CONTROL (AUTOMATED)
+# ──────────────────────────────────────────────────────────────────────────────
 echo -e "${BLUE}[SOURCE]${RESET} Synchronizing mission intelligence..."
 
 TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")

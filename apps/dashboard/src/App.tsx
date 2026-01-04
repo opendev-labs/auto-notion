@@ -1,9 +1,8 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import Sidebar from './components/Sidebar';
-import MobileBottomNav from './components/MobileBottomNav';
 import LoadingFallback from './components/LoadingFallback';
+import MainLayout from './components/MainLayout';
 import './styles/integration-mode.css';
 
 // Lazy load heavy components for code splitting
@@ -11,7 +10,7 @@ const Dashboard = lazy(() => import('./modules/Dashboard'));
 const IGPortal = lazy(() => import('./modules/IGPortal'));
 const IntegrationPortal = lazy(() => import('./modules/IntegrationPortal'));
 const AutomationPortal = lazy(() => import('./modules/AutomationPortal'));
-const AICommandCenter = lazy(() => import('./modules/AICommandCenter'));
+const SuperAgentManager = lazy(() => import('./modules/SuperAgentManager'));
 const CosmicPlanner = lazy(() => import('./modules/CosmicPlanner'));
 const ContentLibrary = lazy(() => import('./modules/ContentLibrary'));
 const Logs = lazy(() => import('./modules/Logs'));
@@ -36,7 +35,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [n8nConnected, setN8nConnected] = useState<boolean | null>(null);
 
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const location = useLocation();
   console.log("App current path:", location.pathname);
 
@@ -70,8 +68,6 @@ function App() {
 
   if (loading) return <LoadingFallback text="Authenticating..." />;
 
-  // Removed ProtectedLayout as it's been integrated into the Route
-
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
@@ -84,98 +80,27 @@ function App() {
         <Route path="/refund-policy" element={<div className="min-h-screen bg-black p-8"><RefundPolicy /></div>} />
         <Route path="/data-deletion" element={<div className="min-h-screen bg-black p-8"><DataDeletion /></div>} />
 
-        {/* Protected Dashboard Routes */}
-        <Route path="/dashboard" element={
+        {/* Protected Application Routes - ALL Wrapped in MainLayout */}
+        <Route path="/*" element={
           <RequireAuth user={user}>
-            <div className="flex h-screen overflow-hidden selection:bg-white selection:text-black bg-black">
-              <Sidebar
-                collapsed={sidebarCollapsed}
-                setCollapsed={setSidebarCollapsed}
-              />
-              <main className="flex-1 overflow-y-auto p-3 md:p-8 pb-24 lg:pb-8 relative">
-                <div className="max-w-7xl mx-auto relative z-10 mt-4">
-                  <DashboardLayout
-                    integrationMode={integrationMode}
-                    n8nConnected={n8nConnected}
-                    isHub={true}
-                  />
-                  <Dashboard />
-                </div>
-              </main>
-              {!sidebarCollapsed && <MobileBottomNav
+            <MainLayout integrationMode={integrationMode} setIntegrationMode={setIntegrationMode}>
+              <DashboardLayout
                 integrationMode={integrationMode}
-                setIntegrationMode={setIntegrationMode}
-              />}
-            </div>
+                n8nConnected={n8nConnected}
+              />
+            </MainLayout>
           </RequireAuth>
         } />
-
-        {/* Individual Module Pages (No Sidebar) */}
-        <Route path="/super-agents" element={
-          <RequireAuth user={user}>
-            <div className="h-screen w-screen bg-black overflow-hidden">
-              <AICommandCenter n8nConnected={n8nConnected} />
-            </div>
-          </RequireAuth>
-        } />
-
-        {[
-          { path: '/automation', component: AutomationPortal, title: 'Automation Engine' },
-          { path: '/ig-connections', component: IGPortal, title: 'Instagram Nodes' },
-          { path: '/content', component: ContentLibrary, title: 'Content Library' },
-          { path: '/cosmic', component: CosmicPlanner, title: 'Scheduler' },
-          { path: '/integrations', component: IntegrationPortal, title: 'Integration Portal' },
-          { path: '/logs', component: Logs, title: 'Logs & History' },
-          { path: '/settings', component: SettingsModule, title: 'System Settings' },
-          { path: '/subscription', component: SubscriptionPage, title: 'Institutional Plan' },
-        ].map(({ path, component: Component, title }) => (
-          <Route key={path} path={path} element={
-            <RequireAuth user={user}>
-              <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black p-4 md:p-8">
-                <div className="max-w-7xl mx-auto">
-                  <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-6">
-                    <div className="flex items-center gap-4">
-                      <button
-                        onClick={() => window.location.href = '/dashboard'}
-                        className="p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-white/60 hover:text-white"
-                      >
-                        <Activity size={20} className="rotate-180" />
-                      </button>
-                      <div>
-                        <h2 className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em]">Institutional Engine</h2>
-                        <h1 className="text-xl font-bold tracking-tight">{title}</h1>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className={`px-3 py-1 rounded-md text-[9px] font-bold tracking-widest bg-white/5 border border-white/10 text-white/40`}>
-                        NODE ACTIVE
-                      </div>
-                      <button
-                        onClick={() => signOut(auth).then(() => window.location.href = '/auth')}
-                        className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20"
-                      >
-                        <LogOut size={16} />
-                      </button>
-                    </div>
-                  </div>
-                  <Component n8nConnected={n8nConnected} isActive={true} />
-                </div>
-              </div>
-            </RequireAuth>
-          } />
-        ))}
-
-        {/* Default Redirect */}
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </Suspense>
   );
 }
 
 // Internal Component to manage local tab state until full route migration
-const DashboardLayout = ({ integrationMode, n8nConnected, isHub }: any) => {
+const DashboardLayout = ({ integrationMode, n8nConnected }: any) => {
   const location = useLocation();
-  const path = location.pathname.split('/').pop() || 'dashboard';
+  // Handle nested paths correctly for title (e.g. /automation)
+  const path = location.pathname.split('/').filter(Boolean).pop() || 'dashboard';
 
   const getTitle = (p: string) => {
     switch (p) {
@@ -228,36 +153,35 @@ const DashboardLayout = ({ integrationMode, n8nConnected, isHub }: any) => {
         </div>
       </header>
 
-      {!isHub && (
-        integrationMode ? (
-          <Suspense fallback={<LoadingFallback text="Loading Integration Portal..." />}>
-            <IntegrationPortal isActive={integrationMode} />
-          </Suspense>
-        ) : (
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={location.pathname}
-              initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
-              transition={{ duration: 0.4, ease: "easeOut" as any }}
-            >
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="automation" element={<AutomationPortal />} />
-                <Route path="ig-connections" element={<IGPortal />} />
-                <Route path="content" element={<ContentLibrary />} />
-                <Route path="super-agents" element={<AICommandCenter />} />
-                <Route path="cosmic" element={<CosmicPlanner />} />
-                <Route path="integrations" element={<IntegrationPortal isActive={true} />} />
-                <Route path="logs" element={<Logs />} />
-                <Route path="settings" element={<SettingsModule />} />
-                <Route path="subscription" element={<SubscriptionPage />} />
-                <Route path="*" element={<Navigate to="/dashboard" replace />} />
-              </Routes>
-            </motion.div>
-          </AnimatePresence>
-        )
+      {integrationMode ? (
+        <Suspense fallback={<LoadingFallback text="Loading Integration Portal..." />}>
+          <IntegrationPortal isActive={integrationMode} />
+        </Suspense>
+      ) : (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
+            transition={{ duration: 0.4, ease: "easeOut" as any }}
+          >
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="automation" element={<AutomationPortal />} />
+              <Route path="ig-connections" element={<IGPortal />} />
+              <Route path="content" element={<ContentLibrary />} />
+              <Route path="super-agents" element={<SuperAgentManager />} />
+              <Route path="cosmic" element={<CosmicPlanner />} />
+              <Route path="integrations" element={<IntegrationPortal isActive={true} />} />
+              <Route path="logs" element={<Logs />} />
+              <Route path="settings" element={<SettingsModule />} />
+              <Route path="subscription" element={<SubscriptionPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </motion.div>
+        </AnimatePresence>
       )}
     </>
   );
