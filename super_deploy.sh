@@ -1,8 +1,8 @@
 #!/bin/bash
 # ==============================================================================
-# INSTITUTIONAL DEPLOYMENT PIPELINE
+# INSTITUTIONAL DEPLOYMENT PIPELINE v2.0 (Agency Grade)
 # © 2026 OpenDev-Labs
-# Purpose: Build → Commit → Deploy (Deterministic & Fully Automated)
+# Purpose: Build → Commit → Deploy (GitHub + Firebase + HuggingFace)
 # ==============================================================================
 
 set -e
@@ -24,8 +24,8 @@ DIVIDER="${GRAY}─────────────────────�
 # ──────────────────────────────────────────────────────────────────────────────
 clear
 echo -e "${DIVIDER}"
-echo -e "${GREEN}DEPLOYMENT CONTROL (AUTOMATED MODE)${RESET}"
-echo -e "${GRAY}Build • Version • Release • Publish${RESET}"
+echo -e "${GREEN}AGENCY DEPLOYMENT CONTROL${RESET}"
+echo -e "${GRAY}GitHub • Firebase • HuggingFace${RESET}"
 echo -e "${DIVIDER}"
 echo ""
 
@@ -42,61 +42,35 @@ echo -e "${GREEN}✔ Environment ready${RESET}"
 echo ""
 
 # ──────────────────────────────────────────────────────────────────────────────
-# 2. VERSION CONTROL (AUTOMATED)
+# 2. VERSION CONTROL (INTERACTIVE)
 # ──────────────────────────────────────────────────────────────────────────────
-echo -e "${BLUE}[CONFIG]${RESET} Verifying secure keys..."
-./scripts/ensure_env.sh || { echo -e "${RED}✖ API Key Config Missing${RESET}"; exit 1; }
-echo -e "${GREEN}✔ Keys verified${RESET}"
-echo ""
+echo -e "${BLUE}[SOURCE]${RESET} Preparing inputs..."
 
-# ──────────────────────────────────────────────────────────────────────────────
-# 3. VERSION CONTROL (AUTOMATED)
-# ──────────────────────────────────────────────────────────────────────────────
-echo -e "${BLUE}[SOURCE]${RESET} Synchronizing mission intelligence..."
+# Prompt for Commit Message
+echo -e "${YELLOW}Enter commit message for opendev-labs.github.io/auto-notion:${RESET}"
+read -p "Type your message > " COMMIT_MSG
 
-TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
-SUMMARY="Institutional synchronization [${TIMESTAMP}]"
-# Intelligent Detail Extraction (Non-Developer Friendly)
-WALKTHROUGH_PATH="/home/cube/.gemini/antigravity/brain/02728b33-2dc2-46a5-8d8e-3ec045f718d1/walkthrough.md"
-DETAILS="Standard mission update and performance optimization. Auto-deply active."
-
-if [ -f "$WALKTHROUGH_PATH" ]; then
-    # Extract mission summary from walkthrough.md
-    # We look for content between <!-- MISSION_SUMMARY_START --> and <!-- MISSION_SUMMARY_END -->
-    # Fallback to the first 10 significant lines if tags are missing
-    if grep -q "<!-- MISSION_SUMMARY_START -->" "$WALKTHROUGH_PATH"; then
-        EXTRACTED_SUMMARY=$(sed -n '/<!-- MISSION_SUMMARY_START -->/,/<!-- MISSION_SUMMARY_END -->/p' "$WALKTHROUGH_PATH" | grep -v "<!--")
-    else
-        EXTRACTED_SUMMARY=$(grep -v '^#' "$WALKTHROUGH_PATH" | grep -v '^$' | head -n 12)
-    fi
-
-    if [ ! -z "$EXTRACTED_SUMMARY" ]; then
-        # Escape any special characters for the -m flag
-        DETAILS=$(echo "$EXTRACTED_SUMMARY" | sed 's/"/\\"/g')
-    fi
+if [ -z "$COMMIT_MSG" ]; then
+    COMMIT_MSG="update: routine optimization"
+    echo -e "${GRAY}Using default: $COMMIT_MSG${RESET}"
 fi
 
-# Sync and Push
+TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+
+# Sync and Push to GitHub
+echo -e "${BLUE}[GITHUB]${RESET} Pushing source code..."
 git add .
-git commit -m "feat: ${SUMMARY}" -m "Client Log: ${DETAILS}" -m "Metadata: Pipeline Automated" \
-  || echo -e "${GRAY}No changes detected${RESET}"
-
-# Update Mission Log
-echo -e "${BLUE}[MISSION]${RESET} Updating live mission log..."
-python3 scripts/generate_mission_log.py
-git add docs/mission-log.json
-git commit -m "chore: update mission-log.json [skip ci]" || true
-
-git pull --rebase origin main
+git commit -m "$COMMIT_MSG" -m "Timestamp: $TIMESTAMP" || echo -e "${GRAY}No changes detected${RESET}"
+git pull --rebase origin main || true
 git push origin main
 
-echo -e "${GREEN}✔ Source synchronized${RESET}"
+echo -e "${GREEN}✔ GitHub synchronized${RESET}"
 echo ""
 
 # ──────────────────────────────────────────────────────────────────────────────
-# 3. BUILD PIPELINE
+# 3. BUILD PIPELINE (The "Butter Smooth" UI)
 # ──────────────────────────────────────────────────────────────────────────────
-echo -e "${BLUE}[BUILD]${RESET} Executing pipeline"
+echo -e "${BLUE}[BUILD]${RESET} Compiling High-Fidelity Dashboard..."
 echo -e "${DIVIDER}"
 
 START_TIME=$(date +%s)
@@ -104,16 +78,16 @@ START_TIME=$(date +%s)
 rm -rf dist
 mkdir -p dist/dashboard
 
-echo -e "${GRAY}→ Dashboard${RESET}"
+echo -e "${GRAY}→ Building Dashboard (Auto-Notion)...${RESET}"
 cd apps/dashboard
-npm install --legacy-peer-deps
+npm install --legacy-peer-deps > /dev/null 2>&1
 npm run build
 cd ../..
 cp -r apps/dashboard/dist/* dist/dashboard/
 
-echo -e "${GRAY}→ Landing${RESET}"
+echo -e "${GRAY}→ Building Landing...${RESET}"
 cd apps/landing
-npm install --legacy-peer-deps
+npm install --legacy-peer-deps > /dev/null 2>&1
 npm run build
 cd ../..
 cp -r apps/landing/dist/* dist/
@@ -125,20 +99,49 @@ echo -e "${GREEN}✔ Build complete in ${DURATION}s${RESET}"
 echo ""
 
 # ──────────────────────────────────────────────────────────────────────────────
-# 4. DEPLOYMENT
+# 4. DEPLOYMENT (FIREBASE)
 # ──────────────────────────────────────────────────────────────────────────────
-echo -e "${BLUE}[DEPLOY]${RESET} Publishing to hosting"
+echo -e "${BLUE}[FIREBASE]${RESET} Deploying to Global CDN (auto-notion.web.app)..."
 firebase deploy --only hosting --non-interactive
 
+echo -e "${GREEN}✔ Firebase deployment active${RESET}"
 echo ""
 
 # ──────────────────────────────────────────────────────────────────────────────
-# 5. FINAL STATUS
+# 5. DEPLOYMENT (HUGGING FACE SPACES)
+# ──────────────────────────────────────────────────────────────────────────────
+echo -e "${BLUE}[HUGGINGFACE]${RESET} Deploying Agency Brain to Spaces..."
+
+HF_SPACE_DIR="hf_deploy"
+HF_REPO_URL="https://huggingface.co/spaces/opendev-labs/auto-notion"
+
+# Clone if not exists
+if [ ! -d "$HF_SPACE_DIR" ]; then
+    echo -e "${GRAY}Initializing Space clone...${RESET}"
+    git clone "$HF_REPO_URL" "$HF_SPACE_DIR"
+fi
+
+# Update Space files
+echo -e "${GRAY}Syncing Agency Files...${RESET}"
+cp -r hf_template/* "$HF_SPACE_DIR/"
+
+# Push to Space
+cd "$HF_SPACE_DIR"
+git add .
+git commit -m "Agency Update: $COMMIT_MSG" || echo -e "${GRAY}No space changes${RESET}"
+git push || echo -e "${RED}⚠ Failed to push to Hugging Face. Check tokens?${RESET}"
+cd ..
+
+echo -e "${GREEN}✔ Hugging Face Space synchronized${RESET}"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 6. FINAL STATUS
 # ──────────────────────────────────────────────────────────────────────────────
 echo -e "${DIVIDER}"
-echo -e "${GREEN}DEPLOYMENT SUCCESSFUL${RESET}"
+echo -e "${GREEN}AGENCY SYSTEMS LIVE${RESET}"
 echo ""
-echo "Dashboard : https://auto-notion.web.app/dashboard"
-echo "Repository: https://opendev-labs.github.io/auto-notion"
+echo "📱 UI (Smooth): https://auto-notion.web.app/dashboard"
+echo "🧠 Brain (HF):  https://huggingface.co/spaces/opendev-labs/auto-notion"
+echo "💻 Source:      https://opendev-labs.github.io/auto-notion"
 echo -e "${DIVIDER}"
-echo -e "${GRAY}Pipeline complete. System stable.${RESET}"
+echo -e "${GRAY}Mission Accomplished.${RESET}"

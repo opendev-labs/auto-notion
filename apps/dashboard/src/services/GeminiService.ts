@@ -63,6 +63,43 @@ const tools = [
                     required: ["provider"],
                 },
             },
+            {
+                name: "generate_content",
+                description: "Generate social media content using a specialized creative worker model.",
+                parameters: {
+                    type: "OBJECT",
+                    properties: {
+                        platform: {
+                            type: "STRING",
+                            enum: ["instagram", "linkedin"],
+                            description: "The target platform.",
+                        },
+                        topic: {
+                            type: "STRING",
+                            description: "The topic or subject of the content.",
+                        },
+                    },
+                    required: ["platform", "topic"],
+                },
+            },
+            {
+                name: "rewrite_quote",
+                description: "Rewrite a text quote in a specific tone using a specialized model.",
+                parameters: {
+                    type: "OBJECT",
+                    properties: {
+                        quote: {
+                            type: "STRING",
+                            description: "The original quote text.",
+                        },
+                        tone: {
+                            type: "STRING",
+                            description: "The desired tone (e.g., 'professional', 'witty', 'inspiring').",
+                        },
+                    },
+                    required: ["quote", "tone"],
+                },
+            },
         ],
     },
 ];
