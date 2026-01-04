@@ -1,3 +1,4 @@
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     History,
@@ -11,11 +12,6 @@ import {
     Github,
     Moon,
     Grid,
-    Sun,
-    ExternalLink,
-    Play,
-    Loader,
-    Check,
     Layout,
     Terminal
 } from 'lucide-react';
@@ -94,7 +90,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
             timestamp: new Date()
         };
 
-        setMessages(prev => [...prev, userMsg]);
+        setMessages((prev: Message[]) => [...prev, userMsg]);
         setInput('');
         setIsTyping(true);
         setAiStatus("Initializing consciousness...");
@@ -103,7 +99,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
             const response = await SuperAgentService.processMessage(text, {
                 onStatus: (status) => setAiStatus(status),
                 onPlan: (plan) => {
-                    setMessages(prev => [...prev, {
+                    setMessages((prev: Message[]) => [...prev, {
                         id: Date.now().toString(),
                         role: 'assistant',
                         content: plan,
@@ -112,7 +108,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                     }]);
                 },
                 onAction: (action) => {
-                    setMessages(prev => [...prev, {
+                    setMessages((prev: Message[]) => [...prev, {
                         id: Date.now().toString(),
                         role: 'assistant',
                         content: action,
@@ -121,7 +117,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                     }]);
                 },
                 onResult: (result) => {
-                    setMessages(prev => [...prev, {
+                    setMessages((prev: Message[]) => [...prev, {
                         id: Date.now().toString(),
                         role: 'assistant',
                         content: result,
@@ -142,7 +138,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                     type: 'text',
                     timestamp: new Date()
                 };
-                setMessages(prev => [...prev, assistantMsg]);
+                setMessages((prev: Message[]) => [...prev, assistantMsg]);
             }
 
         } catch (error: any) {
@@ -152,7 +148,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                 content: `Protocol Failure: ${error.message} `,
                 timestamp: new Date()
             };
-            setMessages(prev => [...prev, errorMsg]);
+            setMessages((prev: Message[]) => [...prev, errorMsg]);
         } finally {
             setIsTyping(false);
             setAiStatus(null);
@@ -297,7 +293,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                                             </div>
                                             <button
                                                 onClick={() => handleSend()}
-                                                className={`w - 10 h - 10 rounded - full flex items - center justify - center transition - all ${input ? 'bg-white text-black' : 'bg-white/10 text-white/20'} `}
+                                                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${input ? 'bg-white text-black' : 'bg-white/10 text-white/20'} `}
                                             >
                                                 <ArrowUp size={20} />
                                             </button>
@@ -323,7 +319,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                         /* Active Chat Stream */
                         <div className="max-w-3xl mx-auto space-y-8">
                             <AnimatePresence mode="popLayout">
-                                {messages.map((msg) => (
+                                {messages.map((msg: Message) => (
                                     <motion.div
                                         key={msg.id}
                                         initial={{ opacity: 0, y: 10 }}
@@ -339,7 +335,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                                         )}
 
                                         {msg.role === 'assistant' && (
-                                            <div className={`pl - 8 relative ${msg.type === 'plan' ? 'border-l-2 border-purple-500/30 pl-6 py-1' : ''} `}>
+                                            <div className={`pl-8 relative ${msg.type === 'plan' ? 'border-l-2 border-purple-500/30 pl-6 py-1' : ''} `}>
                                                 {/* Specialized Renderers based on Type */}
 
                                                 {msg.type === 'plan' && (
