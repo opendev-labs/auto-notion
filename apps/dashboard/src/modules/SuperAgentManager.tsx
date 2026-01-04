@@ -1,4 +1,4 @@
-```
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -66,8 +66,8 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                 timestamp: new Date().toISOString()
             }),
             triggerSync: async (provider: string) => {
-                console.log(`Triggering sync for ${ provider }`);
-                return { success: true, message: `Sync sequence initiated for ${ provider }` };
+                console.log(`Triggering sync for ${provider}`);
+                return { success: true, message: `Sync sequence initiated for ${provider}` };
             }
         });
     }, [navigate, n8nConnected]);
@@ -156,7 +156,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
             const errorMsg: Message = {
                 id: (Date.now() + 1).toString(),
                 role: 'assistant',
-                content: `Protocol Failure: ${ error.message } `,
+                content: `Protocol Failure: ${error.message} `,
                 timestamp: new Date()
             };
             setMessages(prev => [...prev, errorMsg]);
@@ -203,7 +203,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                             </div>
                             <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-white/5 border border-white/5">
                                 <div className="flex items-center gap-2">
-                                    <div className={`w - 1.5 h - 1.5 rounded - full ${ n8nConnected ? 'bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.6)]' : 'bg-yellow-500' } `} />
+                                    <div className={`w - 1.5 h - 1.5 rounded - full ${n8nConnected ? 'bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.6)]' : 'bg-yellow-500'} `} />
                                     <span className="text-[13px] text-white/80 font-medium">n8n Engine</span>
                                 </div>
                                 <span className="text-[11px] text-white/40 font-mono">{n8nConnected ? 'RUNNING' : 'CONNECTING'}</span>
@@ -304,7 +304,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                                             </div>
                                             <button
                                                 onClick={() => handleSend()}
-                                                className={`w - 10 h - 10 rounded - full flex items - center justify - center transition - all ${ input ? 'bg-white text-black' : 'bg-white/10 text-white/20' } `}
+                                                className={`w - 10 h - 10 rounded - full flex items - center justify - center transition - all ${input ? 'bg-white text-black' : 'bg-white/10 text-white/20'} `}
                                             >
                                                 <ArrowUp size={20} />
                                             </button>
@@ -346,7 +346,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                                         )}
 
                                         {msg.role === 'assistant' && (
-                                            <div className={`pl - 8 relative ${ msg.type === 'plan' ? 'border-l-2 border-purple-500/30 pl-6 py-1' : '' } `}>
+                                            <div className={`pl - 8 relative ${msg.type === 'plan' ? 'border-l-2 border-purple-500/30 pl-6 py-1' : ''} `}>
                                                 {/* Specialized Renderers based on Type */}
 
                                                 {msg.type === 'plan' && (
@@ -438,7 +438,7 @@ const SuperAgentManager: React.FC<AICommandCenterProps> = ({ n8nConnected }) => 
                                     />
                                     <button
                                         onClick={() => handleSend()}
-                                        className={`w - 8 h - 8 rounded - full flex items - center justify - center transition - all ${ input ? 'bg-white text-black' : 'bg-white/10 text-white/20' } `}
+                                        className={`w - 8 h - 8 rounded - full flex items - center justify - center transition - all ${input ? 'bg-white text-black' : 'bg-white/10 text-white/20'} `}
                                     >
                                         <ArrowUp size={16} />
                                     </button>
