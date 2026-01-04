@@ -1,28 +1,21 @@
-
-import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     History,
     ChevronLeft,
     ChevronRight,
-    Send,
-    Bot,
     Sparkles,
-    LayoutDashboard,
-    Settings,
-    Zap,
-    Instagram,
-    FileText,
-    Brain,
-    CheckCircle2,
-    Cpu,
-    Activity,
     Paperclip,
     ArrowUp,
     MessageSquare,
+    Zap,
     Github,
     Moon,
     Grid,
+    Sun,
+    ExternalLink,
+    Play,
+    Loader,
+    Check,
     Layout,
     Terminal
 } from 'lucide-react';
