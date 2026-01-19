@@ -1,5 +1,17 @@
 [
   {
+    "hash": "997f3b45",
+    "title": "feat(dashboard): upgrade github sign-in, nuxt4 migration, and premium ui overhaul",
+    "body": "Upgraded GitHub authentication to signInWithRedirect, migrated to Nuxt 4 structure, and implemented institutional-grade UI with a global dev notifier.",
+    "date": "2026-01-19 23:58:10 +0530"
+  },
+  {
+    "hash": "9656ffe4",
+    "title": "chore: update mission log [skip ci]",
+    "body": "",
+    "date": "2026-01-04 11:06:18 +0000"
+  },
+  {
     "hash": "3158b8c4",
     "title": "fix: Complete TypeScript compliance - add explicit types and restore React imports",
     "body": "Timestamp: 2026-01-04 11:06 UTC",
@@ -346,17 +358,5 @@
     "title": "fix(deployment): resolve dashboard routing and mission log timing issues",
     "body": "",
     "date": "2026-01-02 16:06:27 +0530"
-  },
-  {
-    "hash": "6840d02f",
-    "title": "feat(redesign): major dashboard overhaul for n8n operational clarity and AI Command Center integration",
-    "body": "",
-    "date": "2026-01-02 15:58:00 +0530"
-  },
-  {
-    "hash": "d425c93f",
-    "title": "fix(build): remove unused imports causing CI/CD failure",
-    "body": "",
-    "date": "2026-01-02 15:25:13 +0530"
   }
 ]
