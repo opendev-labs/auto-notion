@@ -1,8 +1,8 @@
 #!/bin/bash
 # ==============================================================================
-# INSTITUTIONAL DEPLOYMENT PIPELINE v2.0 (Agency Grade)
+# INSTITUTIONAL DEPLOYMENT PIPELINE v2.1 (Nuxt 4 Edition)
 # © 2026 OpenDev-Labs
-# Purpose: Build → Commit → Deploy (GitHub + Firebase + HuggingFace)
+# Stack: Nuxt 4 (SSG) + Vite → Firebase Hosting + HuggingFace Spaces
 # ==============================================================================
 
 set -e
@@ -67,36 +67,60 @@ echo -e "${GREEN}✔ GitHub synchronized${RESET}"
 echo ""
 
 # ──────────────────────────────────────────────────────────────────────────────
-# 3. BUILD PIPELINE (The "Butter Smooth" UI)
+# 3. BUILD PIPELINE (Nuxt 4 + Vite)
 # ──────────────────────────────────────────────────────────────────────────────
-echo -e "${BLUE}[BUILD]${RESET} Compiling High-Fidelity Dashboard..."
+echo -e "${BLUE}[BUILD]${RESET} Compiling production bundles..."
 echo -e "${DIVIDER}"
 
 START_TIME=$(date +%s)
 
+# Clean previous build
 rm -rf dist
-mkdir -p dist/dashboard
+mkdir -p dist
 
-echo -e "${GRAY}→ Building Dashboard (Auto-Notion Nuxt)...${RESET}"
+# Build Nuxt 4 Dashboard
+echo -e "${GRAY}→ Building Nuxt 4 Dashboard (SSG Mode)...${RESET}"
 cd apps/dashboard-nuxt
-npm install --legacy-peer-deps > /dev/null 2>&1
+
+# Install dependencies if needed
+if [ ! -d "node_modules" ]; then
+    echo -e "${YELLOW}Installing dashboard dependencies...${RESET}"
+    npm install --legacy-peer-deps
+fi
+
+# Generate static site
 npm run generate
+
 cd ../..
-rm -rf dist/dashboard
+
+# Copy Nuxt output to dist/dashboard
 mkdir -p dist/dashboard
 cp -r apps/dashboard-nuxt/.output/public/* dist/dashboard/
 
-echo -e "${GRAY}→ Building Landing...${RESET}"
+echo -e "${GREEN}✔ Dashboard built successfully${RESET}"
+
+# Build Landing Page
+echo -e "${GRAY}→ Building Landing Page (Vite)...${RESET}"
 cd apps/landing
-npm install --legacy-peer-deps > /dev/null 2>&1
+
+# Install dependencies if needed
+if [ ! -d "node_modules" ]; then
+    echo -e "${YELLOW}Installing landing dependencies...${RESET}"
+    npm install --legacy-peer-deps
+fi
+
 npm run build
 cd ../..
+
+# Copy landing to dist root
 cp -r apps/landing/dist/* dist/
+
+echo -e "${GREEN}✔ Landing page built successfully${RESET}"
 
 END_TIME=$(date +%s)
 DURATION=$((END_TIME - START_TIME))
 
-echo -e "${GREEN}✔ Build complete in ${DURATION}s${RESET}"
+echo -e "${GREEN}✔ All builds complete in ${DURATION}s${RESET}"
 echo ""
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -139,10 +163,12 @@ echo -e "${GREEN}✔ Hugging Face Space synchronized${RESET}"
 # 6. FINAL STATUS
 # ──────────────────────────────────────────────────────────────────────────────
 echo -e "${DIVIDER}"
-echo -e "${GREEN}AGENCY SYSTEMS LIVE${RESET}"
+echo -e "${GREEN}DEPLOYMENT COMPLETE${RESET}"
 echo ""
-echo "📱 UI (Smooth): https://auto-notion.web.app/dashboard"
-echo "🧠 Brain (HF):  https://huggingface.co/spaces/opendev-labs/auto-notion"
-echo "💻 Source:      https://opendev-labs.github.io/auto-notion"
+echo "🚀 Nuxt Dashboard: https://auto-notion.web.app/dashboard"
+echo "🏠 Landing Page:   https://auto-notion.web.app"
+echo "🧠 HF Brain:       https://huggingface.co/spaces/opendev-labs/auto-notion"
+echo "💻 Source Code:    https://github.com/opendev-labs/auto-notion"
 echo -e "${DIVIDER}"
-echo -e "${GRAY}Mission Accomplished.${RESET}"
+echo -e "${GRAY}All systems deployed and live.${RESET}"
+
