@@ -36,7 +36,6 @@ echo -e "${BLUE}[CHECK]${RESET} Validating system requirements..."
 
 command -v node >/dev/null || { echo -e "${RED}✖ Node.js missing${RESET}"; exit 1; }
 command -v git >/dev/null || { echo -e "${RED}✖ Git missing${RESET}"; exit 1; }
-command -v firebase >/dev/null || { echo -e "${RED}✖ Firebase CLI missing${RESET}"; exit 1; }
 
 echo -e "${GREEN}✔ Environment ready${RESET}"
 echo ""
@@ -78,12 +77,14 @@ START_TIME=$(date +%s)
 rm -rf dist
 mkdir -p dist/dashboard
 
-echo -e "${GRAY}→ Building Dashboard (Auto-Notion)...${RESET}"
-cd apps/dashboard
+echo -e "${GRAY}→ Building Dashboard (Auto-Notion Nuxt)...${RESET}"
+cd apps/dashboard-nuxt
 npm install --legacy-peer-deps > /dev/null 2>&1
-npm run build
+npm run generate
 cd ../..
-cp -r apps/dashboard/dist/* dist/dashboard/
+rm -rf dist/dashboard
+mkdir -p dist/dashboard
+cp -r apps/dashboard-nuxt/.output/public/* dist/dashboard/
 
 echo -e "${GRAY}→ Building Landing...${RESET}"
 cd apps/landing
@@ -102,7 +103,7 @@ echo ""
 # 4. DEPLOYMENT (FIREBASE)
 # ──────────────────────────────────────────────────────────────────────────────
 echo -e "${BLUE}[FIREBASE]${RESET} Deploying to Global CDN (auto-notion.web.app)..."
-firebase deploy --only hosting --non-interactive
+npx firebase-tools deploy --only hosting --non-interactive
 
 echo -e "${GREEN}✔ Firebase deployment active${RESET}"
 echo ""
