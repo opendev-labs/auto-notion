@@ -1,5 +1,17 @@
 [
   {
+    "hash": "b0644d68",
+    "title": "deploy: institutional upgrades",
+    "body": "Timestamp: 2026-01-19 18:30 UTC",
+    "date": "2026-01-20 00:00:20 +0530"
+  },
+  {
+    "hash": "2144c396",
+    "title": "chore: update mission log [skip ci]",
+    "body": "",
+    "date": "2026-01-19 18:28:23 +0000"
+  },
+  {
     "hash": "997f3b45",
     "title": "feat(dashboard): upgrade github sign-in, nuxt4 migration, and premium ui overhaul",
     "body": "Upgraded GitHub authentication to signInWithRedirect, migrated to Nuxt 4 structure, and implemented institutional-grade UI with a global dev notifier.",
@@ -346,17 +358,5 @@
     "title": "style: final lint cleanup and landing page styling",
     "body": "",
     "date": "2026-01-02 18:01:42 +0530"
-  },
-  {
-    "hash": "e72bbb77",
-    "title": "feat: Dashboard refactor, n8n fix, and Mission Control hub",
-    "body": "Institutional dark theme upgrade with major architectural improvements:\\n- Refactored App to use React Router for modular pages\\n- Redesigned Dashboard as a central Mission Control hub with inline controls\\n- Fixed n8n status detection and implemented Refresh Connection logic\\n- Created Log, Settings, and Content Library modules\\n- Styled landing page transition feed with green timestamps for professional finish",
-    "date": "2026-01-02 18:01:08 +0530"
-  },
-  {
-    "hash": "929b29a5",
-    "title": "fix(deployment): resolve dashboard routing and mission log timing issues",
-    "body": "",
-    "date": "2026-01-02 16:06:27 +0530"
   }
 ]
